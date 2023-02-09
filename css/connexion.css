@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 body {
     background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
@@ -22,7 +20,7 @@ h1 {
 	color: rgba(255,255,255,1);
     font-size: 28px;
     font-weight: bold;
-    padding: 20px;
+    padding: 20px 0 20px 0;
     text-align: center;
 }
 
@@ -31,8 +29,7 @@ form {
 	width: 300px;
 }
 
-
-input {
+button, input {
     border: 0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -55,13 +52,14 @@ input::placeholder {
     font-style: italic;
 }
 
-input[type="submit"] {
+button {
     background-color: rgba(140,107,203,1);
     color: rgba(255,255,255,1);
     font-weight: bold;
     margin-top: 20px;
 }
 
-input[type="submit"]:hover {
+button:hover {
     background-color: rgba(126,96,182,1);
+    cursor: pointer;
 }

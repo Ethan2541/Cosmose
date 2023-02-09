@@ -1,0 +1,71 @@
+body {
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Inter";
+    font-size: 20px;
+}
+
+main {
+    background-color: rgba(23,21,33,0.8);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    height: 450px;
+    margin: 10% auto 0 auto;
+    padding-top: 50px;
+    width: 400px;
+}
+
+h1 {
+    color: rgba(255,255,255,1);
+    font-size: 28px;
+    font-weight: bold;
+    padding: 0 0 20px 0;
+    text-align: center;
+}
+
+form {
+	display: grid;
+    grid-gap: 15px;
+	grid-template-columns: 1fr 1fr;
+    margin: 0 auto 0 auto;
+	width: 300px;
+}
+
+.large-field {
+    grid-column: 1 / span 2;
+}
+
+button, input {
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    height: 40px;
+    padding: 0 10px 0 10px;
+    width: 100%;
+}
+
+input:focus {
+    outline: 3px solid rgba(140,107,203,1);
+}
+
+input[type="submit"]:focus {
+    outline: 3px solid rgba(255,255,255,1);
+}
+
+input::placeholder {
+    font-style: italic;
+}
+
+button {
+    background-color: rgba(140,107,203,1);
+    color: rgba(255,255,255,1);
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: rgba(126,96,182,1);
+    cursor: pointer;
+}

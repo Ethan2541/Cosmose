@@ -2,23 +2,20 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <link href="../css/connexion.css" rel="stylesheet">
+    <link href="../css/fonts.css" rel="stylesheet">
+    <link href="../css/inscription.css" rel="stylesheet">
   </head>
   <body>
-  	<h1>Enregistrement</h1>
-  	<form method="POST" action="javascript:connexion">
-  		<label class="center" for="prenom">Prénom</label>
-  		<label class="center" for="nom">Nom</label>
-  		<input type="text" id="prenom" name="prenom">
-  		<input type="text" id="nom" name="nom">
-		<label class="topmargin" for="login">Login</label>
-		<input class="topmargin" type="text" id="login" name="login">
-		<label class="topmargin" for="passwd">Mot de passe</label>
-		<input class="topmargin" type="password" id="passwd" name="passwd">
-		<label class="topmargin" for="retapez">Retapez</label>
-		<input class="topmargin" type="password" id="retapez" name="passwd">
-		<button class="topmargin" type="submit">Enregistrer</button>
-		<button class="topmargin" type="reset">Annuler</button>
-	</form>
+    <main>
+        <h1>S'inscrire</h1>
+        <form method="POST" action="javascript:connexion">
+            <input type="text" id="prenom" name="prenom" placeholder="Prénom">
+            <input type="text" id="nom" name="nom" placeholder="Nom">
+            <input class="large-field" type="text" id="login" name="login" placeholder="Pseudo">
+            <input class="large-field" type="password" id="mdp" name="mdp" placeholder="Mot de passe">
+            <input class="large-field" type="password" id="mdpbis" name="mdpbis" placeholder="Retapez le mot de passe">
+            <button class="large-field" type="submit">Enregistrer</button>
+        </form>
+    </main>
   </body>
 </html>
