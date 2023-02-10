@@ -1,9 +1,53 @@
+html {
+    min-height: 100%;
+}
+
 body {
-    background-image: url("../img/background.jpg");
-    background-repeat: no-repeat;
+    background: url("../img/background.jpg") center no-repeat;
     background-size: cover;
     font-family: "Inter";
     font-size: 20px;
+    margin: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+header {
+    align-items: center;;
+    background-color: rgba(23,21,33,0.8);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header>button {
+    background-color: rgba(23,21,33,0.8);
+    border: 2px solid rgba(255,255,255,1);
+    border-radius: 4px;
+    color: rgba(255,255,255,1);
+    font-family: inherit;
+    font-size: 14px;
+    height: 40px;
+    margin: 10px;
+}
+
+header>p {
+    color: rgba(255,255,255,1);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+i {
+    margin-right: 5px;
+}
+
+header>button:hover {
+    background-color: rgba(255,255,255,0.05);
 }
 
 main {
@@ -29,7 +73,7 @@ form {
 	width: 300px;
 }
 
-button, input {
+form>button, form>input {
     border: 0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -40,26 +84,25 @@ button, input {
     width: 100%;
 }
 
-input:focus {
+form>input:focus {
     outline: 3px solid rgba(140,107,203,1);
 }
 
-input[type="submit"]:focus {
+form>input[type="submit"]:focus {
     outline: 3px solid rgba(255,255,255,1);
 }
 
-input::placeholder {
+form>input::placeholder {
     font-style: italic;
 }
 
-button {
+form>button {
     background-color: rgba(140,107,203,1);
     color: rgba(255,255,255,1);
     font-weight: bold;
     margin-top: 20px;
 }
 
-button:hover {
+form>button:hover {
     background-color: rgba(126,96,182,1);
-    cursor: pointer;
 }
