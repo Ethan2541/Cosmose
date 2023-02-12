@@ -6,17 +6,16 @@ body {
     background: url("../img/background.jpg") center no-repeat;
     background-size: cover;
     font-family: "Inter";
-    font-size: 20px;
     margin: 0;
 }
 
-button:hover {
+button, div>i {
     cursor: pointer;
     transition: 0.3s linear;
 }
 
 header {
-    align-items: center;;
+    align-items: center;
     background-color: rgba(23,21,33,0.8);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px;
     display: flex;
@@ -30,7 +29,6 @@ header>button {
     border-radius: 4px;
     color: rgba(255,255,255,1);
     font-family: inherit;
-    font-size: 14px;
     font-weight: bold;
     height: 40px;
     margin: 10px;
@@ -39,25 +37,25 @@ header>button {
 
 header>button:hover {
     border-color: rgba(140,107,203,1);
-    transition-property: border-color;
 }
 
 header>p {
     color: rgba(255,255,255,1);
     cursor: default;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     margin: 10px;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
 }
 
 main {
     background-color: rgba(23,21,33,0.8);
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 450px;
+    height: 475px;
     margin: 10% auto 0 auto;
-    padding-top: 50px;
+    padding-top: 25px;
     width: 400px;
 }
 
@@ -81,17 +79,21 @@ form {
     grid-column: 1 / span 2;
 }
 
-form>button, form>input {
+form>button, form>input, div>input {
     border: 0;
     border-radius: 4px;
     box-sizing: border-box;
     font-family: inherit;
-    height: 40px;
+    height: 50px;
     padding: 0 10px 0 10px;
     width: 100%;
 }
 
-form>input:focus {
+div>input[type="password"] {
+    padding-right: 30px;
+}
+
+form>input:focus, div>input:focus {
     outline: 3px solid rgba(140,107,203,1);
 }
 
@@ -99,8 +101,17 @@ form>input[type="submit"]:focus {
     outline: 3px solid rgba(255,255,255,1);
 }
 
-form>input::placeholder {
+form>input::placeholder, div>input::placeholder {
     font-style: italic;
+}
+
+div>i {
+    font-size: 14px;
+    margin-left: -25px;
+}
+
+div>i:hover {
+    color: rgba(140,107,203,1);
 }
 
 form>button {
@@ -112,5 +123,4 @@ form>button {
 
 form>button:hover {
     background-color: rgba(126,96,182,1);
-    transition-property: background-color;
 }

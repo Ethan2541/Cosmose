@@ -1,0 +1,65 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    background: url("../img/background.jpg") center no-repeat;
+    background-size: cover;
+    display: grid;
+    font-family: "Inter";
+    font-size: 20px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2,1fr);
+    margin: 15% auto 0 auto;
+    width: 425px;
+}
+
+h1 {
+    color: rgba(255,255,255,1);
+    cursor: default;
+    font-size: 80px;
+    font-weight: bold;
+    grid-column: 1 / span 2;
+    margin: 0;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+button {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    height: 55px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
+#connexion {
+    background-color: rgba(255,255,255,0);
+    border: 2px solid rgba(140,107,203,1);
+    border-radius: 8px;
+    color: rgba(140,107,203,1);  
+}
+
+#connexion:hover {
+    border-color: rgba(255,255,255,1);
+    color: rgba(255,255,255,1);
+}
+
+#inscription {
+    background-color: rgba(140,107,203,1);
+    border: 2px solid rgba(140,107,203,1);
+    border-radius: 8px;
+    color: rgba(255,255,255,1);
+}
+
+#inscription:hover {
+    background-color: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,1);
+    color: rgba(140,107,203,1);
+}
