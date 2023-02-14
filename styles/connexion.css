@@ -1,0 +1,30 @@
+form>i {
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
+main {
+    height: 450px;
+    padding-top: 50px;
+}
+
+h1 {
+    padding: 20px 0 20px 0;
+}
+
+form>button, form>input {
+    margin-bottom: 15px;
+}
+
+form>input[type="password"] {
+    padding-right: 30px;
+}
+
+form>i {
+    font-size: 14px;
+    margin-left: -25px;
+}
+
+form>i:hover {
+    color: rgba(140,107,203,1);
+}

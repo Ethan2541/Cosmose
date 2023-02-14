@@ -9,7 +9,7 @@ body {
     margin: 0;
 }
 
-button, form>i {
+button {
     cursor: pointer;
     transition: 0.3s linear;
 }
@@ -45,7 +45,7 @@ header>p {
     font-size: 20px;
     font-weight: bold;
     margin: 10px;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
     user-select: none;
 }
 
@@ -53,9 +53,7 @@ main {
     background-color: rgba(23,21,33,0.8);
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    height: 450px;
     margin: 10% auto 0 auto;
-    padding-top: 50px;
     width: 400px;
 }
 
@@ -63,7 +61,6 @@ h1 {
 	color: rgba(255,255,255,1);
     font-size: 28px;
     font-weight: bold;
-    padding: 20px 0 20px 0;
     text-align: center;
 }
 
@@ -78,13 +75,8 @@ form>button, form>input {
     box-sizing: border-box;
     font-family: inherit;
     height: 50px;
-    margin-bottom: 15px;
     padding: 0 10px 0 10px;
     width: 100%;
-}
-
-form>input[type="password"] {
-    padding-right: 30px;
 }
 
 form>input:focus {
@@ -97,15 +89,6 @@ form>input[type="submit"]:focus {
 
 form>input::placeholder {
     font-style: italic;
-}
-
-form>i {
-    font-size: 14px;
-    margin-left: -25px;
-}
-
-form>i:hover {
-    color: rgba(140,107,203,1);
 }
 
 form>button {
