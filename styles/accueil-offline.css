@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: url("../img/background.jpg") center no-repeat;
+    background: url("../assets/img/background.jpg") center no-repeat;
     background-size: cover;
     display: grid;
     font-family: "Inter";
