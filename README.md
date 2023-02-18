@@ -8,7 +8,7 @@ Cosmose est clone du réseau social `Twitter` réalisé dans le cadre d'un proje
 ### Arborescence
 
 - L'ensemble du contenu `HTML`, `CSS` et `Javascript` est contenu dans le dossier `src`.
-- Les icônes et images sont présentes dans le dossier `assets`.
+- Les icônes et images sont présentes dans le dossier `src/assets`.
 
 
 ### Composants React
