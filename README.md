@@ -15,12 +15,12 @@ Cosmose est clone du réseau social `Twitter` réalisé dans le cadre d'un proje
 
 La liste des composants React et de leur utilité est la suivante :
 
-- <Accueil /> : affichage offline des différentes options de connexion / inscription.
-- <Header /> : barre de navigation utilisée lors des étapes de connexion / inscription.
-- <Inscription /> : contient des composants <Titre /> et <FormInscription /> qui permet d'afficher le formulaire d'inscription, de créer une entrée dans la base de données des utilisateurs, et de basculer sur le fil d'actualité en actualisant le statut utilisateur (déconnecté -> connecté).
-- <Connexion /> : contient des composants <Titre /> et <FormConnexion /> qui permet d'afficher le formulaire de connexion, et de basculer sur le fil d'actualité en actualisant le statut utilisateur (déconnecté -> connecté).
-- <SearchBar /> : permet de rechercher et filtrer une liste de messages.
-- <Menu /> : panneau latéral contenant les différents éléments de navigation.
-- <Messages /> : contient un composant <MessageACreer /> qui permet à l'utilisateur de saisir un message à publier, et un composant <ListeMessages /> qui affiche une liste de composants <Messages />. Il est possible de spécifier les auteurs des messages à afficher.
-- <Banniere /> : bannière et photo de profil de l'utilisateur.
-- <Infos /> : contient un composant <Compteurs /> qui affiche les statistiques principales de l'utilisateur, un composant <Stats /> affichant les statistiques annexes de l'utilisateur (temps passé sur `Cosmose`, ...), ainsi qu'un composant <ListeAmis /> qui affiche une liste de composants <Amis /> spécifiques à l'utilisateur.
+- `<Accueil />` : affichage offline des différentes options de connexion / inscription.
+- `<Header />` : barre de navigation utilisée lors des étapes de connexion / inscription.
+- `<Inscription />` : contient des composants <Titre /> et <FormInscription /> qui permet d'afficher le formulaire d'inscription, de créer une entrée dans la base de données des utilisateurs, et de basculer sur le fil d'actualité en actualisant le statut utilisateur (déconnecté -> connecté).
+- `<Connexion />` : contient des composants <Titre /> et <FormConnexion /> qui permet d'afficher le formulaire de connexion, et de basculer sur le fil d'actualité en actualisant le statut utilisateur (déconnecté -> connecté).
+- `<SearchBar />` : permet de rechercher et filtrer une liste de messages.
+- `<Menu />` : panneau latéral contenant les différents éléments de navigation.
+- `<Messages />` : contient un composant <MessageACreer /> qui permet à l'utilisateur de saisir un message à publier, et un composant <ListeMessages /> qui affiche une liste de composants <Messages />. Il est possible de spécifier les auteurs des messages à afficher.
+- `<Banniere />` : bannière et photo de profil de l'utilisateur.
+- `<Infos />` : contient un composant <Compteurs /> qui affiche les statistiques principales de l'utilisateur, un composant <Stats /> affichant les statistiques annexes de l'utilisateur (temps passé sur `Cosmose`, ...), ainsi qu'un composant <ListeAmis /> qui affiche une liste de composants <Amis /> spécifiques à l'utilisateur.
