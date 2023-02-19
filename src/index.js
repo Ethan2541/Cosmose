@@ -6,6 +6,6 @@ import './style/index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div className='main'>
-    <MainPage pageCourante="signup_page" isConnected={true}/>
+    <MainPage pageCourante="offline" isConnected={true}/>
   </div>
 );

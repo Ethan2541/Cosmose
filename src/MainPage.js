@@ -1,18 +1,19 @@
 import {useState} from 'react';
 import NavigationPanel from './NavigationPanel.js';
 import Signup from './Signup.js';
-import "./style/mainPage.css"
+import "./style/mainPage.css";
+import Offline from './Offline';
 
 function MainPage(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
     const [isConnected, setIsConnected] = useState(props.isConnected);
 
-    function getConnected(){
+    const getConnected = () => {
         setIsConnected(true);
         setPageCourante("message_page");
     }
 
-    function setLogout(){
+    const setLogout = () => {
         setIsConnected(false);
         setPageCourante("signin_page");
     }
@@ -21,13 +22,19 @@ function MainPage(props){
     <div>
         <header>
             <p>COSMOSE</p>
-            <button>
+            {pageCourante === "offline" ? null :
+            <button onClick={(evnt) => setPageCourante("offline")}>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i> RETOUR
             </button>
+            }
         </header>
-        {pageCourante === "signup_page" ? <Signup/> :
-        <NavigationPanel login={getConnected} logout={setLogout} isConnected={isConnected}/>
+        {(() => {
+        switch (pageCourante) {
+          case "offline": return <Offline setPage={setPageCourante}/>;
+          case "sign_up": return <Signup />;
+          default: return <NavigationPanel login={getConnected} logout={setLogout} isConnected={isConnected}/>;
         }
+        })()}
     </div>
     );
 }
