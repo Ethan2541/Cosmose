@@ -5,11 +5,12 @@ import Inscription from './Inscription.js';
 
 import './styles/index.css';
 import './styles/fonts.css';
+import MainPage from './MainPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div className='main'>
     <Entete />
-    <Inscription />
+    <MainPage />
   </div>
 );

@@ -22,7 +22,7 @@ function Inscription(props) {
                 <div className="large-field">
                     <input className="large-field" type="password" id="mdpbis" name="mdpbis" placeholder="Retapez le mot de passe" onChange={(evnt) => setMdpbis(evnt.target.value)}></input>
                 </div>
-                <button class="large-field" type="submit">Enregistrer</button>
+                <button className="large-field" type="submit" onClick={(evnt) => {props.setPage("")}}   >Enregistrer</button>
             </form>
         </main>
     );

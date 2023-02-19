@@ -1,8 +1,9 @@
 import {useState} from 'react';
-import NavigationPanel from './NavigationPanel.js';
-import Signup from './Signup.js';
+import NavigationPanel from './NavigationPanel';
+import Inscription from './Inscription';
 import "./style/mainPage.css";
 import Offline from './Offline';
+
 
 function MainPage(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
@@ -31,7 +32,7 @@ function MainPage(props){
         {(() => {
         switch (pageCourante) {
           case "offline": return <Offline setPage={setPageCourante}/>;
-          case "sign_up": return <Signup />;
+          case "sign_up": return <Inscription setPage={setPageCourante}/>;
           default: return <NavigationPanel login={getConnected} logout={setLogout} isConnected={isConnected}/>;
         }
         })()}

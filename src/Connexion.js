@@ -11,7 +11,7 @@ function Connexion(props) {
             <h1>S'identifier</h1>
             <form className="form">
                 <input type="text" id="login" name="login" placeholder="Pseudo"></input>
-                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"></input><i class="fa-regular fa-eye"></i>
+                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"></input><i className="fa-regular fa-eye"></i>
                 <button onClick={props.login}>Se connecter</button>
             </form>
         </main>
