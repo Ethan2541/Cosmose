@@ -1,6 +1,6 @@
 import {useState} from 'react';
+import './styles/connexion-inscription.css';
 import './styles/fonts.css';
-import './styles/inscription.css';
 
 function Inscription(props) {
     const [prenom, setPrenom] = useState();

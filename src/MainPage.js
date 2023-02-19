@@ -1,8 +1,9 @@
 import {useState} from 'react';
-import NavigationPanel from './NavigationPanel';
-import Inscription from './Inscription';
+import NavigationPanel from './NavigationPanel.js';
+import Inscription from './Inscription.js';
 import "./style/mainPage.css";
-import Offline from './Offline';
+import Offline from './Offline.js';
+import Entete from './Entete.js';
 
 
 function MainPage(props){
@@ -21,14 +22,7 @@ function MainPage(props){
 
     return(
     <div>
-        <header>
-            <p>COSMOSE</p>
-            {pageCourante === "offline" ? null :
-            <button onClick={(evnt) => setPageCourante("offline")}>
-                <i className="fa-solid fa-arrow-right-from-bracket"></i> RETOUR
-            </button>
-            }
-        </header>
+        <Entete />
         {(() => {
         switch (pageCourante) {
           case "offline": return <Offline setPage={setPageCourante}/>;
@@ -41,3 +35,14 @@ function MainPage(props){
 }
 
 export default MainPage;
+
+/*
+<header>
+            <p>COSMOSE</p>
+            {pageCourante === "offline" ? null :
+            <button onClick={(evnt) => setPageCourante("offline")}>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i> RETOUR
+            </button>
+            }
+        </header>
+*/

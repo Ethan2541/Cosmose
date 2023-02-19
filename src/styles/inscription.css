@@ -1,62 +1,20 @@
-div>i {
-    cursor: pointer;
-    transition: 0.3s linear;
-}
-
 main {
-    background-color: rgba(23,21,33,0.8);
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     height: 475px;
-    margin: 10% auto 0 auto;
     padding-top: 25px;
-    width: 400px;
 }
 
 h1 {
-	color: rgba(255,255,255,1);
-    font-size: 28px;
-    font-weight: bold;
     padding: 0 0 20px 0;
-    text-align: center;
-}
-
-button {
-    cursor: pointer;
-    transition: 0.3s linear;
 }
 
 form {
 	display: grid;
     grid-gap: 15px;
 	grid-template-columns: 1fr 1fr;
-    margin: 0 auto 0 auto;
-    width: 300px;
 }
 
 .large-field {
     grid-column: 1 / span 2;
-}
-
-form>button, form>input {
-    border: 0;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-family: inherit;
-    height: 50px;
-    padding: 0 10px 0 10px;
-    width: 100%;
-}
-
-form>button {
-    background-color: rgba(140,107,203,1);
-    color: rgba(255,255,255,1);
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-form>button:hover {
-    background-color: rgba(126,96,182,1);
 }
 
 div>input {
@@ -69,20 +27,17 @@ div>input {
     width: 100%;
 }
 
+div>i {
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
 div>input[type="password"] {
     padding-right: 30px;
 }
 
-form>input:focus {
-    outline: 3px solid rgba(140,107,203,1);
-}
-
 div>input:focus {
     outline: 3px solid rgba(140,107,203,1);
-}
-
-form>input::placeholder {
-    font-style: italic;
 }
 
 div>input::placeholder {
@@ -96,8 +51,4 @@ div>i {
 
 div>i:hover {
     color: rgba(140,107,203,1);
-}
-
-form>input[type="submit"]:focus {
-    outline: 3px solid rgba(255,255,255,1);
 }

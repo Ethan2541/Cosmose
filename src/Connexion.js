@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import "./styles/connexion.css";
+import "./styles/connexion-inscription.css";
 import './styles/fonts.css';
 
 function Connexion(props) {
