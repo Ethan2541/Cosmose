@@ -1,0 +1,10 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    background: url("../assets/img/background.jpg") center no-repeat;
+    background-size: cover;
+    font-family: "Inter";
+    margin: 0;
+}
