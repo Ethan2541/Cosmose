@@ -1,9 +1,8 @@
-import {useState} from 'react';
-import NavigationPanel from './NavigationPanel.js';
-import Inscription from './Inscription.js';
-import "./style/mainPage.css";
-import Offline from './Offline.js';
-import Entete from './Entete.js';
+import {useState} from "react";
+import Accueil from "./Accueil.js";
+import Entete from "./Entete.js";
+import Inscription from "./Inscription.js";
+import NavigationPanel from "./NavigationPanel.js";
 
 
 function MainPage(props){
@@ -25,7 +24,7 @@ function MainPage(props){
         <Entete />
         {(() => {
         switch (pageCourante) {
-          case "offline": return <Offline setPage={setPageCourante}/>;
+          case "offline": return <Accueil setPage={setPageCourante}/>;
           case "sign_up": return <Inscription setPage={setPageCourante}/>;
           default: return <NavigationPanel login={getConnected} logout={setLogout} isConnected={isConnected}/>;
         }

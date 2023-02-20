@@ -1,13 +1,13 @@
-main {
+#main-inscription {
     height: 475px;
     padding-top: 25px;
 }
 
-h1 {
+.h1-inscription {
     padding: 0 0 20px 0;
 }
 
-form {
+#form-inscription {
 	display: grid;
     grid-gap: 15px;
 	grid-template-columns: 1fr 1fr;
@@ -17,7 +17,7 @@ form {
     grid-column: 1 / span 2;
 }
 
-div>input {
+.div-inscription>input {
     border: 0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -27,28 +27,28 @@ div>input {
     width: 100%;
 }
 
-div>i {
+.div-inscription>i {
     cursor: pointer;
     transition: 0.3s linear;
 }
 
-div>input[type="password"] {
+.div-inscription>input[type="password"] {
     padding-right: 30px;
 }
 
-div>input:focus {
+.div-inscription>input:focus {
     outline: 3px solid rgba(140,107,203,1);
 }
 
-div>input::placeholder {
+.div-inscription>input::placeholder {
     font-style: italic;
 }
 
-div>i {
+.div-inscription>i {
     font-size: 14px;
     margin-left: -25px;
 }
 
-div>i:hover {
+.div-inscription>i:hover {
     color: rgba(140,107,203,1);
 }

@@ -1,12 +1,5 @@
-html {
-    min-height: 100%;
-}
-
-body {
-    background: url("../assets/img/background.jpg") center no-repeat;
-    background-size: cover;
+#div-accueil {
     display: grid;
-    font-family: "Inter";
     font-size: 20px;
     grid-gap: 10px;
     grid-template-columns: repeat(2,1fr);
@@ -14,7 +7,7 @@ body {
     width: 425px;
 }
 
-h1 {
+.h1-accueil {
     color: rgba(255,255,255,1);
     cursor: default;
     font-size: 80px;
@@ -26,7 +19,7 @@ h1 {
     user-select: none;
 }
 
-button {
+.button-accueil {
     font-family: inherit;
     font-size: 20px;
     font-weight: bold;
@@ -34,31 +27,31 @@ button {
     text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.button-accueil:hover {
     cursor: pointer;
     transition: 0.3s linear;
 }
 
-#connexion {
+#accueil-connexion {
     background-color: rgba(255,255,255,0);
     border: 2px solid rgba(140,107,203,1);
     border-radius: 8px;
     color: rgba(140,107,203,1);  
 }
 
-#connexion:hover {
+#accueil-connexion:hover {
     border-color: rgba(255,255,255,1);
     color: rgba(255,255,255,1);
 }
 
-#inscription {
+#accueil-inscription {
     background-color: rgba(140,107,203,1);
     border: 2px solid rgba(140,107,203,1);
     border-radius: 8px;
     color: rgba(255,255,255,1);
 }
 
-#inscription:hover {
+#accueil-inscription:hover {
     background-color: rgba(255,255,255,1);
     border-color: rgba(255,255,255,1);
     color: rgba(140,107,203,1);

@@ -1,13 +1,14 @@
-import './styles/entete.css';
-import './styles/fonts.css';
-import { FaDoorClosed } from "react-icons/fa";
+import {FaChevronCircleLeft} from "react-icons/fa"
+
+import "./styles/entete.css";
+import "./styles/fonts.css";
 
 function Entete(props) {
     return (
         <header>
             <p>COSMOSE</p>
             <button>
-            <FaDoorClosed /> RETOUR
+                <i><FaChevronCircleLeft /></i> RETOUR
             </button>
         </header>
     )

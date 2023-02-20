@@ -1,30 +1,30 @@
-main {
+#main-connexion {
     height: 450px;
     padding-top: 50px;
 }
 
-h1 {
+.h1-connexion {
     padding: 20px 0 20px 0;
 }
 
-form>i {
+#form-connexion>i {
     cursor: pointer;
     transition: 0.3s linear;
 }
 
-form>button, form>input {
+#form-connexion>button, #form-connexion>input {
     margin-bottom: 15px;
 }
 
-form>input[type="password"] {
+#form-connexion>input[type="password"] {
     padding-right: 30px;
 }
 
-form>i {
+#form-connexion>i {
     font-size: 14px;
     margin-left: -25px;
 }
 
-form>i:hover {
+#form-connexion>i:hover {
     color: rgba(140,107,203,1);
 }
