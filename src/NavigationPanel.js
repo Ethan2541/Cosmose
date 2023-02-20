@@ -1,10 +1,10 @@
 import Connexion from './Connexion.js';
-import Logout from './Logout.js';
+import Deconnexion from './Deconnexion.js';
 
 function NavigationPanel(props){
     return(
         <nav>
-            {props.isConnected ? <Logout logout={props.logout}/> : <Connexion login={props.login}/>}
+            {props.statutConnexion ? <Deconnexion deconnexion={props.deconnexion}/> : <Connexion connexion={props.connexion}/>}
         </nav>
     );
 }

@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 
 import "./styles/index.css";
 import "./styles/fonts.css";
-import MainPage from "./MainPage.js";
+import HubPrincipal from "./HubPrincipal.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div className='main'>
-    <MainPage />
+    <HubPrincipal pageCourante="accueil" statutConnexion={false} />
   </div>
 );
