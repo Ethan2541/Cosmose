@@ -31,7 +31,7 @@ function HubPrincipal(props){
 
     return(
     <div>
-        {(pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPage={setPageCourante}/>}
+        {(pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPage={setPageCourante} />}
         {affichageCourant(pageCourante)}
     </div>
     );

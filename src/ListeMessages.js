@@ -1,9 +1,9 @@
-import Message from './Message';
-import messages from './messages.json';
+import Message from "./Message";
+import messages from "./messages.json";
 
 function ListeMessages(props){
     return(
-        messages.map((msg, index) => {<Message message={msg.message} auteur={msg.auteur} auteur_id={msg.auteur_id} message_id={msg.id} />})
+        messages.map((msg, index) => {<Message auteur_id={msg.auteur_id} auteur={msg.auteur} message_id={msg.id} message={msg.message} />})
     );
 }
 
