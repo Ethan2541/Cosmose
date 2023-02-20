@@ -1,5 +1,5 @@
 import Message from "./Message";
-import messages from "./messages.json";
+import messages from "./message-test.json";
 
 function ListeMessages(props){
     return(
