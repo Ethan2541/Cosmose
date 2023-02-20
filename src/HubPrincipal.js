@@ -1,8 +1,8 @@
 import {useState} from "react";
 import Accueil from "./Accueil.js";
+import Connexion from "./Connexion.js";
 import Entete from "./Entete.js";
 import Inscription from "./Inscription.js";
-import NavigationPanel from "./NavigationPanel.js";
 
 
 function HubPrincipal(props){
@@ -22,8 +22,10 @@ function HubPrincipal(props){
     function affichageCourant(page) {
         switch (pageCourante) {
             case "accueil": return <Accueil setPage={setPageCourante} />;
-            case "inscription": return <Inscription setPage={setPageCourante}/>;
-            default: return <NavigationPanel connexion={seConnecter} deconnexion={seDeconnecter} statutConnexion={statutConnexion}/>;
+            case "inscription": return <Inscription setPage={setPageCourante} />;
+            case "connexion": return <Connexion connexion={seConnecter} />;
+            //case "fil-actualite": return <Deconnexion deconnexion={seDeconnecter} />;
+            default: return <Accueil setPage={setPageCourante} />;
         }
     }
 

@@ -20,7 +20,7 @@ function Connexion(props) {
             <h1 className="h1-connexion">S'identifier</h1>
             <form id="form-connexion" method="POST">
                 <input type="text" id="login" name="login" placeholder="Pseudo"></input>
-                <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
+                <input type={passwordMask ? "password" : "text"} id="mdp" name="mdp" placeholder="Mot de passe"></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                 <button onClick={props.connexion}>Se connecter</button>
             </form>
         </main>
