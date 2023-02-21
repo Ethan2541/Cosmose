@@ -1,5 +1,7 @@
 # Cosmose
 
+![Bannière Cosmose](https://github.com/Ethan2541/Cosmose/blob/main/Design/Cosmose.png) 
+
 Cosmose est un clone du réseau social `Twitter` réalisé dans le cadre d'un projet de fin de semestre dans le cadre de l'unité d'enseignement `LU3IN017 - Technologies Web` à _Sorbonne Université_. Le framework que nous avons utilisé pour mener à bien ce projet est `React.js`.
 
 
