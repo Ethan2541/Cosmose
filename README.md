@@ -26,3 +26,6 @@ La liste des composants React et de leur utilité est la suivante :
 - `<Messages />` : contient un composant <MessageACreer /> qui permet à l'utilisateur de saisir un message à publier, et un composant <ListeMessages /> qui affiche une liste de composants <Messages />. Il est possible de spécifier les auteurs des messages à afficher.
 - `<Banniere />` : bannière et photo de profil de l'utilisateur.
 - `<Infos />` : contient un composant <Compteurs /> qui affiche les statistiques principales de l'utilisateur, un composant <Stats /> affichant les statistiques annexes de l'utilisateur (temps passé sur `Cosmose`, ...), ainsi qu'un composant <ListeAmis /> qui affiche une liste de composants <Amis /> spécifiques à l'utilisateur.
+
+
+© Image de fond : https://www.wallpaperflare.com/flower-stars-clouds-dog-the-moon-little-prince-the-little-prince-wallpaper-yptei
