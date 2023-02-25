@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {FaEye} from "react-icons/fa";
 import {FaEyeSlash} from "react-icons/fa";
+import {axios} from "axios";
 
 import "./styles/connexion-inscription.css";
 import "./styles/fonts.css";
@@ -23,6 +24,25 @@ function Inscription(props) {
         setPasswordMaskBis(!passwordMaskBis);
     }
 
+    function Submit (evt) {
+        if(mdp === mdpbis) alert("Les mots de passes ne correspondent pas");
+        else{
+            axios.post('/inscription', {
+                nom: nom,
+                prenom: prenom,
+                login: login,
+                mdp: mdp
+            })
+            .then((response) => {
+                props.setPage("connexion");
+                response.data.created ? alert("utilisateur crée") : alert("utilisateur déjà existant");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+    }
+
     return (
         <main id="main-inscription">
             <h1 className="h1-inscription">S'inscrire</h1>
@@ -36,7 +56,7 @@ function Inscription(props) {
                 <div className="div-inscription large-field">
                     <input className="large-field" type={passwordMaskBis ? "password" : "text"} id="mdpbis" name="mdpbis" placeholder="Retapez le mot de passe" onChange={(evt) => setMdpbis(evt.target.value)}></input><i onClick={(evt) => gestionIconeMdpBis(evt)}>{passwordMaskBis ? <FaEye /> : <FaEyeSlash />}</i>
                 </div>
-                <button className="large-field" type="submit" onClick={(evt) => {props.setPage("connexion")}}>Enregistrer</button>
+                <button className="large-field" type="submit" onClick={Submit}>Enregistrer</button>
             </form>
         </main>
     );
