@@ -11,7 +11,6 @@ function Connexion(props) {
     const [loginVal, setLoginVal] = useState();
     const [passwordVal, setPasswordVal] = useState();
     const [passwordMask, setPasswordMask] = useState(true);
-	const [correct, setCorrect] = useState(true);
 
     function gestionIconeMdp (evt) {
         setPasswordMask(!passwordMask);
@@ -26,7 +25,7 @@ function Connexion(props) {
             password: passwordVal
         })
         .then((response) => {
-            response.data.connect ? props.connexion() : setCorrect(false);
+            response.data.connect ? props.connexion() : alert("Login ou mdp incorrect");
        })
         .catch((error) => {
             console.log(error);
@@ -41,7 +40,6 @@ function Connexion(props) {
                 <input type={passwordMask ? "password" : "text"} id="mdp" name="mdp" placeholder="Mot de passe" onChange={(evt) => {setPasswordVal(evt.target.value)}}></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                 <button type="submit">Se connecter</button>
             </form>
-			{correct === false && <p>Mot de passe ou login incorrect</p>}
         </main>
     );
 }

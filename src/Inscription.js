@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {FaEye} from "react-icons/fa";
 import {FaEyeSlash} from "react-icons/fa";
-import {axios} from "axios";
+import axios, {isCancel, AxiosError} from 'axios';
 
 import "./styles/connexion-inscription.css";
 import "./styles/fonts.css";
@@ -15,6 +15,8 @@ function Inscription(props) {
     const [mdpbis, setMdpbis] = useState();
     const [passwordMask, setPasswordMask] = useState(true);
     const [passwordMaskBis, setPasswordMaskBis] = useState(true);
+
+    axios.defaults.baseURL = 'http://localhost:80';
 
     function gestionIconeMdp (evt) {
         setPasswordMask(!passwordMask);
