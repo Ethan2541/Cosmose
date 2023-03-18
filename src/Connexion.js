@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {FaEye} from "react-icons/fa";
 import {FaEyeSlash} from "react-icons/fa";
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 
 import "./styles/connexion.css";
 import "./styles/connexion-inscription.css";
@@ -17,11 +17,11 @@ function Connexion(props) {
         setPasswordMask(!passwordMask);
     }
 
-	axios.defaults.baseURL = 'http://10-gag.fr:8080/';
+	axios.defaults.baseURL = 'http://localhost:8080';
 
-	function Connect (evt) {
+	function Connect(evt) {
 		evt.preventDefault();
-		axios.post('connexion', {
+		axios.post('/connexion', {
             login: loginVal,
             password: passwordVal
         })

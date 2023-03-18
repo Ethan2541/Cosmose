@@ -16,7 +16,7 @@ function Inscription(props) {
     const [passwordMask, setPasswordMask] = useState(true);
     const [passwordMaskBis, setPasswordMaskBis] = useState(true);
 
-    axios.defaults.baseURL = 'http://localhost:80';
+    axios.defaults.baseURL = 'http://localhost:8080';
 
     function gestionIconeMdp (evt) {
         setPasswordMask(!passwordMask);
