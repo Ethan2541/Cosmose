@@ -7,9 +7,14 @@ function Entete(props) {
     return (
         <header>
             <p>COSMOSE</p>
-            <button onClick={(evt) => props.setPage("accueil")}>
-                <i><FaChevronCircleLeft /></i> RETOUR
-            </button>
+            <nav>
+                <button onClick={(evt) => props.setPage("accueil")}>
+                    ACCUEIL
+                </button>
+                <button id="bouton-connexion" onClick={(evt) => props.setPage("connexion")}>
+                    SE CONNECTER
+                </button>
+            </nav>
         </header>
     )
 }
