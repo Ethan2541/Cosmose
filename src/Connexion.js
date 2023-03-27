@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {FaEye} from "react-icons/fa";
 import {FaEyeSlash} from "react-icons/fa";
+
 import axios from 'axios';
 
 import "./styles/connexion.css";
@@ -8,40 +9,50 @@ import "./styles/connexion-inscription.css";
 import "./styles/fonts.css";
 
 function Connexion(props) {
-    const [loginVal, setLoginVal] = useState();
-    const [passwordVal, setPasswordVal] = useState();
+    const [login, setLogin] = useState();
+    const [password, setPassword] = useState();
     const [passwordMask, setPasswordMask] = useState(true);
-	const [correct, setCorrect] = useState(true);
 
-    function gestionIconeMdp (evt) {
+    axios.defaults.baseURL = 'http://localhost:8080';
+
+    function gestionLogin(evt) {
+        setLogin(evt.target.value);
+    }
+
+    function gestionMdp(evt) {
+        setPassword(evt.target.value);
+    }
+
+    function gestionIconeMdp(evt) {
         setPasswordMask(!passwordMask);
     }
 
-	axios.defaults.baseURL = 'http://localhost:8080';
+    function idInvalide() {
+        alert("Identifiant et/ou mot de passe incorrect(s)");
+    }
 
-	function Connect(evt) {
+	function Connexion(evt) {
 		evt.preventDefault();
 		axios.post('/connexion', {
-            login: loginVal,
-            password: passwordVal
+            login: login,
+            password: password
         })
-        .then((response) => {
-            response.data.connect ? props.connexion() : setCorrect(false);
+        .then((rep) => {
+            rep.data.connect ? props.connexion() : idInvalide();
        })
-        .catch((error) => {
-            console.log(error);
+        .catch((err) => {
+            console.log(err);
         })
     }
 
     return(
         <main id="main-connexion">
             <h1 className="h1-connexion">S'identifier</h1>
-            <form id="form-connexion" onSubmit={Connect}>
-                <input type="text" id="login" name="login" placeholder="Pseudo" onChange={(evt) => {setLoginVal(evt.target.value)}}></input>
-                <input type={passwordMask ? "password" : "text"} id="mdp" name="mdp" placeholder="Mot de passe" onChange={(evt) => {setPasswordVal(evt.target.value)}}></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
+            <form id="form-connexion" onSubmit={Connexion}>
+                <input type="text" id="login" name="login" placeholder="Identifiant" onChange={(evt) => gestionLogin(evt)}></input>
+                <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={(evt) => gestionMdp(evt)}></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                 <button type="submit">Se connecter</button>
             </form>
-			{correct === false && <p>Mot de passe ou login incorrect</p>}
         </main>
     );
 }

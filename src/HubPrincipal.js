@@ -19,7 +19,7 @@ function HubPrincipal(props){
         setPageCourante("accueil");
     }
 
-    function affichageCourant(page) {
+    function affichage() {
         switch (pageCourante) {
             case "accueil": return <Accueil setPage={setPageCourante} />;
             case "inscription": return <Inscription setPage={setPageCourante} />;
@@ -29,10 +29,14 @@ function HubPrincipal(props){
         }
     }
 
+    function entete() {
+        return (pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPage={setPageCourante} pageCourante={pageCourante}/>
+    }
+
     return(
     <div>
-        {(pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPage={setPageCourante} />}
-        {affichageCourant(pageCourante)}
+        {entete()}
+        {affichage()}
     </div>
     );
 }

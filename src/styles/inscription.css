@@ -52,3 +52,7 @@
 .div-inscription>i:hover {
     color: rgba(140,107,203,1);
 }
+
+.mdp-incorrect {
+    outline: 3px solid rgba(255,69,0,1);
+}

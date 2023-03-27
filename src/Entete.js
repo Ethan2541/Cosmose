@@ -4,6 +4,22 @@ import "./styles/entete.css";
 import "./styles/fonts.css";
 
 function Entete(props) {
+    function connexion_inscription() {
+        if (props.pageCourante === "connexion") {
+            return (
+                <button id="bouton-connexion" onClick={(evt) => props.setPage("inscription")}>
+                    S'INSCRIRE
+                </button>
+            )
+        }
+        else if (props.pageCourante === "inscription") {
+            return (
+                <button id="bouton-connexion" onClick={(evt) => props.setPage("connexion")}>
+                    SE CONNECTER
+                </button>
+            )
+        }
+    }
     return (
         <header>
             <p>COSMOSE</p>
@@ -11,9 +27,7 @@ function Entete(props) {
                 <button onClick={(evt) => props.setPage("accueil")}>
                     ACCUEIL
                 </button>
-                <button id="bouton-connexion" onClick={(evt) => props.setPage("connexion")}>
-                    SE CONNECTER
-                </button>
+                {connexion_inscription()}
             </nav>
         </header>
     )
