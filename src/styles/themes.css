@@ -7,6 +7,10 @@
     --menu-bg-color: rgba(44,43,74,1);
     --message-bg-color: rgba(255,255,255,1);
     --message-bordure-color: rgba(0,0,0,0.25);
+    --publication-bg-color: rgba(255,255,255,1);
+    --publication-color: rgba(0,0,0,1);
+    --recherche-bg-color: rgba(0,0,0,0.05);
+    --recherche-color: rgba(0,0,0,0.5);
     --soustexte-color: rgba(0,0,0,0.25);
     --texte-color: rgba(0,0,0,1);
 }

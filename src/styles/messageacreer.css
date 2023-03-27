@@ -1,0 +1,41 @@
+#message-a-publier {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#message-a-publier > textarea {
+    background-color: var(--publication-bg-color);
+    border: 0;
+    box-sizing: border-box;
+    color: var(--publication-color);
+    height: 20vh;
+    font-family: inherit;
+    margin-bottom: 10px;
+    outline: 0;
+    padding: 5px;
+    resize: none;
+    width: 50%;
+}
+
+#message-a-publier > textarea:focus {
+    border: 3px solid var(--bordure-color);
+}
+
+#message-a-publier > button {
+    background-color: rgba(140,107,203,1);
+    border: 0;
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    height: 50px;
+    font-family: inherit;
+    font-weight: bold;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    transition: 0.3s linear;
+    width: 50%;
+}
+
+#message-a-publier > button:hover {
+    background-color: rgba(126,96,182,1);
+}

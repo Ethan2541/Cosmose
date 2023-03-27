@@ -3,7 +3,7 @@
     font-size: 20px;
     grid-gap: 10px;
     grid-template-columns: repeat(2,1fr);
-    margin: 15% auto 0 auto;
+    margin: 17% auto 0 auto;
     width: 425px;
 }
 
@@ -56,3 +56,38 @@
     border-color: rgba(255,255,255,1);
     color: rgba(140,107,203,1);
 }
+
+#planete {
+    animation: planeteupdown 3s linear infinite;
+    height: 500px;
+    position: absolute;
+    right: 2%;
+    width: 500px;
+}
+
+@keyframes planeteupdown {
+    0%, 100% {
+      top: 56%;
+    }
+    50% {
+      top: 59%;
+    }
+}
+
+#satellite {
+    animation: satelliteupdown 8s linear infinite;
+    height: 388px;
+    left: 2%;
+    position: absolute;
+    width: 500px;
+}
+
+@keyframes satelliteupdown {
+    0%, 100% {
+      top: 5%;
+    }
+    50% {
+      top: 12%;
+    }
+  }
+
