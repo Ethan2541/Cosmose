@@ -12,8 +12,8 @@ function Inscription(props) {
     const [prenom, setPrenom] = useState();
     const [nom, setNom] = useState();
     const [login, setLogin] = useState();
-    const [password, setPassword] = useState();
-    const [password2, setPassword2] = useState();
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
     const [passwordMask, setPasswordMask] = useState(true);
     const [passwordMask2, setPasswordMask2] = useState(true);
     const [idValide, setIdValide] = useState(true);
@@ -22,12 +22,10 @@ function Inscription(props) {
 
     useEffect(() => {
         if (password == password2) {
-            document.getElementById("password").classList.remove("mdp-incorrect");
             document.getElementById("password2").classList.remove("mdp-incorrect");
             setIdValide(true);
         }
         else {
-            document.getElementById("password").classList.add("mdp-incorrect");
             document.getElementById("password2").classList.add("mdp-incorrect");
             setIdValide(false);
         }

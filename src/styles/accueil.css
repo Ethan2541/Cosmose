@@ -58,34 +58,17 @@
 }
 
 #planete {
-    animation: planeteupdown 3s linear infinite;
+    animation: show 10s ease-in-out infinite;
     position: absolute;
-    right: 2%;
-    width: 18%;
+    left: -20%;
+    top: -50%;
 }
 
-@keyframes planeteupdown {
+@keyframes show {
     0%, 100% {
-      bottom: 5%;
+      transform: translateY(0);
     }
     50% {
-      bottom: 8%;
+      transform: translateY(2%);
     }
 }
-
-#satellite {
-    animation: satelliteupdown 8s linear infinite;
-    left: 2%;
-    position: absolute;
-    width: 20%;
-}
-
-@keyframes satelliteupdown {
-    0%, 100% {
-      top: 5%;
-    }
-    50% {
-      top: 12%;
-    }
-  }
-
