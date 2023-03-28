@@ -27,7 +27,7 @@ function HubPrincipal(props){
             root.style.setProperty("--publication-color", "rgba(0,0,0,1)");
             root.style.setProperty("--recherche-bg-color", "rgba(0,0,0,0.05)");
             root.style.setProperty("--recherche-color", "rgba(0,0,0,0.5)");
-            root.style.setProperty("--soustexte-color", "rgba(0,0,0,0.25)");
+            root.style.setProperty("--soustexte-color", "rgba(0,0,0,0.5)");
             root.style.setProperty("--texte-color", "rgba(0,0,0,1)");
         }
         else if (theme == "matiere-noire") {
@@ -43,7 +43,7 @@ function HubPrincipal(props){
             root.style.setProperty("--publication-color", "rgba(255,255,255,0.5)");
             root.style.setProperty("--recherche-bg-color", "rgba(255,255,255,0.05)");
             root.style.setProperty("--recherche-color", "rgba(255,255,255,0.5)");
-            root.style.setProperty("--soustexte-color", "rgba(255,255,255,0.25)");
+            root.style.setProperty("--soustexte-color", "rgba(255,255,255,0.5)");
             root.style.setProperty("--texte-color", "rgba(255,255,255,1)");
         }
     }, [theme]);

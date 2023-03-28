@@ -1,13 +1,28 @@
+import {useEffect} from "react";
+import {useState} from "react";
+
 import "./styles/menu.css";
 
 function Menu(props){
+    const [parametresVisibles, setParametresVisibles] = useState(false);
+
+    useEffect(() => {
+        let dropdown = document.getElementById("parametres-dropdown");
+        if (parametresVisibles) {
+            dropdown.style.height = "auto";
+        }
+        else {
+            dropdown.style.height = "0";
+        }
+    }, [parametresVisibles]);
+
     return(
         <nav id="menu-fil">
             <h1>COSMOSE</h1>
             <ul>
                 <li className="menu-hover">MA CONSTELLATION</li>
                 <li>
-                    <button className="bouton-menu menu-hover">PARAMETRES</button>
+                    <button className="bouton-menu menu-hover" onClick={(evt) => {setParametresVisibles(!parametresVisibles);}}>PARAMETRES</button>
                     <ul id="parametres-dropdown">
                         <li>
                             <button className="menu-hover" onClick={props.changerTheme}>

@@ -58,10 +58,6 @@
     margin-bottom: 40px;
 }
 
-#menu-fil>ul>li:focus-within #parametres-dropdown {
-    height: auto;
-}
-
 #parametres-dropdown {
     height: 0;
     list-style-type: none;
@@ -72,6 +68,7 @@
     background-color: rgba(255,255,255,0.1);
     border: 0;
     color: rgba(255,255,255,1);
+    cursor: pointer;
     font-family: inherit;
     font-size: inherit;
     height: 50px;
