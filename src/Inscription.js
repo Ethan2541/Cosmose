@@ -56,7 +56,7 @@ function Inscription(props) {
                 password: password
             })
             .then((response) => {
-                props.setPage("connexion");
+                props.setPageCourante("connexion");
                 response.data.created ? alert("Votre compte a été créé avec succès") : alert("Cet identifiant est déjà utilisé");
             })
             .catch((error) => {

@@ -59,24 +59,33 @@ function HubPrincipal(props){
 
     function affichage() {
         let body = document.getElementById("index-body");
-        switch (pageCourante) {
-            case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPage={setPageCourante} />;
-            case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPage={setPageCourante} />;
-            case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
-            //case "fil-actualite": return <Deconnexion deconnexion={seDeconnecter} />;
-            default: body.classList.add("bg-hors-connexion"); return <Accueil setPage={setPageCourante} />;
+        if (statutConnexion) {
+            switch (pageCourante) {
+                case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+                case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
+                case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
+                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} deconnexion={seDeconnecter}/>;
+                default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+            }
+        }
+        else {
+            switch (pageCourante) {
+                case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+                case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
+                case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
+                default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+            }
         }
     }
 
     function entete() {
-        return (pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPage={setPageCourante} pageCourante={pageCourante}/>
+        return (pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPageCourante={setPageCourante} pageCourante={pageCourante}/>
     }
 
     return(
     <div>
-        {/*entete()*/}
-        {/*affichage()*/}
-        <FilActualite />
+        {entete()}
+        {affichage()}
     </div>
     );
 }

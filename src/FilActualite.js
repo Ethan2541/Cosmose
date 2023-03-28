@@ -7,9 +7,9 @@ import "./styles/fil-actualite.css";
 
 function FilActualite(props){
     return(
-        <div id="div-fil-actualite">
+        <main id="fil-actualite">
             <div id="fil-gauche">
-                <Menu />
+                <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion}/>
             </div>
             <div id="fil-droit">
                 <div id="fil-droit1">
@@ -28,7 +28,7 @@ function FilActualite(props){
                     <Message idMessage={123} auteur={"Iori-kun"} idAuteur={1} message={"Bonjour les amis."} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
                 </div>
             </div>
-        </div>
+        </main>
     );
 }
 

@@ -48,7 +48,7 @@ function Connexion(props) {
     return(
         <main id="main-connexion" className="main-connexion-inscription">
             <h2 className="h2-connexion">S'identifier</h2>
-            <form id="form-connexion" onSubmit={Connexion}>
+            <form id="form-connexion" onSubmit={props.connexion}>
                 <input type="text" id="login" name="login" placeholder="Identifiant" onChange={(evt) => gestionLogin(evt)}></input>
                 <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={(evt) => gestionMdp(evt)}></input><i onClick={(evt) => gestionIconeMdp(evt)}>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                 <button type="submit">Se connecter</button>

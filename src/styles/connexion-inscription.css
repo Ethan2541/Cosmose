@@ -15,14 +15,14 @@
     text-align: center;
 }
 
-.main-connexion-inscription>button {
-    cursor: pointer;
-    transition: 0.3s linear;
-}
-
 .main-connexion-inscription>form {
     margin: 0 auto 0 auto;
 	width: 300px;
+}
+
+.main-connexion-inscription>form>button {
+    cursor: pointer;
+    transition: 0.3s linear;
 }
 
 .main-connexion-inscription>form>button, .main-connexion-inscription>form>input {

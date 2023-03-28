@@ -60,5 +60,9 @@
 
 .bouton-publier {
     color: var(--bordure-color);
+    margin: 10px 0 10px 0;
+}
+
+.bouton-deconnexion {
     margin-bottom: 40px;
 }

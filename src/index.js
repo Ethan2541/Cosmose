@@ -8,6 +8,6 @@ import HubPrincipal from "./HubPrincipal.js";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div className='main'>
-    <HubPrincipal pageCourante="accueil" statutConnexion={false} />
+    <HubPrincipal pageCourante="accueil" statutConnexion={true} />
   </div>
 );
