@@ -1,5 +1,4 @@
 import "./styles/accueil.css";
-import planete from "./assets/img/planete.png";
 
 function Accueil(props){
     return(
@@ -7,7 +6,7 @@ function Accueil(props){
             <h1 className="h1-accueil">COSMOSE</h1>
             <button id="accueil-connexion" className="button-accueil" onClick={(evt) => {props.setPageCourante("connexion")}}>Se connecter</button>
             <button id="accueil-inscription" className="button-accueil" onClick={(evt) => {props.setPageCourante("inscription")}}>S'inscrire</button>
-            <img id="planete" src={planete} alt="Planète"/>
+            <img id="planete" src="./assets/img/planete.png" alt="Planète"/>
         </div>
     );
 }

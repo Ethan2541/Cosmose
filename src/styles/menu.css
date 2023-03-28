@@ -18,24 +18,24 @@
     color: rgba(255,255,255,1);
     cursor: default;
     font-size: 24px;
-    margin: 40px 0 80px 0;
+    margin: 40px 0 60px 0;
     padding: 0;
 }
 
-#menu-fil>hr {
+#menu-fil>ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+#menu-fil>ul>hr {
     border: 0;
     margin: 20px 0 20px 0;
 }
 
-.lien-menu {
+#menu-fil>ul>li {
     color: rgba(255,255,255,1);
     cursor: pointer;
-    margin: 10px 0 10px 0;
-    padding-left: 30px;
-}
-
-.lien-menu:hover {
-    filter: brightness(75%);
+    margin: 30px 0 30px 0;
 }
 
 .bouton-menu {
@@ -46,12 +46,7 @@
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    margin: 10px 0 10px 0;
-    padding: 0 0 0 30px;
-}
-
-.bouton-menu:hover {
-    filter: brightness(75%);
+    padding: 0;
 }
 
 .bouton-menu:focus {
@@ -60,9 +55,32 @@
 
 .bouton-publier {
     color: var(--bordure-color);
-    margin: 10px 0 10px 0;
+    margin-bottom: 40px;
 }
 
-.bouton-deconnexion {
-    margin-bottom: 40px;
+#menu-fil>ul>li:focus-within #parametres-dropdown {
+    height: auto;
+}
+
+#parametres-dropdown {
+    height: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+#parametres-dropdown>li>button {
+    background-color: rgba(255,255,255,0.1);
+    border: 0;
+    color: rgba(255,255,255,1);
+    font-family: inherit;
+    font-size: inherit;
+    height: 50px;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: left;
+    width: 225px;
+}
+
+.menu-hover:hover {
+    filter: brightness(75%);
 }

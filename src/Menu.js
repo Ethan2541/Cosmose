@@ -4,17 +4,30 @@ function Menu(props){
     return(
         <nav id="menu-fil">
             <h1>COSMOSE</h1>
-            <a className="lien-menu" onClick={(evt) => {props.setPageCourante("accueil")}}>ACCUEIL</a>
-            <a className="lien-menu">MA CONSTELLATION</a>
-            <button className="bouton-menu">PARAMETRES</button>
-            <hr />
-            <a className="lien-menu">LES PLUS ETOILES</a>
-            <a className="lien-menu">TENDANCES</a>
-            <a className="lien-menu">MA GALAXIE</a>
-            <hr />
-            <button className="bouton-menu bouton-publier">PUBLIER</button>
-            <hr/>
-            <button className="bouton-menu bouton-deconnexion" onClick={(evt) => {props.deconnexion()}}>SE DECONNECTER</button>
+            <ul>
+                <li className="menu-hover">MA CONSTELLATION</li>
+                <li>
+                    <button className="bouton-menu menu-hover">PARAMETRES</button>
+                    <ul id="parametres-dropdown">
+                        <li>
+                            <button className="menu-hover" onClick={props.changerTheme}>
+                                Changer le thème
+                            </button>
+                        </li>
+                        <li>
+                            <button className="menu-hover" onClick={props.deconnexion}>
+                                Se déconnecter
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <hr />
+                <li className="menu-hover">LES PLUS ETOILES</li>
+                <li className="menu-hover">TENDANCES</li>
+                <li className="menu-hover">MA GALAXIE</li>
+                <hr />
+                <li className="lien-menu menu-hover"><button className="bouton-menu bouton-publier">PUBLIER</button></li>
+            </ul>
         </nav>
     );
 }

@@ -9,7 +9,7 @@ function FilActualite(props){
     return(
         <main id="fil-actualite">
             <div id="fil-gauche">
-                <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion}/>
+                <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion} changerTheme={props.changerTheme}/>
             </div>
             <div id="fil-droit">
                 <div id="fil-droit1">
@@ -19,13 +19,13 @@ function FilActualite(props){
                     <MessageACreer />
                 </div>
                 <div id="fil-droit3">
-                    <Message idMessage={123} auteur={"Rikkun"} idAuteur={1} message={"Coucou les amis !"} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Mitsuki-kun"} idAuteur={1} message={"Ohayo mina-san !"} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Nagi-kun"} idAuteur={1} message={"Hello girls !"} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Yamato-kun"} idAuteur={1} message={"Yo tout le monde !"} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Tamaki-kun"} idAuteur={1} message={"Salut les amis..."} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Sogo-kun"} idAuteur={1} message={"Bonjour à tous !"} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
-                    <Message idMessage={123} auteur={"Iori-kun"} idAuteur={1} message={"Bonjour les amis."} idUtilisateur={1} date={"28 mars 2023 à 14h00"} />
+                    <Message idMessage={1} auteur={"Riku-kun"} idAuteur={1} message={"Coucou les amis !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/riku.png"}/>
+                    <Message idMessage={2} auteur={"Mitsuki-kun"} idAuteur={2} message={"Ohayo ! Mina-san !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/mitsuki.png"}/>
+                    <Message idMessage={3} auteur={"Nagi-san"} idAuteur={3} message={"Hello girls !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/nagi.png"}/>
+                    <Message idMessage={4} auteur={"Yamato-san"} idAuteur={4} message={"Yo tout le monde !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/yamato.png"}/>
+                    <Message idMessage={5} auteur={"Tamaki-kun"} idAuteur={5} message={"Salut les amis..."} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/tamaki.png"}/>
+                    <Message idMessage={6} auteur={"Sogo-san"} idAuteur={6} message={"Bonjour à tous !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/sogo.png"}/>
+                    <Message idMessage={7} auteur={"Iori-kun"} idAuteur={7} message={"Bonjour les amis."} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/iori.png"}/>
                 </div>
             </div>
         </main>
