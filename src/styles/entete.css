@@ -1,14 +1,14 @@
-header {
+#header-offline {
     align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-header>nav>button {
+#header-offline>nav>button {
     background-color: rgba(0,0,0,0);
-    border: 0;
     color: rgba(255,255,255,1);
+    cursor: pointer;
     font-family: inherit;
     font-weight: bold;
     height: 40px;
@@ -17,20 +17,24 @@ header>nav>button {
     transition: 0.3s linear;
 }
 
-header>nav>button:hover {
-    color: rgba(255, 255, 255, 0.8);
+#header-offline>nav>button:hover {
+    filter: brightness(75%);
 }
 
-#bouton-connexion {
+.sans-bordure {
+    border: 0;
+}
+
+.bouton-connexion-inscription {
     border: 2px solid rgba(255,255,255,1);
     border-radius: 4px;
 }
 
-#bouton-connexion:hover {
+.bouton-connexion-inscription:hover {
     border-color: rgba(140,107,203,1);
 }
 
-header>p {
+#header-offline>h1 {
     color: rgba(255,255,255,1);
     cursor: default;
     font-size: 20px;

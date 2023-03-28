@@ -69,8 +69,8 @@ function Inscription(props) {
     }
 
     return (
-        <main id="main-inscription">
-            <h1 className="h1-inscription">S'inscrire</h1>
+        <main id="main-inscription" className="main-connexion-inscription">
+            <h2 className="h2-inscription">S'inscrire</h2>
             <form id="form-inscription" onSubmit={Inscription}>
                 <input type="text" id="prenom" name="prenom" placeholder="Prénom" onChange={(evt) => setPrenom(evt.target.value)}></input>
                 <input type="text" id="nom" name="nom" placeholder="Nom" onChange={(evt) => setNom(evt.target.value)}></input>

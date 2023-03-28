@@ -4,6 +4,8 @@ import Connexion from "./Connexion.js";
 import Entete from "./Entete.js";
 import Inscription from "./Inscription.js";
 
+import FilActualite from "./FilActualite.js";
+
 function HubPrincipal(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
     const [statutConnexion, setStatutConnexion] = useState(props.statutConnexion);
@@ -72,8 +74,9 @@ function HubPrincipal(props){
 
     return(
     <div>
-        {entete()}
-        {affichage()}
+        {/*entete()*/}
+        {/*affichage()*/}
+        <FilActualite />
     </div>
     );
 }

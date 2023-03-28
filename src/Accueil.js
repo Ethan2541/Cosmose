@@ -1,6 +1,5 @@
 import "./styles/accueil.css";
 import planete from "./assets/img/planete.png";
-import satellite from "./assets/img/satellite.png";
 
 function Accueil(props){
     return(
