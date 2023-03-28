@@ -3,8 +3,11 @@ html {
 }
 
 body {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../assets/img/background.png") center no-repeat;
-    background-size: cover;
     font-family: "Inter";
     margin: 0;
+}
+
+.bg-hors-connexion {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../assets/img/background.png") center no-repeat;
+    background-size: cover;
 }

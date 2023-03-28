@@ -56,12 +56,13 @@ function HubPrincipal(props){
     }
 
     function affichage() {
+        let body = document.getElementById("index-body");
         switch (pageCourante) {
-            case "accueil": return <Accueil setPage={setPageCourante} />;
-            case "inscription": return <Inscription setPage={setPageCourante} />;
-            case "connexion": return <Connexion connexion={seConnecter} />;
+            case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPage={setPageCourante} />;
+            case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPage={setPageCourante} />;
+            case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
             //case "fil-actualite": return <Deconnexion deconnexion={seDeconnecter} />;
-            default: return <Accueil setPage={setPageCourante} />;
+            default: body.classList.add("bg-hors-connexion"); return <Accueil setPage={setPageCourante} />;
         }
     }
 
