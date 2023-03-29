@@ -1,25 +1,20 @@
-#barre-recherche {
-    display: flex;
-    gap: 20px;
-}
-
-#barre-recherche>div {
+#recherche-amis {
     align-items: center;
     display: flex;
     width: 100%;
 }
 
-.recherche-icone {
+.recherche-amis-icone {
     cursor: pointer;
     margin-left: -30px;
 }
 
-.recherche-icone:hover {
+.recherche-amis-icone:hover {
     color: var(--bordure-color);
     transition: 0.3s linear;
 }
 
-#barre-recherche>div>input[type="text"] {
+#recherche-amis>input[type="text"] {
     background-color: var(--recherche-bg-color);
     border: 0;
     border-radius: 50px;
@@ -30,10 +25,6 @@
     width: 100%;
 }
 
-#barre-recherche>div>input[type="text"]:focus {
+#recherche-amis>input[type="text"]:focus {
     outline: 3px solid var(--bordure-color);
-}
-
-#barre-recherche>input[type="checkbox"] {
-    cursor: pointer;
 }

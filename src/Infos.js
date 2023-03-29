@@ -1,12 +1,15 @@
-import Ami from "./Ami";
-import data from "./profil-test.json"
+import Stats from "./Stats.js";
 
-function Infos(props){
-    <div>
-        <p className='compteur'>{data.compteur}</p>
-        <p className='abonne'>{data.stats.abonne}</p>
-        <p className='abonnees'>{data.stats.abonnees}</p>
-        <p className='like'>{data.stats.like}</p>
-        {Data.amis.map()}
-    </div>
+import "./styles/infos.css";
+
+function Infos(props) {
+    return(
+        <aside className="profil-infos">
+            <div className="infos-stats">
+                <Stats nbAmis={"500M"} tempsPasse={"150h"}/>
+            </div>
+        </aside>
+    );
 }
+
+export default Infos;

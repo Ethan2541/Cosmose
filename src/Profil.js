@@ -1,12 +1,12 @@
 import Infos from "./Infos";
-import ListeMessage from "./ListeMessages";
+import ListeMessages from "./ListeMessages";
 
-function Profil(props){
+function Profil(props) {
     return (
-    <div className="profil">
-        <Infos />
-        <ListeMessage />
-    </div>
+        <div className="profil">
+            <Infos />
+            <ListeMessages />
+        </div>
     );
 }
 

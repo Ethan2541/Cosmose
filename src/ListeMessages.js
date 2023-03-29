@@ -1,4 +1,4 @@
-import Message from "./Message";
+import Message from "./Message.js";
 import messages from "./message-test.json";
 
 function ListeMessages(props){

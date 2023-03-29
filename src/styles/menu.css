@@ -2,6 +2,7 @@
     align-items: flex-start;
     background-color: var(--menu-bg-color);
     border-right: 3px solid var(--bordure-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     display: flex;
     flex-direction: column;
     font-family: inherit;
@@ -11,6 +12,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    z-index: 1;
 }
 
 #menu-fil>h1 {
@@ -53,9 +55,10 @@
     outline: 0;
 }
 
-.bouton-publier {
+.lien-publier {
     color: var(--bordure-color);
     margin-bottom: 40px;
+    text-decoration: none;
 }
 
 #parametres-dropdown {

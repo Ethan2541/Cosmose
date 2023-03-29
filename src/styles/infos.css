@@ -1,0 +1,11 @@
+.profil-infos {
+    background-color: var(--infos-bg-color);
+    border-radius: 10px;
+    height: 500px;
+    max-width: 15%;
+    width: 100%;
+}
+
+.infos-stats {
+    padding: 15px;
+}

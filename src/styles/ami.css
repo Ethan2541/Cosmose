@@ -1,0 +1,38 @@
+.ami {
+    background-color: var(--ami-bg-color);
+    border: 1px solid var(--ami-bordure-color);
+    display: grid;
+    flex-direction: column;
+    font-family: inherit;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    width: 100%;
+}
+
+.ami>img {
+    border-radius: 50%;
+    height: 75px;
+    justify-self: center;
+    margin: 15px 25px 15px 15px;
+    width: 75px;
+}
+
+.meta-ami {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.meta-ami>h3 {
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+    margin: auto 0 0 0;
+}
+
+.meta-ami>h4 {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+}

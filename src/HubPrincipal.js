@@ -3,13 +3,13 @@ import Accueil from "./Accueil.js";
 import Connexion from "./Connexion.js";
 import Entete from "./Entete.js";
 import Inscription from "./Inscription.js";
-
 import FilActualite from "./FilActualite.js";
+import Profil from "./Profil.js";
 
 function HubPrincipal(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
     const [statutConnexion, setStatutConnexion] = useState(props.statutConnexion);
-    const [idUtilisateur, setIdUtilisateur] = useState();
+    const [idUtilisateur, setIdUtilisateur] = useState(1);
     const [theme, setTheme] = useState("etoile-blanche");
 
     useEffect(() => {
@@ -72,7 +72,8 @@ function HubPrincipal(props){
                 case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
                 case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
                 case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
-                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} idUtilisateur={1} deconnexion={seDeconnecter} changerTheme={changerTheme}/>;
+                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme}/>;
+                case "profil": body.classList.remove("bg-hors-connexion"); return <Profil setPageCourante={setPageCourante} idUtilisateur={idUtilisateur}/>;
                 default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
             }
         }

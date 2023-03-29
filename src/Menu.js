@@ -20,7 +20,7 @@ function Menu(props){
         <nav id="menu-fil">
             <h1>COSMOSE</h1>
             <ul>
-                <li className="menu-hover">MA CONSTELLATION</li>
+                <li className="menu-hover" onClick={(evt) => {props.setPageCourante("profil")}}>MA CONSTELLATION</li>
                 <li>
                     <button className="bouton-menu menu-hover" onClick={(evt) => {setParametresVisibles(!parametresVisibles);}}>PARAMETRES</button>
                     <ul id="parametres-dropdown">
@@ -41,7 +41,7 @@ function Menu(props){
                 <li className="menu-hover">TENDANCES</li>
                 <li className="menu-hover">MA GALAXIE</li>
                 <hr />
-                <li className="lien-menu menu-hover"><button className="bouton-menu bouton-publier">PUBLIER</button></li>
+                <li className="lien-menu menu-hover"><a className="lien-publier" href="#message-a-publier">PUBLIER</a></li>
             </ul>
         </nav>
     );
