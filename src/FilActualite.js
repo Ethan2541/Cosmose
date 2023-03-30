@@ -3,11 +3,16 @@ import Message from "./Message.js";
 import MessageACreer from "./MessageACreer.js";
 import Recherche from "./Recherche.js";
 
+import Etoiles from "./Etoiles.js";
+
 import "./styles/fil-actualite.css";
 
 function FilActualite(props){
     return(
         <main id="fil-actualite">
+            <div id="fil-etoiles">
+                <Etoiles />
+            </div>
             <div id="fil-gauche"> 
                 <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion} changerTheme={props.changerTheme}/>
             </div>

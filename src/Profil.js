@@ -9,7 +9,6 @@ import ListeMessages from "./ListeMessages.js";
 import Message from "./Message.js";
 import MessageACreer from "./MessageACreer.js";
 import Recherche from "./Recherche.js";
-import RechercheAmis from "./RechercheAmis.js";
 
 import "./styles/profil.css";
 
@@ -18,7 +17,7 @@ function Profil(props) {
         <main id="profil">
             <div id="profil-entete">
                 <h1 id="profil-titre">COSMOSE</h1>
-                <RechercheAmis />
+                <Recherche placeholder={"Rechercher des constellations..."} />
                 <nav id="profil-nav">
                     <FaHome className="profil-icone" onClick={(evt) => {props.setPageCourante("fil-actualite")}}/>
                     <FaPalette className="profil-icone" onClick={props.changerTheme} />
@@ -45,7 +44,7 @@ function Profil(props) {
                 </div>
                 <div className="profil-droit">
                     <div id="profil-recherche">
-                        <Recherche  placeholder={"Naviguer dans votre constellation..."} />
+                        <Recherche placeholder={"Naviguer dans votre constellation..."} />
                     </div>
                     <MessageACreer />
                     <div id="profil-liste-messages">

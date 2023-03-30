@@ -5,13 +5,10 @@ import "./styles/recherche.css";
 function Recherche(props){
     return(
         <div id="barre-recherche">
-            <div className="recherche-input">
-                <input type="text" placeholder={props.placeholder}></input>
-                <span className="recherche-icone">
-                    <FaSearch />
-                </span>
-            </div>
-            <input type="checkbox"></input>
+            <input type="text" placeholder={props.placeholder}></input>
+            <span className="recherche-icone">
+                <FaSearch />
+            </span>
         </div>
     );
 }

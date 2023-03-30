@@ -1,18 +1,19 @@
 #barre-recherche {
-    display: flex;
-    gap: 20px;
-}
-
-#barre-recherche>div {
     align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    grid-template-rows: 1fr;
     width: 100%;
 }
 
 .recherche-icone {
     color: var(--texte-color);
     cursor: pointer;
-    margin-left: -30px;
+    grid-area: 1 / 2 / 2 / 3;
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .recherche-icone:hover {
@@ -20,21 +21,17 @@
     transition: 0.3s linear;
 }
 
-#barre-recherche>div>input[type="text"] {
+#barre-recherche>input[type="text"] {
     background-color: var(--recherche-bg-color);
     border: 0;
     border-radius: 50px;
     color: var(--recherche-color);
-    height: 20px;
     font-family: inherit;
+    grid-area: 1 / 1 / 2 / 3;
+    height: 20px;
     padding: 10px 40px 10px 10px;
-    width: 100%;
 }
 
-#barre-recherche>div>input[type="text"]:focus {
+#barre-recherche>input[type="text"]:focus {
     outline: 3px solid var(--bordure-color);
-}
-
-#barre-recherche>input[type="checkbox"] {
-    cursor: pointer;
 }

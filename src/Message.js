@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {FaPlus} from "react-icons/fa";
 import {FaRegCommentDots} from "react-icons/fa";
 import {FaRegStar} from "react-icons/fa";
 import {FaRetweet} from "react-icons/fa";
 import {FaStar} from "react-icons/fa";
 import {FaTrashAlt} from "react-icons/fa";
+import {FaUserPlus} from "react-icons/fa";
 
 import "./styles/message.css"
 
@@ -35,7 +35,7 @@ function Message(props){
                 </button>
                 {props.idUtilisateur != props.idAuteur && 
                 <button className="message-ajout">
-                    <FaPlus />
+                    <FaUserPlus />
                 </button>}
                 {props.idUtilisateur == props.idAuteur && 
                 <button className="message-suppr">
