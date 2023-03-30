@@ -27,9 +27,9 @@
     border: 0;
     color: rgba(255,255,255,1);
     cursor: pointer;
-    height: 50px;
     font-family: inherit;
     font-weight: bold;
+    height: 50px;
     padding: 0 10px 0 10px;
     text-align: center;
     transition: 0.3s linear;
