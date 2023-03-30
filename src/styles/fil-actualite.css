@@ -1,7 +1,7 @@
 #fil-actualite {
     display: grid;
     font-family: "Inter";
-    grid-template-columns: 350px 1fr;
+    grid-template-columns: 400px 1fr;
     grid-template-rows: 1fr; 
 }
 
@@ -16,7 +16,7 @@
     grid-area: 1 / 1 / 4 / 2;
     height: 100%;
     position: fixed;
-    width: 350px;
+    width: 400px;
 }
 
 #fil-droit {

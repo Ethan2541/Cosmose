@@ -31,7 +31,7 @@
     height: 4px;
     background: var(--etoiles-color);
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 1)  ;
+    box-shadow: 0 0 0 4px var(--etoiles-degrade1-color), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--etoiles-degrade2-color)  ;
     animation:  animate 3s linear infinite;
 }
 .etoiles-span::before{
