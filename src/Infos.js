@@ -1,4 +1,3 @@
-import Maquette from "./Maquette.js";
 import Spline from '@splinetool/react-spline';
 import Stats from "./Stats.js";
 

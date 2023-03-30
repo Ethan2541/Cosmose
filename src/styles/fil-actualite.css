@@ -13,11 +13,24 @@
 }
 
 #fil-droit {
+    grid-area: 1 / 2 / 2 / 3;
+    margin: 20px auto 0 auto;
+    max-width: 1250px;
+    width: 80%;
+}
+
+#fil-recherche {
+    background-color: var(--main-bg-color);
+    padding: 10px 0 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#fil-tout-message {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    grid-area: 1 / 2 / 2 / 3;
-    margin: 30px auto 0 auto;
-    max-width: 1250px;
-    width: 75%;
+    padding: 30px 5% 0px 5%;
 }
