@@ -1,12 +1,19 @@
 .ami {
     background-color: var(--ami-bg-color);
     border: 1px solid var(--ami-bordure-color);
+    border-radius: 10px;
+    cursor: pointer;
     display: grid;
     flex-direction: column;
     font-family: inherit;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
+    margin-bottom: 5px;
     width: 100%;
+}
+
+.ami:hover {
+    box-shadow: rgba(0,0,0,0.5) 0px 2px 2px;
 }
 
 .ami>img {

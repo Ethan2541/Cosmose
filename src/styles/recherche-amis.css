@@ -5,6 +5,7 @@
 }
 
 .recherche-amis-icone {
+    color: var(--texte-color);
     cursor: pointer;
     margin-left: -30px;
 }

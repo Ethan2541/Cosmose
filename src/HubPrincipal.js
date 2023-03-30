@@ -72,8 +72,8 @@ function HubPrincipal(props){
                 case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
                 case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
                 case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
-                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme}/>;
-                case "profil": body.classList.remove("bg-hors-connexion"); return <Profil setPageCourante={setPageCourante} idUtilisateur={idUtilisateur}/>;
+                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
+                case "profil": body.classList.remove("bg-hors-connexion"); return <Profil setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
                 default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
             }
         }

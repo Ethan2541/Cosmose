@@ -8,16 +8,12 @@ import "./styles/fil-actualite.css";
 function FilActualite(props){
     return(
         <main id="fil-actualite">
-            <div id="fil-gauche">
+            <div id="fil-gauche"> 
                 <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion} changerTheme={props.changerTheme}/>
             </div>
             <div id="fil-droit">
-                <div id="fil-droit1">
-                    <Recherche />
-                </div>
-                <div id="fil-droit2">
-                    <MessageACreer />
-                </div>
+                <Recherche id="fil-droit1" placeholder={"Naviguer dans le Cosmos..."} />
+                <MessageACreer id="fil-droit2" />
                 <div id="fil-droit3">
                     <Message idMessage={1} auteur={"Riku-kun"} idAuteur={1} message={"Coucou les amis !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/riku.png"}/>
                     <Message idMessage={2} auteur={"Mitsuki-kun"} idAuteur={2} message={"Ohayo ! Mina-san !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/mitsuki.png"}/>

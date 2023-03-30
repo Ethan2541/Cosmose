@@ -2,7 +2,7 @@ import "./styles/ami.css";
 
 function Ami(props) {
     return(
-        <article id={props.idMessage} className="ami">
+        <article id={props.idAmi} className="ami">
             <img src={props.img} alt={"Avatar de " + props.ami} />
             <div className="meta-ami">
                 <h3>{props.ami}</h3>

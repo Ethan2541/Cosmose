@@ -1,6 +1,10 @@
 import {useEffect} from "react";
 import {useState} from "react";
 
+import {FaPalette} from "react-icons/fa";
+import {FaSignOutAlt} from "react-icons/fa";
+
+
 import "./styles/menu.css";
 
 function Menu(props){
@@ -25,12 +29,14 @@ function Menu(props){
                     <button className="bouton-menu menu-hover" onClick={(evt) => {setParametresVisibles(!parametresVisibles);}}>PARAMETRES</button>
                     <ul id="parametres-dropdown">
                         <li>
-                            <button className="menu-hover" onClick={props.changerTheme}>
+                            <button className="bouton-parametres menu-hover" onClick={props.changerTheme}>
+                                <FaPalette />
                                 Changer le thème
                             </button>
                         </li>
                         <li>
-                            <button className="menu-hover" onClick={props.deconnexion}>
+                            <button className="bouton-parametres menu-hover" onClick={props.deconnexion}>
+                                <FaSignOutAlt />
                                 Se déconnecter
                             </button>
                         </li>

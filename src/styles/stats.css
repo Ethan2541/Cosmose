@@ -3,6 +3,7 @@
     font-family: inherit;
     font-size: 16px;
     grid-template-rows: repeat(2, auto);
+    overflow: hidden;
     width: 100%;
 }
 
@@ -15,13 +16,18 @@
 }
 
 .stats-petit {
+    align-items: center;
+    display: flex;
     grid-column: 1 / 2;
+    justify-content: center;
     margin: 10px;
     padding: 0 10px 0 10px;
 }
 
 .stats-large {
+    align-items: center;
     grid-column: 2 / 3;
+    justify-content: center;
     margin: 10px;
     padding: 0 10px 0 10px;
 }

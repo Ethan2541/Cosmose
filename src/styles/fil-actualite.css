@@ -1,5 +1,6 @@
 #fil-actualite {
     display: grid;
+    font-family: "Inter";
     grid-template-columns: 350px 1fr;
     grid-template-rows: 1fr; 
 }
@@ -16,5 +17,7 @@
     flex-direction: column;
     gap: 30px;
     grid-area: 1 / 2 / 2 / 3;
-    margin: 30px 10% 0 10%;
+    margin: 30px auto 0 auto;
+    max-width: 1250px;
+    width: 75%;
 }
