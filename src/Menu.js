@@ -44,7 +44,7 @@ function Menu(props){
                 </li>
                 <hr />
                 <li className="menu-hover">LES PLUS ETOILES</li>
-                <li className="menu-hover">TENDANCES</li>
+                <li className="menu-hover">ETOILES MONTANTES</li>
                 <li className="menu-hover">MA GALAXIE</li>
                 <hr />
                 <li className="lien-menu menu-hover"><a className="lien-publier" href="#message-a-publier">PUBLIER</a></li>

@@ -36,7 +36,7 @@ function Profil(props) {
                     <div className="profil-infos">
                         <Infos />
                     </div>
-                    <div className="profil-bloc">LISTE D'AMIS</div>
+                    <div className="profil-bloc">VOTRE NEBULEUSE</div>
                     <div className="profil-amis">
                         <Ami ami={"Mitsuki"} idAmi={2} img={"./assets/avatar/mitsuki.png"} date={"01 janvier 2000"} />
                         <Ami ami={"Mitsuki"} idAmi={2} img={"./assets/avatar/mitsuki.png"} date={"01 janvier 2000"} />
