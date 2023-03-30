@@ -36,7 +36,7 @@ function HubPrincipal(props){
             root.style.setProperty("--bordure-color", "rgba(140,107,203,1)");
             root.style.setProperty("--infos-bg-color", "rgba(23,21,33,1)");
             root.style.setProperty("--main-bg-color", "rgba(44,43,74,1)");
-            root.style.setProperty("--menu-bg-color", "rgba(23,21,33,0.5)");
+            root.style.setProperty("--menu-bg-color", "rgba(23,21,33,1)");
             root.style.setProperty("--message-bg-color", "rgba(23,21,33,0.5)");
             root.style.setProperty("--message-bordure-color", "rgba(140,107,203,0.25)");
             root.style.setProperty("--publication-bg-color", "rgba(23,21,33,0.5)");

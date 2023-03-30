@@ -14,7 +14,7 @@ function Message(props){
 
     return(
         <article id={props.idMessage} className="message">
-            <img src={props.img} alt={"Avatar de " + props.auteur} />
+            <img draggable="false" src={props.img} alt={"Avatar de " + props.auteur} />
             <div className="meta-message">
                 <h3>{props.auteur}</h3>
                 <h4>Le {props.date}</h4>
