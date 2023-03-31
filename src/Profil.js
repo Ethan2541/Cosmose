@@ -4,6 +4,7 @@ import {FaSignOutAlt} from "react-icons/fa";
 
 import Ami from "./Ami.js";
 import Banniere from "./Banniere.js";
+import Compteurs from "./Compteurs.js";
 import Infos from "./Infos.js";
 import ListeMessages from "./ListeMessages.js";
 import Message from "./Message.js";
@@ -19,9 +20,9 @@ function Profil(props) {
                 <h1 id="profil-titre">COSMOSE</h1>
                 <Recherche placeholder={"Rechercher des constellations..."} />
                 <nav id="profil-nav">
-                    <FaHome className="profil-icone" onClick={(evt) => {props.setPageCourante("fil-actualite")}}/>
-                    <FaPalette className="profil-icone" onClick={props.changerTheme} />
-                    <FaSignOutAlt className="profil-icone" onClick={props.deconnexion} />
+                    <FaHome className="profil-icone" title="Retourner au fil d'actualité" onClick={(evt) => {props.setPageCourante("fil-actualite")}}/>
+                    <FaPalette className="profil-icone" title="Changer de thème" onClick={props.changerTheme} />
+                    <FaSignOutAlt className="profil-icone" title="Se déconnecter" onClick={props.deconnexion} />
                 </nav>
             </div>
             <Banniere couverture={"./assets/cover/couverture.jpg"} avatar={"./assets/avatar/riku.png"} />
@@ -31,6 +32,7 @@ function Profil(props) {
                         <h2 className="pseudo">Rikkun</h2>
                         <h3 className="login">@rikunanase</h3>
                     </div>
+                    <Compteurs />
                     <div className="profil-bloc">STATISTIQUES</div>
                     <div className="profil-infos">
                         <Infos />
@@ -40,6 +42,12 @@ function Profil(props) {
                         <Ami ami={"Mitsuki"} idAmi={2} img={"./assets/avatar/mitsuki.png"} date={"01 janvier 2000"} />
                         <Ami ami={"Mitsuki"} idAmi={2} img={"./assets/avatar/mitsuki.png"} date={"01 janvier 2000"} />
                         <Ami ami={"Mitsuki"} idAmi={2} img={"./assets/avatar/mitsuki.png"} date={"01 janvier 2000"} />
+                    </div>
+                    <div className="profil-bloc">CONSTELLATIONS FAVORABLES</div>
+                    <div className="profil-abonnes">
+                        <Ami ami={"Tamaki"} idAmi={2} img={"./assets/avatar/tamaki.png"} date={"01 janvier 2000"} />
+                        <Ami ami={"Tamaki"} idAmi={2} img={"./assets/avatar/tamaki.png"} date={"01 janvier 2000"} />
+                        <Ami ami={"Tamaki"} idAmi={2} img={"./assets/avatar/tamaki.png"} date={"01 janvier 2000"} />
                     </div>
                 </div>
                 <div className="profil-droit">

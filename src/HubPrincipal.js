@@ -14,7 +14,7 @@ function HubPrincipal(props){
 
     useEffect(() => {
         let root = document.documentElement;
-        if (theme == "etoile-blanche") {
+        if (theme === "etoile-blanche") {
             root.style.setProperty("--ami-bg-color", "rgba(44,43,74,1)");
             root.style.setProperty("--ami-bordure-color", "rgba(0,0,0,0.1)");
             root.style.setProperty("--bordure-color", "rgba(140,107,203,1)");
@@ -28,12 +28,13 @@ function HubPrincipal(props){
             root.style.setProperty("--message-bordure-color", "rgba(0,0,0,0.25)");
             root.style.setProperty("--publication-bg-color", "rgba(255,255,255,0.85)");
             root.style.setProperty("--publication-color", "rgba(0,0,0,0.85)");
-            root.style.setProperty("--recherche-bg-color", "rgba(0,0,0,0.05)");
+            root.style.setProperty("--recherche-bg-color", "rgba(0,0,0,0.075)");
             root.style.setProperty("--recherche-color", "rgba(0,0,0,0.5)");
             root.style.setProperty("--soustexte-color", "rgba(0,0,0,0.5)");
             root.style.setProperty("--texte-color", "rgba(0,0,0,1)");
         }
-        else if (theme == "matiere-noire") {
+
+        else if (theme === "matiere-noire") {
             root.style.setProperty("--ami-bg-color", "rgba(23,21,33,1)");
             root.style.setProperty("--ami-bordure-color", "rgba(0,0,0,0.1)");
             root.style.setProperty("--bordure-color", "rgba(140,107,203,1)");
@@ -68,6 +69,7 @@ function HubPrincipal(props){
         switch(theme) {
             case "etoile-blanche": setTheme("matiere-noire"); break;
             case "matiere-noire": setTheme("etoile-blanche"); break;
+            default: setTheme("etoile-blanche"); break;
         }
     }
 

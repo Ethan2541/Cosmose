@@ -4,19 +4,20 @@
 }
 
 .etoiles-section{
+    animation: etoiles-bg-anim 50s linear infinite;
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100vh;
-    animation: animateBg 50s linear infinite;
 }
 
-@keyframes animateBg {
-    0%,100%
+@keyframes etoiles-bg-anim {
+    0%, 100%
     {
         transform:scale(1);
     }
+    
     50%
     {
         transform:scale(1.2);
@@ -24,119 +25,110 @@
 }
 
 .etoiles-span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
+    animation: etoiles-anim 3s linear infinite;
     background: var(--etoiles-color);
     border-radius: 50%;
     box-shadow: 0 0 0 4px var(--etoiles-degrade1-color), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--etoiles-degrade2-color)  ;
-    animation:  animate 3s linear infinite;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 4px;
 }
+
 .etoiles-span::before{
+    background: linear-gradient(90deg, var(--etoiles-color), transparent);
     content: '';
+    height: 1px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 300px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--etoiles-color), transparent);
 }
-@keyframes animate {
+
+@keyframes etoiles-anim {
     0%
     {
-        transform: rotate(315deg) translateX(0);
         opacity: 1;
+        transform: rotate(315deg) translateX(0);
     }
+
     70%
     {
         opacity: 1;
-
     }
     100%
     {
-        transform: rotate(315deg) translateX(-1500px);
         opacity: 0;
-
+        transform: rotate(315deg) translateX(-1500px);
     }
-    
 }
+
 .etoiles-span:nth-child(1){
-    top: 0;
+    animation-duration: 3s;
+    left: initial;
     right: 0;
-    left:initial;
-    animation-delay:2.5 ;
-    animation-duration: 1s;
+    top: 0;
 }
 
 .etoiles-span:nth-child(2){
-    top: 0;
+    animation-duration: 5s;
+    left :initial;
     right: 80px;
-    left:initial;
-    animation-delay:2s;
-    animation-duration: 3s;
+    top: 0;
 }
 
 .etoiles-span:nth-child(3){
-    top: 80px;
+    animation-duration: 3.75s;
+    left: initial;
     right: 0px;
-    left:initial;
-    animation-delay:2.25s ;
-    animation-duration: 2s;
+    top: 80px;
 }
 
 .etoiles-span:nth-child(4){
-    top: 0;
+    animation-duration: 4s;
+    left: initial;
     right: 180px;
-    left:initial;
-    animation-delay:1s;
-    animation-duration: 1.5s;
+    top: 0;
 }
 
 .etoiles-span:nth-child(5){
-    top: 0;
+    animation-duration: 4.25s;
+    left: initial;
     right: 400px;
-    left:initial;
-    animation-delay:1.75s;
-    animation-duration: 2.5s;
+    top: 0;
 }
 
 .etoiles-span:nth-child(6){
-    top: 0;
+    animation-duration: 3.5s;
+    left: initial;
     right: 600px;
-    left:initial;
-    animation-delay:1.75s ;
-    animation-duration: 3s;
+    top: 0;
 }
-.etoiles-span:nth-child(7 ){
-    top: 300px;
+.etoiles-span:nth-child(7){
+    animation-duration: 3.5s;
+    left: initial;
     right: 0px;
-    left:initial;
-    animation-delay:1.5s ;
-    animation-duration: 2.25s;
+    top: 300px;
 }
 
 .etoiles-span:nth-child(8){
-    top: 0px;
+    animation-duration: 4s;
+    left: initial;
     right: 700px;
-    left:initial;
-    animation-delay:1.75s ;
-    animation-duration: 2s;
+    top: 0px;
 }
 
 .etoiles-span:nth-child(9){
-    top: 0px;
+    animation-duration: 4.5s;
+    left: initial;
     right: 1000px;
-    left:initial;
-    animation-delay:1.25s ;
-    animation-duration: 2.75s;
+    top: 0px;
 }
 
 .etoiles-span:nth-child(10){
-    top: 0px;
+    animation-duration: 4.25s;
+    left: initial;
     right: 1000px;
-    left:initial;
-    animation-delay:3s ;
-    animation-duration: 2s;
+    top: 0px;
 }

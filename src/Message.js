@@ -1,10 +1,12 @@
 import {useState} from "react";
+
+import {FaMinusCircle} from "react-icons/fa";
+import {FaPlusCircle} from "react-icons/fa";
 import {FaRegCommentDots} from "react-icons/fa";
 import {FaRegStar} from "react-icons/fa";
 import {FaRetweet} from "react-icons/fa";
 import {FaStar} from "react-icons/fa";
 import {FaTrashAlt} from "react-icons/fa";
-import {FaUserPlus} from "react-icons/fa";
 
 import "./styles/message.css"
 
@@ -25,21 +27,21 @@ function Message(props){
             <p>{props.message}</p>
             <div className="compteurs-message">
                 <button className="compteurs-bouton" onClick={(evt) => gererEtoile(evt)}>
-                    {starred ? <FaStar /> : <FaRegStar />}
+                    {starred ? <FaStar title="Ne plus aimer" /> : <FaRegStar title="Aimer" />}
                 </button>
                 <button className="compteurs-bouton">
-                    <FaRetweet />
+                    <FaRetweet title="Répondre" />
                 </button>
                 <button className="compteurs-bouton">
-                    <FaRegCommentDots />
+                    <FaRegCommentDots title="Commenter" />
                 </button>
                 {props.idUtilisateur != props.idAuteur && 
                 <button className="message-ajout">
-                    <FaUserPlus />
+                    <FaPlusCircle title="Suivre" />
                 </button>}
                 {props.idUtilisateur == props.idAuteur && 
                 <button className="message-suppr">
-                    <FaTrashAlt />
+                    <FaTrashAlt title="Supprimer" />
                 </button>}
             </div>
         </article>

@@ -3,7 +3,7 @@
     font-family: inherit;
     font-size: 16px;
     grid-template-rows: repeat(2, auto);
-    overflow: hidden;
+    overflow: scroll;
     width: 100%;
 }
 

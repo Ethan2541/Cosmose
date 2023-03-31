@@ -7,7 +7,7 @@ function Recherche(props){
         <div id="barre-recherche">
             <input type="text" placeholder={props.placeholder}></input>
             <span className="recherche-icone">
-                <FaSearch />
+                <FaSearch title="Rechercher" />
             </span>
         </div>
     );
