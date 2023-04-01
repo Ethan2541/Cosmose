@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import Accueil from "./Accueil.js";
-import Connexion from "./Connexion.js";
-import Entete from "./Entete.js";
-import SigninPage from "./SigninPage.js";
-import FilActualite from "./FilActualite.js";
-import Profil from "./Profil.js";
+import WelcomePage from "./pages/WelcomePage.js";
+import LoginPage from "./pages/LoginPage.js";
+import SigninPage from "./pages/SigninPage.js";
+import HomePage from "./pages/HomePage.js";
+import UserPage from "./pages/UserPage.js";
 
-function HubPrincipal(props){
+function App(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
     const [statutConnexion, setStatutConnexion] = useState(props.statutConnexion);
     const [idUtilisateur, setIdUtilisateur] = useState(1);
@@ -74,37 +73,31 @@ function HubPrincipal(props){
     }
 
     function affichage() {
-        let body = document.getElementById("index-body");
         if (statutConnexion) {
             switch (pageCourante) {
-                case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
-                case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
-                case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
-                case "fil-actualite": body.classList.remove("bg-hors-connexion"); return <FilActualite setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
-                case "profil": body.classList.remove("bg-hors-connexion"); return <Profil setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
-                default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+                case "accueil": return <WelcomePage setPageCourante={setPageCourante} />;
+                case "inscription": return <SigninPage setPageCourante={setPageCourante} />;
+                case "connexion": return <LoginPage connexion={seConnecter} />;
+                case "fil-actualite": return <HomePage setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
+                case "profil": return <UserPage setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
+                default: return <WelcomePage setPageCourante={setPageCourante} />;
             }
         }
         else {
             switch (pageCourante) {
-                case "accueil": body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
-                case "inscription": body.classList.add("bg-hors-connexion"); return <Inscription setPageCourante={setPageCourante} />;
-                case "connexion": body.classList.add("bg-hors-connexion"); return <Connexion connexion={seConnecter} />;
-                default: body.classList.add("bg-hors-connexion"); return <Accueil setPageCourante={setPageCourante} />;
+                case "accueil": return <WelcomePage setPageCourante={setPageCourante} />;
+                case "inscription": return <SigninPage setPageCourante={setPageCourante} />;
+                case "connexion": return <LoginPage connexion={seConnecter} />;
+                default: return <WelcomePage setPageCourante={setPageCourante} />;
             }
         }
     }
 
-    function entete() {
-        return (pageCourante === "connexion" || pageCourante === "inscription") && <Entete setPageCourante={setPageCourante} pageCourante={pageCourante}/>
-    }
-
     return(
     <div>
-        {entete()}
-        {affichage()}
+        { affichage() }
     </div>
     );
 }
 
-export default HubPrincipal;
+export default App;
