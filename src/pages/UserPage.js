@@ -1,6 +1,7 @@
-import {FaHome} from "react-icons/fa";
-import {FaPalette} from "react-icons/fa";
-import {FaSignOutAlt} from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { FaPalette } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import Banner from "../components/Banner.js";
 import CreateMessage from "../components/CreateMessage.js";
@@ -19,7 +20,7 @@ function UserPage(props) {
                 <h1>COSMOSE</h1>
                 <Searchbar placeholder={"Rechercher des constellations..."} />
                 <nav>
-                    <i><FaHome title="Retourner au fil d'actualité" onClick={(evt) => {props.setPageCourante("fil-actualite")}}/></i>
+                    <Link to="../accueil" className="userpage-link"><FaHome title="Retourner au fil d'actualité" /></Link>
                     <i><FaPalette title="Changer de thème" onClick={props.changerTheme} /></i>
                     <i><FaSignOutAlt title="Se déconnecter" onClick={props.deconnexion} /></i>
                 </nav>

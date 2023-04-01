@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import WelcomePage from "./pages/WelcomePage.js";
+import HomePage from "./pages/HomePage.js";
 import LoginPage from "./pages/LoginPage.js";
 import SigninPage from "./pages/SigninPage.js";
-import HomePage from "./pages/HomePage.js";
 import UserPage from "./pages/UserPage.js";
+import WelcomePage from "./pages/WelcomePage.js";
+
+import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function App(props){
     const [pageCourante, setPageCourante] = useState(props.pageCourante);
@@ -72,30 +74,15 @@ function App(props){
         }
     }
 
-    function affichage() {
-        if (statutConnexion) {
-            switch (pageCourante) {
-                case "accueil": return <WelcomePage setPageCourante={setPageCourante} />;
-                case "inscription": return <SigninPage setPageCourante={setPageCourante} />;
-                case "connexion": return <LoginPage connexion={seConnecter} />;
-                case "fil-actualite": return <HomePage setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
-                case "profil": return <UserPage setPageCourante={setPageCourante} idUtilisateur={idUtilisateur} deconnexion={seDeconnecter} changerTheme={changerTheme} />;
-                default: return <WelcomePage setPageCourante={setPageCourante} />;
-            }
-        }
-        else {
-            switch (pageCourante) {
-                case "accueil": return <WelcomePage setPageCourante={setPageCourante} />;
-                case "inscription": return <SigninPage setPageCourante={setPageCourante} />;
-                case "connexion": return <LoginPage connexion={seConnecter} />;
-                default: return <WelcomePage setPageCourante={setPageCourante} />;
-            }
-        }
-    }
-
     return(
     <div>
-        { affichage() }
+        <Routes>
+            <Route path="/" element={ <WelcomePage /> }/>
+            <Route path="/connexion" element={ <LoginPage /> }/>
+            <Route path="/inscription" element={ <SigninPage /> }/>
+            <Route path="/accueil" element={ <HomePage /> }/>
+            <Route path="/profil" element={ <UserPage /> }/>
+        </Routes>
     </div>
     );
 }

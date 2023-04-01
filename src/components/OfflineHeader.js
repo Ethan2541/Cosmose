@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
+
 import "./styles/offlineheader.css";
 
 function OfflineHeader(props) {
     function displayLoginOrSignin() {
         if (props.currentPage === "login") {
             return (
-                <button className="offlineheader-menu-button" onClick={ (evt) => props.setPageCourante("inscription") }>
+                <Link to="../inscription" className="offlineheader-link offlineheader-button">
                     S'INSCRIRE
-                </button>
+                </Link>
             )
         }
         else if (props.currentPage === "signin") {
             return (
-                <button className="offlineheader-menu-button" onClick={ (evt) => props.setPageCourante("connexion") }>
+                <Link to="../connexion" className="offlineheader-link offlineheader-button">
                     SE CONNECTER
-                </button>
+                </Link>
             )
         }
     }
@@ -21,9 +23,9 @@ function OfflineHeader(props) {
         <div id="offlineheader">
             <h1>COSMOSE</h1>
             <nav>
-                <button className="no-border" onClick={ (evt) => props.setPageCourante("accueil") }>
+                <Link to="../" className="offlineheader-link no-border">
                     ACCUEIL
-                </button>
+                </Link>
                 { displayLoginOrSignin() }
             </nav>
         </div>

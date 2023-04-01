@@ -34,6 +34,16 @@
     grid-template-columns: 1fr 2fr;
 }
 
+.userpage-link {
+    color: var(--texte-color);
+    cursor: pointer;
+    transition: 0.3s linear; 
+}
+
+.userpage-link:hover {
+    color: var(--bordure-color);
+}
+
 #userpage>header>nav>i {
     color: var(--texte-color);
     cursor: pointer;

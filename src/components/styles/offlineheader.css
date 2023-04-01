@@ -5,19 +5,21 @@
     width: 100%;
 }
 
-#offlineheader>nav>button {
+.offlineheader-link {
     background-color: rgba(0,0,0,0);
     color: rgba(255,255,255,1);
     cursor: pointer;
     font-family: inherit;
+    font-size: 14px;
     font-weight: bold;
     height: 40px;
     margin: 10px 20px 10px 20px;
+    text-decoration: none;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
     transition: 0.3s linear;
 }
 
-#offlineheader>nav>button:hover {
+.offlineheader-link:hover {
     filter: brightness(75%);
 }
 
@@ -25,12 +27,14 @@
     border: 0;
 }
 
-.offlineheader-menu-button {
+.offlineheader-button {
     border: 2px solid rgba(255,255,255,1);
     border-radius: 4px;
+    padding: 8px;
+    text-decoration: none;
 }
 
-.offlineheader-menu-button:hover {
+.offlineheader-button:hover {
     border-color: rgba(140,107,203,1);
 }
 

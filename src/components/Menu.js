@@ -1,5 +1,6 @@
 import { FaPalette } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -22,18 +23,18 @@ function Menu(props) {
         <div id="menu">
             <h1>COSMOSE</h1>
             <ul>
-                <li className="menu-hover" onClick={ (evt) => { props.setPageCourante("profil") } }>MA CONSTELLATION</li>
+                <li><Link to="../profil" className="menu-link">MA CONSTELLATION</Link></li>
                 <li>
-                    <button className="menu-button menu-hover" onClick={ (evt) => { setToggleParameters(!toggleParameters) } }>PARAMETRES</button>
+                    <button className="menu-button" onClick={ (evt) => { setToggleParameters(!toggleParameters) } }>PARAMETRES</button>
                     <ul id="menu-parameters">
                         <li>
-                            <button className="menu-parameters-button menu-hover" onClick={props.changerTheme}>
+                            <button className="menu-parameters-button" onClick={props.changerTheme}>
                                 <FaPalette />
                                 Changer le thème
                             </button>
                         </li>
                         <li>
-                            <button className="menu-parameters-button menu-hover" onClick={props.deconnexion}>
+                            <button className="menu-parameters-button" onClick={props.deconnexion}>
                                 <FaSignOutAlt />
                                 Se déconnecter
                             </button>
@@ -41,11 +42,11 @@ function Menu(props) {
                     </ul>
                 </li>
                 <hr />
-                <li className="menu-hover">LES PLUS ETOILES</li>
-                <li className="menu-hover">ETOILES MONTANTES</li>
-                <li className="menu-hover">MA GALAXIE</li>
+                <li><button className="menu-button">LES PLUS ETOILES</button></li>
+                <li><button className="menu-button">ETOILES MONTANTES</button></li>
+                <li><button className="menu-button">MA GALAXIE</button></li>
                 <hr />
-                <li className="menu-hover"><a id="menu-post" href="#createmessage">PUBLIER</a></li>
+                <li><a id="menu-post" href="#createmessage">PUBLIER</a></li>
             </ul>
         </div>
     );

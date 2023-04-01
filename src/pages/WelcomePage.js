@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./styles/welcomepage.css";
 
 function WelcomePage(props) {
@@ -5,8 +6,8 @@ function WelcomePage(props) {
         <div id="welcomepage">
             <div id="welcomepage-body">
                 <h1>COSMOSE</h1>
-                <button id="welcomepage-login" onClick={ (evt) => { props.setPageCourante("connexion") } }>Se connecter</button>
-                <button id="welcomepage-signin" onClick={ (evt) => { props.setPageCourante("inscription") } }>S'inscrire</button>
+                <Link to="connexion" id="welcomepage-login">Se connecter</Link>
+                <Link to="inscription" id="welcomepage-signin">S'inscrire</Link>
                 <img id="welcomepage-planet" draggable="false" src="./assets/img/planete.png" alt="Planète"/>
             </div>
         </div>
