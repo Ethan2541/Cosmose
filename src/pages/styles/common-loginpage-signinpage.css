@@ -1,0 +1,59 @@
+.common-loginpage-signinpage {
+    background-color: rgba(6,10,16,0.8);
+    border-radius: 20px;
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+    margin: 10% auto 0 auto;
+    width: 400px;
+}
+
+.common-loginpage-signinpage>h2 {
+	color: rgba(255,255,255,1);
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 0;
+    padding: 20px 0 20px 0;
+    text-align: center;
+}
+
+.common-loginpage-signinpage>form {
+    margin: 0 auto 0 auto;
+	width: 300px;
+}
+
+.common-loginpage-signinpage>form>button {
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
+.common-loginpage-signinpage>form>button, .common-loginpage-signinpage>form>input {
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    height: 50px;
+    padding: 0 10px 0 10px;
+    width: 100%;
+}
+
+.common-loginpage-signinpage>form>button {
+    background-color: rgba(140,107,203,1);
+    color: rgba(255,255,255,1);
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.common-loginpage-signinpage>form>button:hover {
+    filter: brightness(90%);
+}
+
+.common-loginpage-signinpage>form>input::placeholder {
+    font-style: italic;
+}
+
+.common-loginpage-signinpage>form>input:focus {
+    outline: 3px solid rgba(140,107,203,1);
+}
+
+.common-loginpage-signinpage>form>input[type="submit"]:focus {
+    outline: 3px solid rgba(255,255,255,1);
+}

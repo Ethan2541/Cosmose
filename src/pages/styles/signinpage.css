@@ -1,0 +1,58 @@
+#signinpage {
+    height: 475px;
+    padding-top: 25px;
+}
+
+#signinpage>h2 {
+    padding: 0 0 20px 0;
+}
+
+#signinpage-form {
+	display: grid;
+    grid-gap: 15px;
+	grid-template-columns: 1fr 1fr;
+}
+
+.signinpage-large-field {
+    grid-column: 1 / span 2;
+}
+
+#signinpage>form>div>input {
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    height: 50px;
+    padding: 0 10px 0 10px;
+    width: 100%;
+}
+
+#signinpage>form>div>i {
+    cursor: pointer;
+    transition: 0.3s linear;
+}
+
+#signinpage>form>div>input[type="password"] {
+    padding-right: 30px;
+}
+
+#signinpage>form>div>input:focus {
+    outline: 3px solid rgba(140,107,203,1);
+}
+
+#signinpage>form>div>input::placeholder {
+    font-style: italic;
+}
+
+#signinpage>form>div>i {
+    font-size: 14px;
+    margin-left: -25px;
+}
+
+#signinpage>form>div>i:hover {
+    color: rgba(140,107,203,1);
+}
+
+.input-invalid-password {
+    outline: 3px solid rgba(255,69,0,1);
+}

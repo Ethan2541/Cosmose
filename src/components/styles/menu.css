@@ -1,0 +1,92 @@
+#menu {
+    align-items: flex-start;
+    background-color: var(--menu-bg-color);
+    border-right: 3px solid var(--bordure-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    height: 100%;
+    margin: 0;
+    overflow: scroll;
+    padding: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#menu>h1 {
+    align-self: center;
+    color: rgba(255,255,255,1);
+    cursor: default;
+    font-size: 24px;
+    margin: 40px 0 60px 0;
+    padding: 0;
+    user-select: none;
+}
+
+#menu>ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+#menu>ul>hr {
+    border: 0;
+    margin: 20px 0 20px 0;
+}
+
+#menu>ul>li {
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    margin: 30px 0 30px 0;
+}
+
+.menu-button {
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    padding: 0;
+}
+
+.menu-button:focus {
+    outline: 0;
+}
+
+#menu-parameters {
+    height: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.menu-hover:hover {
+    filter: brightness(75%);
+}
+
+.menu-parameters-button {
+    align-items: center;
+    background-color: rgba(255,255,255,0.1);
+    border: 0;
+    border-radius: 5px;
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    font-size: inherit;
+    gap: 5px;
+    height: 50px;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: left;
+    width: 225px;
+}
+
+#menu-post {
+    color: var(--bordure-color);
+    margin-bottom: 40px;
+    text-decoration: none;
+}

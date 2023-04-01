@@ -1,0 +1,134 @@
+#starrybackground {
+    overflow: hidden;
+    z-index: -1;
+}
+
+#starrybackground>section {
+    animation: background-anim 50s linear infinite;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+@keyframes background-anim {
+    0%, 100%
+    {
+        transform:scale(1);
+    }
+    
+    50%
+    {
+        transform:scale(1.2);
+    }
+}
+
+#starrybackground>section>span {
+    animation: stars-anim 3s linear infinite;
+    background: var(--etoiles-color);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--etoiles-degrade1-color), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--etoiles-degrade2-color)  ;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 4px;
+}
+
+#starrybackground>section>span::before{
+    background: linear-gradient(90deg, var(--etoiles-color), transparent);
+    content: '';
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+}
+
+@keyframes stars-anim {
+    0%
+    {
+        opacity: 1;
+        transform: rotate(315deg) translateX(0);
+    }
+
+    70%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+        transform: rotate(315deg) translateX(-1500px);
+    }
+}
+
+#starrybackground>section>span:nth-child(1){
+    animation-duration: 3s;
+    left: initial;
+    right: 0;
+    top: 0;
+}
+
+#starrybackground>section>span:nth-child(2){
+    animation-duration: 5s;
+    left :initial;
+    right: 80px;
+    top: 0;
+}
+
+#starrybackground>section>span:nth-child(3){
+    animation-duration: 3.75s;
+    left: initial;
+    right: 0px;
+    top: 80px;
+}
+
+#starrybackground>section>span:nth-child(4){
+    animation-duration: 4s;
+    left: initial;
+    right: 180px;
+    top: 0;
+}
+
+#starrybackground>section>span:nth-child(5){
+    animation-duration: 4.25s;
+    left: initial;
+    right: 400px;
+    top: 0;
+}
+
+#starrybackground>section>span:nth-child(6){
+    animation-duration: 3.5s;
+    left: initial;
+    right: 600px;
+    top: 0;
+}
+#starrybackground>section>span:nth-child(7){
+    animation-duration: 3.5s;
+    left: initial;
+    right: 0px;
+    top: 300px;
+}
+
+#starrybackground>section>span:nth-child(8){
+    animation-duration: 4s;
+    left: initial;
+    right: 700px;
+    top: 0px;
+}
+
+#starrybackground>section>span:nth-child(9){
+    animation-duration: 4.5s;
+    left: initial;
+    right: 1000px;
+    top: 0px;
+}
+
+#starrybackground>section>span:nth-child(10){
+    animation-duration: 4.25s;
+    left: initial;
+    right: 1000px;
+    top: 0px;
+}

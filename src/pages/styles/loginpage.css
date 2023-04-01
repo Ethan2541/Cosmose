@@ -1,0 +1,27 @@
+#loginpage {
+    height: 450px;
+    padding-top: 50px;
+}
+
+#loginpage>h2 {
+    padding: 20px 0 20px 0;
+}
+
+#loginpage-form>i {
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: -25px;
+    transition: 0.3s linear;
+}
+
+#loginpage-form>i:hover {
+    color: rgba(140,107,203,1);
+}
+
+#loginpage-form>button, #loginpage-form>input {
+    margin-bottom: 15px;
+}
+
+#loginpage-form>input[type="password"] {
+    padding-right: 30px;
+}

@@ -1,0 +1,14 @@
+#usermeters {
+    align-items: center;
+    cursor: default;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+#usermeters>div {
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}

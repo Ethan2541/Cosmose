@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import Accueil from "./Accueil.js";
 import Connexion from "./Connexion.js";
 import Entete from "./Entete.js";
-import Inscription from "./Inscription.js";
+import SigninPage from "./SigninPage.js";
 import FilActualite from "./FilActualite.js";
 import Profil from "./Profil.js";
 

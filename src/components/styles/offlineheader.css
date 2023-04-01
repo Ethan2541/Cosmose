@@ -1,0 +1,45 @@
+#offlineheader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#offlineheader>nav>button {
+    background-color: rgba(0,0,0,0);
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    height: 40px;
+    margin: 10px 20px 10px 20px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+    transition: 0.3s linear;
+}
+
+#offlineheader>nav>button:hover {
+    filter: brightness(75%);
+}
+
+.no-border {
+    border: 0;
+}
+
+.offlineheader-menu-button {
+    border: 2px solid rgba(255,255,255,1);
+    border-radius: 4px;
+}
+
+.offlineheader-menu-button:hover {
+    border-color: rgba(140,107,203,1);
+}
+
+#offlineheader>h1 {
+    color: rgba(255,255,255,1);
+    cursor: default;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 10px 10px 20px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}

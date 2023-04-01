@@ -1,0 +1,16 @@
+#statswrapper {
+    background-color: var(--infos-bg-color);
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+}
+
+#statswrapper-scene {
+    margin: auto;
+    height: 400px;
+    width: 100%;
+}
+
+#statswrapper-stats {
+    padding: 15px;
+}

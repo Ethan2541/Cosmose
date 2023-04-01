@@ -1,0 +1,73 @@
+#welcomepage {
+    display: grid;
+    font-size: 20px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(2,1fr);
+    margin: 17% auto 0 auto;
+    width: 425px;
+}
+
+#welcomepage>h1 {
+    color: rgba(255,255,255,1);
+    cursor: default;
+    font-size: 80px;
+    font-weight: bold;
+    grid-column: 1 / span 2;
+    margin: 0;
+    text-align: center;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+#welcomepage>button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    height: 55px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+    transition: 0.3s linear;
+}
+
+#welcomepage-login {
+    background-color: rgba(255,255,255,0);
+    border: 2px solid rgba(140,107,203,1);
+    border-radius: 8px;
+    color: rgba(140,107,203,1);  
+}
+
+#welcomepage-login:hover {
+    border-color: rgba(255,255,255,1);
+    color: rgba(255,255,255,1);
+}
+
+#welcomepage-signin {
+    background-color: rgba(140,107,203,1);
+    border: 2px solid rgba(140,107,203,1);
+    border-radius: 8px;
+    color: rgba(255,255,255,1);
+}
+
+#welcomepage-signin:hover {
+    background-color: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,1);
+    color: rgba(140,107,203,1);
+}
+
+#welcomepage-planet {
+    animation: show 10s ease-in-out infinite;
+    position: absolute;
+    left: -20%;
+    top: -50%;
+    width: 50%;
+    z-index: -1;
+}
+
+@keyframes show {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(2%);
+    }
+}
