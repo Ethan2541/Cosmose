@@ -1,4 +1,12 @@
 #welcomepage {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../../public/assets/img/background.png") center no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+#welcomepage-body {
     display: grid;
     font-size: 20px;
     grid-gap: 10px;
@@ -7,7 +15,14 @@
     width: 425px;
 }
 
-#welcomepage>h1 {
+#welcomepage-background {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+#welcomepage-body>h1 {
     color: rgba(255,255,255,1);
     cursor: default;
     font-size: 80px;
@@ -19,7 +34,7 @@
     user-select: none;
 }
 
-#welcomepage>button {
+#welcomepage-body>button {
     cursor: pointer;
     font-family: inherit;
     font-size: 20px;
@@ -60,7 +75,7 @@
     left: -20%;
     top: -50%;
     width: 50%;
-    z-index: -1;
+    z-index: 1;
 }
 
 @keyframes show {

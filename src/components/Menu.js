@@ -9,14 +9,14 @@ function Menu(props) {
     const [toggleParameters, setToggleParameters] = useState(false);
 
     useEffect(() => {
-        let dropdown = document.getElementById("parametres-dropdown");
+        let dropdown = document.getElementById("menu-parameters");
         if (toggleParameters) {
             dropdown.style.height = "auto";
         }
         else {
             dropdown.style.height = "0";
         }
-    }, [parametresVisibles]);
+    }, [toggleParameters]);
 
     return(
         <div id="menu">
@@ -24,7 +24,7 @@ function Menu(props) {
             <ul>
                 <li className="menu-hover" onClick={ (evt) => { props.setPageCourante("profil") } }>MA CONSTELLATION</li>
                 <li>
-                    <button className="menu-button menu-hover" onClick={ (evt) => { setParametresVisibles(!parametresVisibles) } }>PARAMETRES</button>
+                    <button className="menu-button menu-hover" onClick={ (evt) => { setToggleParameters(!toggleParameters) } }>PARAMETRES</button>
                     <ul id="menu-parameters">
                         <li>
                             <button className="menu-parameters-button menu-hover" onClick={props.changerTheme}>

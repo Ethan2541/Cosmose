@@ -1,4 +1,6 @@
-import { axios } from 'axios';
+import axios from 'axios';
+import OfflineHeader from "../components/OfflineHeader.js";
+
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useEffect } from "react";
@@ -21,11 +23,9 @@ function SigninPage(props) {
     useEffect(() => {
         if (password == password2) {
             document.getElementById("password2").classList.remove("input-invalid-password");
-            setIdValide(true);
         }
         else {
             document.getElementById("password2").classList.add("input-invalid-password");
-            setIdValide(false);
         }
     }, [password, password2]);
 
@@ -62,20 +62,23 @@ function SigninPage(props) {
     }
 
     return (
-        <div id="signinpage" className="common-loginpage-signinpage">
-            <h2>S'inscrire</h2>
-            <form id="signinpage-form" onSubmit={ Inscription }>
-                <input type="text" id="name" name="name" placeholder="Prénom" onChange={ (evt) => setPrenom(evt.target.value) }></input>
-                <input type="text" id="surname" name="surname" placeholder="Nom" onChange={ (evt) => setNom(evt.target.value) }></input>
-                <input className="large-field" type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => setLogin(evt.target.value) }></input>
-                <div className="large-field">
-                    <input className="large-field" type={ passwordMask ? "password" : "text" } id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{ passwordMask ? <FaEye /> : <FaEyeSlash /> }</i>
-                </div>
-                <div className="large-field">
-                    <input className="large-field" type={ passwordMask2 ? "password" : "text" } id="password2" name="password2" placeholder="Retapez le mot de passe" onChange={ (evt) => handlePassword2(evt) }></input><i onClick={ (evt) => handlePasswordMask2(evt) }>{ passwordMask2 ? <FaEye /> : <FaEyeSlash /> }</i>
-                </div>
-                <button className="large-field" type="submit">Enregistrer</button>
-            </form>
+        <div id="signinpage">
+            <OfflineHeader currentPage={ "signin" } />
+            <div id="signinpage-body" className="common-loginpage-signinpage">
+                <h2>S'inscrire</h2>
+                <form id="signinpage-form" onSubmit={ signin }>
+                    <input type="text" id="name" name="name" placeholder="Prénom" onChange={ (evt) => setName(evt.target.value) }></input>
+                    <input type="text" id="surname" name="surname" placeholder="Nom" onChange={ (evt) => setSurname(evt.target.value) }></input>
+                    <input className="large-field" type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => setLogin(evt.target.value) }></input>
+                    <div className="large-field">
+                        <input className="large-field" type={ passwordMask ? "password" : "text" } id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{ passwordMask ? <FaEye /> : <FaEyeSlash /> }</i>
+                    </div>
+                    <div className="large-field">
+                        <input className="large-field" type={ passwordMask2 ? "password" : "text" } id="password2" name="password2" placeholder="Retapez le mot de passe" onChange={ (evt) => handlePassword2(evt) }></input><i onClick={ (evt) => handlePasswordMask2(evt) }>{ passwordMask2 ? <FaEye /> : <FaEyeSlash /> }</i>
+                    </div>
+                    <button className="large-field" type="submit">Enregistrer</button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.stats-petit {
+.userstats-small-field {
     align-items: center;
     display: flex;
     grid-column: 1 / 2;
@@ -24,7 +24,7 @@
     padding: 0 10px 0 10px;
 }
 
-.stats-large {
+.userstats-large-field {
     align-items: center;
     grid-column: 2 / 3;
     justify-content: center;
@@ -32,12 +32,12 @@
     padding: 0 10px 0 10px;
 }
 
-.stats-blanc {
+.userstats-white {
     border: 3px solid rgba(255,255,255,1);
     border-radius: 10px;
 }
 
-.stats-violet {
+.userstats-purple {
     border: 3px solid rgba(140,107,203,1);
     border-radius: 10px;
 }

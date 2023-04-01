@@ -57,3 +57,10 @@
 .common-loginpage-signinpage>form>input[type="submit"]:focus {
     outline: 3px solid rgba(255,255,255,1);
 }
+
+#common-loginpage-signinpage-background {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}

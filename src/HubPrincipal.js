@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Accueil from "./Accueil.js";
 import Connexion from "./Connexion.js";
 import Entete from "./Entete.js";

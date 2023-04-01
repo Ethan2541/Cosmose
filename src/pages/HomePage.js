@@ -1,29 +1,28 @@
-import Menu from "./Menu.js";
-import Message from "./Message.js";
-import MessageACreer from "./MessageACreer.js";
-import Recherche from "./Recherche.js";
+import CreateMessage from "../components/CreateMessage.js";
+import Menu from "../components/Menu.js";
+import Message from "../components/Messages/Message.js";
+import Searchbar from "../components/Searchbar.js";
+import StarryBackground from "../components/StarryBackground.js";
 
-import Etoiles from "./Etoiles.js";
+import "./styles/homepage.css";
 
-import "./styles/fil-actualite.css";
-
-function FilActualite(props){
+function HomePage(props) {
     return(
-        <main id="fil-actualite">
-            <div id="fil-etoiles">
-                <Etoiles />
+        <div id="homepage">
+            <div id="homepage-starrybackground">
+                <StarryBackground />
             </div>
-            <div id="fil-gauche"> 
-                <Menu setPageCourante={props.setPageCourante} deconnexion={props.deconnexion} changerTheme={props.changerTheme}/>
+            <div id="homepage-left"> 
+                <Menu setPageCourante={ props.setPageCourante } deconnexion={ props.deconnexion } changerTheme={ props.changerTheme }/>
             </div>
-            <div id="fil-droit">
-                <div id="fil-recherche">
-                    <Recherche  placeholder={"Naviguer dans le Cosmos..."} />
+            <div id="homepage-right">
+                <div id="homepage-searchbar">
+                    <Searchbar  placeholder={ "Naviguer dans le Cosmos..." } />
                 </div>
-                <div id="fil-tout-message">
-                    <MessageACreer />
-                    <div id="fil-liste-messages">
-                        <Message idMessage={1} auteur={"Riku-kun"} idAuteur={1} message={"Coucou les amis !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/riku.png"}/>
+                <div id="homepage-posts">
+                    <CreateMessage />
+                    <div id="homepage-messageslist">
+                        <Message messageId={1} author={"Riku-kun"} authorId={1} message={"Coucou les amis !"} userId={props.idUtilisateur} date={"28 mars 2023 à 14h00"} avatar={"./assets/avatar/riku.png"}/>
                         <Message idMessage={2} auteur={"Mitsuki-kun"} idAuteur={2} message={"Ohayo ! Mina-san !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/mitsuki.png"}/>
                         <Message idMessage={3} auteur={"Nagi-san"} idAuteur={3} message={"Hello girls !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/nagi.png"}/>
                         <Message idMessage={4} auteur={"Yamato-san"} idAuteur={4} message={"Yo tout le monde !"} idUtilisateur={props.idUtilisateur} date={"28 mars 2023 à 14h00"} img={"./assets/avatar/yamato.png"}/>
@@ -33,8 +32,8 @@ function FilActualite(props){
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }
 
-export default FilActualite;
+export default HomePage;

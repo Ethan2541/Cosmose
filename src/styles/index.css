@@ -7,8 +7,3 @@ body {
     font-family: "Inter";
     margin: 0;
 }
-
-.bg-hors-connexion {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../public/assets/img/background.png") center no-repeat;
-    background-size: cover;
-}

@@ -2,14 +2,14 @@ import "./styles/offlineheader.css";
 
 function OfflineHeader(props) {
     function displayLoginOrSignin() {
-        if (props.pageCourante === "connexion") {
+        if (props.currentPage === "login") {
             return (
                 <button className="offlineheader-menu-button" onClick={ (evt) => props.setPageCourante("inscription") }>
                     S'INSCRIRE
                 </button>
             )
         }
-        else if (props.pageCourante === "inscription") {
+        else if (props.currentPage === "signin") {
             return (
                 <button className="offlineheader-menu-button" onClick={ (evt) => props.setPageCourante("connexion") }>
                     SE CONNECTER

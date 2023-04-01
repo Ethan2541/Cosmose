@@ -1,10 +1,12 @@
-import { axios } from 'axios';
+import axios from 'axios';
+import OfflineHeader from "../components/OfflineHeader.js";
+
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
 import "./styles/loginpage.css";
-import "./styles/connexion-inscription.css";
+import "./styles/common-loginpage-signinpage.css";
 
 function LoginPage(props) {
     const [login, setLogin] = useState("");
@@ -40,13 +42,16 @@ function LoginPage(props) {
     }
 
     return(
-        <div id="loginpage" className="common-loginpage-signinpage">
-            <h2>S'identifier</h2>
-            <form id="loginpage-form" onSubmit={props.toConnect}>
-                <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLogin(evt) }></input>
-                <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
-                <button type="submit">Se connecter</button>
-            </form>
+        <div id="loginpage">
+            <OfflineHeader currentPage={ "login" }/>
+            <div id="loginpage-body" className="common-loginpage-signinpage">
+                <h2>S'identifier</h2>
+                <form id="loginpage-form" onSubmit={ props.toConnect }>
+                    <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLogin(evt) }></input>
+                    <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
+                    <button type="submit">Se connecter</button>
+                </form>
+            </div>
         </div>
     );
 }
