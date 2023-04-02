@@ -1,5 +1,6 @@
 #usermeters {
     align-items: center;
+    color: var(--texte-color);
     cursor: default;
     display: flex;
     gap: 20px;

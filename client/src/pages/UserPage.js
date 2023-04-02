@@ -20,9 +20,9 @@ function UserPage(props) {
                 <h1>COSMOSE</h1>
                 <Searchbar placeholder={"Rechercher des constellations..."} />
                 <nav>
-                    <Link to="../accueil" className="userpage-link"><FaHome title="Retourner au fil d'actualité" /></Link>
-                    <i><FaPalette title="Changer de thème" onClick={props.changerTheme} /></i>
-                    <i><FaSignOutAlt title="Se déconnecter" onClick={props.deconnexion} /></i>
+                    <Link to="/accueil" className="userpage-link"><FaHome title="Retourner au fil d'actualité" /></Link>
+                    <i><FaPalette title="Changer de thème" onClick={ props.switchTheme } /></i>
+                    <i><FaSignOutAlt title="Se déconnecter" onClick={ props.logout } /></i>
                 </nav>
             </header>
             <Banner couverture={"./assets/cover/couverture.jpg"} avatar={"./assets/avatar/riku.png"} />

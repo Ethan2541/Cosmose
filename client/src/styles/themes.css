@@ -18,7 +18,7 @@
     --texte-color: rgba(0,0,0,1);
 }
 
-:root[theme="white-dwarf"] {
+:root[theme="whitedwarf"] {
     --ami-bg-color: rgba(44,43,74,1);
     --ami-bordure-color: rgba(0,0,0,0.1);
     --bordure-color: rgba(140,107,203,1);
@@ -38,7 +38,7 @@
     --texte-color: rgba(0,0,0,1);
 }
 
-:root[theme="dark-matter"] {
+:root[theme="darkmatter"] {
     --ami-bg-color: rgba(23,21,33,1);
     --ami-bordure-color: rgba(0,0,0,0.1);
     --bordure-color: rgba(140,107,203,1);

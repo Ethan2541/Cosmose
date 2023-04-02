@@ -23,18 +23,18 @@ function Menu(props) {
         <div id="menu">
             <h1>COSMOSE</h1>
             <ul>
-                <li><Link to="../profil" className="menu-link">MA CONSTELLATION</Link></li>
+                <li><Link to="/profil" className="menu-link">MA CONSTELLATION</Link></li>
                 <li>
                     <button className="menu-button" onClick={ (evt) => { setToggleParameters(!toggleParameters) } }>PARAMETRES</button>
                     <ul id="menu-parameters">
                         <li>
-                            <button className="menu-parameters-button" onClick={props.changerTheme}>
+                            <button className="menu-parameters-button" onClick={ props.switchTheme }>
                                 <FaPalette />
                                 Changer le thème
                             </button>
                         </li>
                         <li>
-                            <button className="menu-parameters-button" onClick={props.deconnexion}>
+                            <button className="menu-parameters-button" onClick={ props.logout }>
                                 <FaSignOutAlt />
                                 Se déconnecter
                             </button>

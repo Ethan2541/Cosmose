@@ -13,7 +13,7 @@ function HomePage(props) {
                 <StarryBackground />
             </div>
             <div id="homepage-left"> 
-                <Menu setPageCourante={ props.setPageCourante } deconnexion={ props.deconnexion } changerTheme={ props.changerTheme }/>
+                <Menu switchTheme={ props.switchTheme } logout={ props.logout } />
             </div>
             <div id="homepage-right">
                 <div id="homepage-searchbar">

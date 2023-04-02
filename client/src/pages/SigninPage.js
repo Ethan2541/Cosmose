@@ -63,7 +63,7 @@ function SigninPage(props) {
 
     return (
         <div id="signinpage">
-            <OfflineHeader currentPage={ "signin" } />
+            <OfflineHeader currentPage={ "signinpage" } />
             <div id="signinpage-body" className="common-loginpage-signinpage">
                 <h2>S'inscrire</h2>
                 <form id="signinpage-form" onSubmit={ signin }>

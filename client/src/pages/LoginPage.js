@@ -3,6 +3,7 @@ import OfflineHeader from "../components/OfflineHeader.js";
 
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
 import "./styles/loginpage.css";
@@ -13,6 +14,7 @@ function LoginPage(props) {
     const [password, setPassword] = useState("");
     const [passwordMask, setPasswordMask] = useState(true);
 
+    const navigate = useNavigate();
     axios.defaults.baseURL = 'http://localhost:8080';
 
     function handleLogin(evt) {
@@ -29,24 +31,23 @@ function LoginPage(props) {
 
 	function handleConnection(evt) {
 		evt.preventDefault();
-		axios.post('/connexion', {
-            login: login,
-            password: password
+		axios.post("/api/login", {
+            "login": login,
+            "password": password
         })
-        .then((rep) => {
-            rep.data.connect && props.toConnect();
-       })
-        .catch((err) => {
-            console.log(err);
+        .then((res) => {
+            localStorage.setItem("user", res.data.accessToken);
+            navigate("../accueil");
         })
+        .catch((err) => console.log(err));
     }
 
     return(
         <div id="loginpage">
-            <OfflineHeader currentPage={ "login" }/>
+            <OfflineHeader currentPage={ "loginpage" }/>
             <div id="loginpage-body" className="common-loginpage-signinpage">
                 <h2>S'identifier</h2>
-                <form id="loginpage-form" onSubmit={ props.toConnect }>
+                <form id="loginpage-form" onSubmit={ handleConnection }>
                     <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLogin(evt) }></input>
                     <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                     <button type="submit">Se connecter</button>
