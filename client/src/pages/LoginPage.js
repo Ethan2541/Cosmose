@@ -10,34 +10,37 @@ import "./styles/loginpage.css";
 import "./styles/common-loginpage-signinpage.css";
 
 function LoginPage(props) {
-    const [login, setLogin] = useState("");
-    const [password, setPassword] = useState("");
+    const [userData, setUserData] = useState({ login: "", password: "" });
     const [passwordMask, setPasswordMask] = useState(true);
 
     const navigate = useNavigate();
     axios.defaults.baseURL = 'http://localhost:8080';
 
-    function handleLogin(evt) {
-        setLogin(evt.target.value);
+    function handleLoginChange(evt) {
+        let updatedUserData = userData;
+        updatedUserData.login = evt.target.value;
+        setUserData(updatedUserData);
     }
 
-    function handlePassword(evt) {
-        setPassword(evt.target.value);
+    function handlePasswordChange(evt) {
+        let updatedUserData = userData;
+        updatedUserData.password = evt.target.value;
+        setUserData(updatedUserData);
     }
 
     function handlePasswordMask(evt) {
         setPasswordMask(!passwordMask);
     }
 
-	function handleConnection(evt) {
+	function handleLogin(evt) {
 		evt.preventDefault();
 		axios.post("/api/login", {
-            "login": login,
-            "password": password
+            login: userData.login,
+            password: userData.password
         })
         .then((res) => {
             localStorage.setItem("user", res.data.accessToken);
-            navigate("../accueil");
+            navigate("/accueil");
         })
         .catch((err) => console.log(err));
     }
@@ -47,9 +50,9 @@ function LoginPage(props) {
             <OfflineHeader currentPage={ "loginpage" }/>
             <div id="loginpage-body" className="common-loginpage-signinpage">
                 <h2>S'identifier</h2>
-                <form id="loginpage-form" onSubmit={ handleConnection }>
-                    <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLogin(evt) }></input>
-                    <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePassword(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
+                <form id="loginpage-form" onSubmit={ handleLogin }>
+                    <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLoginChange(evt) }></input>
+                    <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePasswordChange(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                     <button type="submit">Se connecter</button>
                 </form>
             </div>
