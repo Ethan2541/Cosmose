@@ -4,75 +4,50 @@ import SigninPage from "./pages/SigninPage.js";
 import UserPage from "./pages/UserPage.js";
 import WelcomePage from "./pages/WelcomePage.js";
 
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-function App(props){
-    const [pageCourante, setPageCourante] = useState(props.pageCourante);
-    const [statutConnexion, setStatutConnexion] = useState(props.statutConnexion);
-    const [idUtilisateur, setIdUtilisateur] = useState(1);
-    const [theme, setTheme] = useState("etoile-blanche");
+function App(props) {
+    const [currentTheme, setCurrentTheme] = useState("white-dwarf")
+    const [user, setUser] = useState(null);
+    const location = useLocation();
+
+    function parseJwt(token) {
+        return JSON.parse(window.atob(token.split('.')[1]));
+    }
+
+    function getCurrentUser() {
+        //return JSON.parse(localStorage.getItem("user"));
+        return {"theme": "matiere-noire"};
+    }
+
+    function logout() {
+        localStorage.removeItem("user");
+        setUser(null);
+    }
+
+    function renderPageIfAllowed(page) {
+        const user = getCurrentUser();
+        const renderedPage = user ? page : <Navigate to="/connexion" replace />
+        return renderedPage;
+    } 
 
     useEffect(() => {
         let root = document.documentElement;
-        if (theme === "etoile-blanche") {
-            root.style.setProperty("--ami-bg-color", "rgba(44,43,74,1)");
-            root.style.setProperty("--ami-bordure-color", "rgba(0,0,0,0.1)");
-            root.style.setProperty("--bordure-color", "rgba(140,107,203,1)");
-            root.style.setProperty("--etoiles-color", "rgba(140,107,203,0.75)");
-            root.style.setProperty("--etoiles-degrade1-color", "rgba(140,107,203,0.1)");
-            root.style.setProperty("--etoiles-degrade2-color", "rgba(140,107,203,1)");
-            root.style.setProperty("--infos-bg-color", "rgba(44,43,74,1)");
-            root.style.setProperty("--main-bg-color", "rgba(255,255,255,1)");
-            root.style.setProperty("--menu-bg-color", "rgba(44,43,74,1)");
-            root.style.setProperty("--message-bg-color", "rgba(255,255,255,0.85)");
-            root.style.setProperty("--message-bordure-color", "rgba(0,0,0,0.25)");
-            root.style.setProperty("--publication-bg-color", "rgba(255,255,255,0.85)");
-            root.style.setProperty("--publication-color", "rgba(0,0,0,0.85)");
-            root.style.setProperty("--recherche-bg-color", "rgba(0,0,0,0.075)");
-            root.style.setProperty("--recherche-color", "rgba(0,0,0,0.5)");
-            root.style.setProperty("--soustexte-color", "rgba(0,0,0,0.5)");
-            root.style.setProperty("--texte-color", "rgba(0,0,0,1)");
+        root.setAttribute("theme", currentTheme);
+    }, [currentTheme]);
+
+    /*
+    useEffect(() => {
+        const user = getCurrentUser();
+        if (user) {
+            const decodedToken = parseJwt(user.accessToken);
+            if (decodedToken.exp * 1000 < Date.now()) {
+                logout();
+            }
         }
-
-        else if (theme === "matiere-noire") {
-            root.style.setProperty("--ami-bg-color", "rgba(23,21,33,1)");
-            root.style.setProperty("--ami-bordure-color", "rgba(0,0,0,0.1)");
-            root.style.setProperty("--bordure-color", "rgba(140,107,203,1)");
-            root.style.setProperty("--etoiles-color", "rgba(255,255,255,0.25)");
-            root.style.setProperty("--etoiles-degrade1-color", "rgba(255,255,255,0.1)");
-            root.style.setProperty("--etoiles-degrade2-color", "rgba(255,255,255,1)");
-            root.style.setProperty("--infos-bg-color", "rgba(23,21,33,1)");
-            root.style.setProperty("--main-bg-color", "rgba(44,43,74,1)");
-            root.style.setProperty("--menu-bg-color", "rgba(23,21,33,1)");
-            root.style.setProperty("--message-bg-color", "rgba(23,21,33,0.85)");
-            root.style.setProperty("--message-bordure-color", "rgba(140,107,203,0.25)");
-            root.style.setProperty("--publication-bg-color", "rgba(23,21,33,0.85)");
-            root.style.setProperty("--publication-color", "rgba(255,255,255,0.85)");
-            root.style.setProperty("--recherche-bg-color", "rgba(255,255,255,0.05)");
-            root.style.setProperty("--recherche-color", "rgba(255,255,255,0.5)");
-            root.style.setProperty("--soustexte-color", "rgba(255,255,255,0.5)");
-            root.style.setProperty("--texte-color", "rgba(255,255,255,1)");
-        }
-    }, [theme]);
-
-    function seConnecter() {
-        setStatutConnexion(true);
-        setPageCourante("fil-actualite");
-    }
-
-    function seDeconnecter() {
-        setStatutConnexion(false);
-        setPageCourante("accueil");
-    }
-
-    function changerTheme() {
-        switch(theme) {
-            case "etoile-blanche": setTheme("matiere-noire"); break;
-            case "matiere-noire": setTheme("etoile-blanche"); break;
-            default: setTheme("etoile-blanche"); break;
-        }
-    }
+    }, [location]);
+    */
 
     return(
     <div>
@@ -80,8 +55,9 @@ function App(props){
             <Route path="/" element={ <WelcomePage /> }/>
             <Route path="/connexion" element={ <LoginPage /> }/>
             <Route path="/inscription" element={ <SigninPage /> }/>
-            <Route path="/accueil" element={ <HomePage /> }/>
-            <Route path="/profil" element={ <UserPage /> }/>
+            <Route path="/accueil" element={ renderPageIfAllowed(<HomePage setCurrentTheme={ setCurrentTheme } user={ getCurrentUser() } />) } />
+            <Route path="/profil" element={ renderPageIfAllowed(<UserPage setCurrentTheme={ setCurrentTheme } user={ getCurrentUser() } />) }/>
+            <Route path="*" element={ <Navigate to="/" replace /> } />
         </Routes>
     </div>
     );
