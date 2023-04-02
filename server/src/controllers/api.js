@@ -1,5 +1,5 @@
+const bcrypt = require("bcrypt");
 const db = require("../db");
-const hash = require("password-hash");
 const jwt = require("jsonwebtoken");
 
 exports.login = (req, res, next) => {
@@ -8,19 +8,23 @@ exports.login = (req, res, next) => {
             if (!user) {
                 return res.status(401).json({ error: "User not found" });
             }
+            
+            bcrypt.compare(req.body.password, user.password)
+                .then(valid => {
+                    if (!valid) {
+                        return res.status(401).json({ error: "Invalid login or password" });
+                    }
 
-            if (!hash.verify(req.body.password, user.password)) {
-                return res.status(401).json({ error: "Invalid login or password" });
-            }
-
-            res.status(200).json({
-                userId: user._id,
-                accessToken: jwt.sign(
-                    { userId: user._id },
-                    process.env.TOKEN_SECRET,
-                    { expiresIn: "48h" }
-                )
-            });
+                    res.status(200).json({
+                        userId: user._id,
+                        accessToken: jwt.sign(
+                            { userId: user._id },
+                            process.env.TOKEN_SECRET,
+                            { expiresIn: "48h" }
+                        )
+                    });
+                })
+                .catch(err => res.status(500).json({ error: err }));
         })
         .catch(err => res.status(500).json({ error: "Request failed" }))
 }
@@ -36,20 +40,24 @@ exports.signin = (req, res, next) => {
                 return res.status(401).json({ error: "User already exists" });
             }
             
-            const newUser = {
-                login: req.body.login,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                password: hash.generate(req.body.password)
-            };
+            bcrypt.hash(req.body.password, 10)
+                .then(hash => {
+                    const newUser = {
+                        login: req.body.login,
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        password: hash
+                    };
 
-            db.collection("users").insertOne(newUser)
-                .then(valid => {
-                    if (!valid) {
-                        return res.status(401).json({ error: "User creation failed" });
-                    }
-                    
-                    res.status(201).json({ message: "User successfully created" });
+                    db.collection("users").insertOne(newUser)
+                        .then(valid => {
+                            if (!valid) {
+                                return res.status(401).json({ error: "User creation failed" });
+                            }
+                            
+                            res.status(201).json({ message: "User successfully created" });
+                        })
+                        .catch(err => res.status(500).json({ error: err }))
                 })
                 .catch(err => res.status(500).json({ error: err }))
         })
