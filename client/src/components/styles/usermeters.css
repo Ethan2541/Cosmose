@@ -1,8 +1,9 @@
 #usermeters {
     align-items: center;
-    color: var(--texte-color);
+    color: var(--text-color);
     cursor: default;
     display: flex;
+    font-size: 20px;
     gap: 20px;
     justify-content: center;
 }

@@ -7,10 +7,10 @@
 }
 
 .searchbar>input[type="text"] {
-    background-color: var(--recherche-bg-color);
+    background-color: var(--searchbar-bg-color);
     border: 0;
     border-radius: 50px;
-    color: var(--recherche-color);
+    color: var(--searchbar-color);
     font-family: inherit;
     grid-area: 1 / 1 / 2 / 3;
     height: 20px;
@@ -18,11 +18,11 @@
 }
 
 .searchbar>input[type="text"]:focus {
-    outline: 3px solid var(--bordure-color);
+    outline: 3px solid var(--border-color);
 }
 
 .searchbar>i {
-    color: var(--texte-color);
+    color: var(--text-color);
     cursor: pointer;
     grid-area: 1 / 2 / 2 / 3;
     position: relative;
@@ -32,6 +32,6 @@
 }
 
 .searchbar>i:hover {
-    color: var(--bordure-color);
+    color: var(--border-color);
     transition: 0.3s linear;
 }

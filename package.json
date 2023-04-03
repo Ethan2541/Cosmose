@@ -1,0 +1,25 @@
+{
+  "name": "cosmose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm start --prefix ./client",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "server": "npm start --prefix ./server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ethan2541/Cosmose.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ethan2541/Cosmose/issues"
+  },
+  "homepage": "https://github.com/Ethan2541/Cosmose#readme",
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
+}

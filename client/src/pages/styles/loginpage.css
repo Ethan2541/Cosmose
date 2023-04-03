@@ -8,6 +8,12 @@
     width: 100%;
 }
 
+#loginpage-header {
+    left: 0;
+    position: sticky;
+    top: 10px;
+}
+
 #loginpage-body {
     height: 450px;
     padding-top: 50px;

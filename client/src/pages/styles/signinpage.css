@@ -8,6 +8,12 @@
     width: 100%;
 }
 
+#signinpage-header {
+    left: 0;
+    position: sticky;
+    top: 10px;
+}
+
 #signinpage-body {
     height: 475px;
     padding-top: 25px;

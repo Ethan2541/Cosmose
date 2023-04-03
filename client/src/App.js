@@ -10,20 +10,21 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-
 import { useEffect, useState } from "react";
 
 function App(props) {
-    const [currentTheme, setCurrentTheme] = useState("whitedwarf")
-    const [user, setUser] = useState(null);
+    const [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem("theme") ? window.localStorage.getItem("theme") : "whitedwarf")
+    const [user, setUser] = useState(window.localStorage.getItem("user") ? window.localStorage.getItem("user") : null);
     const location = useLocation();
     const navigate = useNavigate();
 
     function getToken() {
-        const token = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
         return token;
     }
 
     function logout() {
-        localStorage.removeItem("user");
+        window.localStorage.clear();
+        setCurrentTheme("whitedwarf");
         setUser(null);
-        navigate("/")
+        navigate("/");
     }
 
     function isAllowed(page) {
@@ -49,6 +50,7 @@ function App(props) {
     useEffect(() => {
         let root = document.documentElement;
         root.setAttribute("theme", currentTheme);
+        window.localStorage.setItem("theme", currentTheme)
     }, [currentTheme]);
 
     useEffect(() => {
@@ -65,7 +67,7 @@ function App(props) {
     <div>
         <Routes>
             <Route path="/" element={ isOffline(<WelcomePage />) }/>
-            <Route path="/connexion" element={ isOffline(<LoginPage />) }/>
+            <Route path="/connexion" element={ isOffline(<LoginPage setUser={ setUser } />) }/>
             <Route path="/inscription" element={ isOffline(<SigninPage />) }/>
             <Route path="/accueil" element={ isAllowed(<HomePage switchTheme={ switchTheme } logout={ logout } />) } />
             <Route path="/profil" element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } />) }/>

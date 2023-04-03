@@ -1,6 +1,6 @@
 .user {
-    background-color: var(--ami-bg-color);
-    border: 1px solid var(--ami-bordure-color);
+    background-color: var(--user-bg-color);
+    border: 1px solid var(--user-border-color);
     border-radius: 10px;
     cursor: pointer;
     display: grid;

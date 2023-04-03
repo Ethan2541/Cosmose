@@ -5,10 +5,10 @@
 }
 
 #createmessage>textarea {
-    background-color: var(--publication-bg-color);
-    border: 1px solid var(--message-bordure-color);
+    background-color: var(--createmessage-bg-color);
+    border: 1px solid var(--message-border-color);
     box-sizing: border-box;
-    color: var(--publication-color);
+    color: var(--createmessage-color);
     height: 20vh;
     font-family: inherit;
     margin-bottom: 10px;
@@ -19,7 +19,7 @@
 }
 
 #createmessage>textarea:focus {
-    border: 3px solid var(--bordure-color);
+    border: 3px solid var(--border-color);
 }
 
 #createmessage>button {

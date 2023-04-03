@@ -17,13 +17,12 @@ function UserPage(props) {
     return (
         <div id="userpage">
             <header>
-                <h1>COSMOSE</h1>
+                <Link to="accueil" id="userpage-title"><h1>COSMOSE</h1></Link>
                 <Searchbar placeholder={"Rechercher des constellations..."} />
-                <nav>
-                    <Link to="/accueil" className="userpage-link"><FaHome title="Retourner au fil d'actualité" /></Link>
+                <div id="userpage-parameters">
                     <i><FaPalette title="Changer de thème" onClick={ props.switchTheme } /></i>
                     <i><FaSignOutAlt title="Se déconnecter" onClick={ props.logout } /></i>
-                </nav>
+                </div>
             </header>
             <Banner couverture={"./assets/cover/couverture.jpg"} avatar={"./assets/avatar/riku.png"} />
             <div id="userpage-body">

@@ -38,16 +38,25 @@ function LoginPage(props) {
             login: userData.login,
             password: userData.password
         })
-        .then((res) => {
-            localStorage.setItem("user", res.data.accessToken);
-            navigate("/accueil");
-        })
-        .catch((err) => console.log(err));
+            .then((res) => {
+                window.localStorage.setItem("token", res.data.accessToken);
+
+                axios.get(`/users/${userData.login}`, { login: userData.login })
+                    .then((res) => {
+                        const newUser = res.data.user;
+                        props.setUser(newUser);
+                        window.localStorage.setItem("user", JSON.stringify(newUser));
+                        navigate("/accueil");
+                    })
+            })
+            .catch((err) => console.log(err));
     }
 
     return(
         <div id="loginpage">
-            <OfflineHeader currentPage={ "loginpage" }/>
+            <div id="loginpage-header">
+                <OfflineHeader currentPage={ "loginpage" }/>
+            </div>
             <div id="loginpage-body" className="common-loginpage-signinpage">
                 <h2>S'identifier</h2>
                 <form id="loginpage-form" onSubmit={ handleLogin }>

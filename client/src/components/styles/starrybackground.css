@@ -26,9 +26,9 @@
 
 #starrybackground>section>span {
     animation: stars-anim 3s linear infinite;
-    background: var(--etoiles-color);
+    background: var(--stars-color);
     border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--etoiles-degrade1-color), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--etoiles-degrade2-color)  ;
+    box-shadow: 0 0 0 4px var(--stars-gradient1-color), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px var(--stars-gradient2-color)  ;
     height: 4px;
     left: 50%;
     position: absolute;
@@ -37,7 +37,7 @@
 }
 
 #starrybackground>section>span::before{
-    background: linear-gradient(90deg, var(--etoiles-color), transparent);
+    background: linear-gradient(90deg, var(--stars-color), transparent);
     content: '';
     height: 1px;
     position: absolute;

@@ -1,6 +1,6 @@
 .message {
     background-color: var(--message-bg-color);
-    border: 1px solid var(--message-bordure-color);
+    border: 1px solid var(--message-border-color);
     display: grid;
     flex-direction: column;
     font-family: inherit;
@@ -27,21 +27,21 @@
 }
 
 .message-metadata>h3 {
-    color: var(--texte-color);
+    color: var(--text-color);
     font-size: 20px;
     margin: auto 0 0 0;
 }
 
 .message-metadata>h4 {
-    color: var(--soustexte-color);
+    color: var(--meta-color);
     font-size: 12px;
     font-weight: normal;
     margin: 0;
 }
 
 .message>p {
-    border-bottom: 1px solid var(--message-bordure-color);
-    color: var(--texte-color);
+    border-bottom: 1px solid var(--message-border-color);
+    color: var(--text-color);
     font-size: 16px;
     grid-area: 2 / 2 / 3 / 3;
     margin: 10px 10% 0 25px;
@@ -58,14 +58,14 @@
 .message-features>button {
     background-color: rgba(0,0,0,0);
     border: 0;
-    color: var(--texte-color);
+    color: var(--text-color);
     cursor: pointer;
     font-size: 20px;
     transition: 0.3s linear;
 }
 
 .message-features-button:hover {
-    color: var(--bordure-color);
+    color: var(--border-color);
 }
 
 .message-follow-button:hover {

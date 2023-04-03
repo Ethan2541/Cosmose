@@ -13,17 +13,18 @@
     z-index: 1;
 }
 
-#userpage>header>h1 {
-    color: var(--texte-color);
-    cursor: default;
-    font-size: 20px;
+#userpage-title {
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 10px;
     font-weight: bold;
     margin: 0;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
     user-select: none;
+    text-decoration: none;
 }
 
-#userpage>header>nav {
+#userpage-parameters {
     display: flex;
     font-size: 20px;
     gap: 10px;
@@ -35,23 +36,23 @@
 }
 
 .userpage-link {
-    color: var(--texte-color);
+    color: var(--text-color);
     cursor: pointer;
     transition: 0.3s linear; 
 }
 
 .userpage-link:hover {
-    color: var(--bordure-color);
+    color: var(--border-color);
 }
 
-#userpage>header>nav>i {
-    color: var(--texte-color);
+#userpage-parameters>i {
+    color: var(--text-color);
     cursor: pointer;
     transition: 0.3s linear;
 }
 
-#userpage>header>nav>i:hover {
-    color: var(--bordure-color);
+#userpage-parameters>i:hover {
+    color: var(--border-color);
 }
 
 #userpage-left {
@@ -69,7 +70,7 @@
 }
 
 #userpage-info>h2 {
-    color: var(--texte-color);
+    color: var(--text-color);
     font-size: 28px;
     margin: 0;
 }
