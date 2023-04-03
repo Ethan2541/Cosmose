@@ -1,15 +1,17 @@
 const jwt = require('jsonwebtoken');
  
 module.exports = (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'COSMOSECRET');
-        const userId = decodedToken.userId;
-        req.auth = { userId: userId };
-        next();
+    const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ message: 'Accès non autorisé' });
     }
-    
-    catch(error) {
-        res.status(401).json({ error });
-    }
+
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+        if(err) {
+            return res.status(403).json({message: 'Token invalide'});
+        }
+        req.user = decoded;
+    });
+    next();
 };

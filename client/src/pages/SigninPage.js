@@ -18,7 +18,7 @@ function SigninPage(props) {
 
     const navigate = useNavigate();
 
-    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = 'http://localhost:3001';
 
     useEffect(() => {
         if (password === password2) {

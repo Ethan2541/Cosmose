@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
 const users = require("./routes/users.js");
+const messages = require("./messages.js");
 
 const app = express();
 dotenv.config();
@@ -20,4 +21,6 @@ app.use("/*", (req, res, next) => {
     res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
 })
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT,  () => {
+    console.log(`server listening on: ${process.env.PORT}`);
+});

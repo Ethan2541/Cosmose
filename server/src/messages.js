@@ -1,7 +1,7 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
-const { validateSession } = require('./../session');
-const db = require('../db');
+const db = require('./db');
+const auth = require('./auth');
 
 const isUserAuthorizedMessage = async (req, res, next) => {
     const messageId = req.body.messageId;
@@ -66,12 +66,12 @@ const isUserAuthorizedLike = async (req, res, next) => {
     });
 
     if (message) {
-        const comment = message.commentaires.find((comment) => comment._id === commentId);
-        if (!comment){
+        const like = message.commentaires.find((like) => like._id === likeId);
+        if (!like){
             res.status(404).json({ message: 'Commentaire non trouvé' });
             return;
         }
-        if (comment.userId !== userId) {
+        if (like.userId !== userId) {
             res.status(403).json({ message: 'Accès non autorisé' });
             return;
         }
@@ -99,21 +99,21 @@ const deleteMessage = async (messageId) => {
     });
 }
 
-const addLike = async (messageId, userId) => {
+const addLike = async (userId, messageId) => {
     await db.collection('messages').updateOne(
         { _id: messageId },
         { $push: { likes: userId }}
     );
 }
 
-const deleteLike = async (messageId, userId) => {
+const deleteLike = async (userId, messageId) => {
     await db.collection('messages').updateOne(
         { _id: messageId },
         { $pull: { likes: userId }}
     );
 }
 
-const addComment = async (messageId, userId, commentaire) => {
+const addComment = async (userId, messageId, commentaire) => {
     await db.collection('messages').updateOne(
         { _id: messageId },
         { $push: { commentaires: { _id: uuidv4(), userId, commentaire} } }
@@ -129,49 +129,49 @@ const deleteComment = async (messageId, commentId) => {
 
 const messages = express.Router();
 messages.use(express.json())
-.use(validateSession)
-.put('/like', isUserAuthorizedLike, async (req, res) => {
-    if(req.body.messageId === undefined || req.body.userId === undefined){
+.use(auth)
+.put('/like', async (req, res) => {
+    if(req.body.messageId === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await addLike(req.body.messageId, req.body.userId);
+        await addLike(req.user._id, req.body.messageId,);
         res.status(201).json({message: "like créé", details: ""});
     }
 })
-.put('/comment', isUserAuthorizedComment, async (req, res) => {
-    if(req.body.messageId === undefined || req.body.userId === undefined || req.body.comment === undefined){
+.put('/comment', async (req, res) => {
+    if(req.body.messageId === undefined || req.body.comment === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await addComment(req.body.messageId, req.body.userId, req.body.comment);
+        await addComment(req.user._id, req.body.messageId, req.body.comment);
         res.status(201).json({message: "commentaire créé", details: ""});
     }
 })
-.put('/', isUserAuthorizedMessage, async (req, res) => {
-    if(req.body.message === undefined || req.body.userid === undefined){
+.put('/', async (req, res) => {
+    if(req.body.message === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await createMessage(req.body.userid, req.body.message)
+        await createMessage(req.user._id, req.body.message)
         res.status(201).json({message: "message créé", details: ""});
     }
 })
 .delete('/like', isUserAuthorizedLike, async (req, res) => {
-    if(req.body.messageId === undefined || req.body.userId === undefined){
+    if(req.body.messageId === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await deleteLike(req.body.messageId, req.body.userId);
+        await deleteLike(req.user._id, req.body.messageId);
         res.status(201).json({message: "like supprimé", details: ""});
     }
 })
 .delete('/comment', isUserAuthorizedComment, async (req, res) => {
-    if(req.body.messageId === undefined || req.body.userId === undefined || req.body.commentId === undefined){
+    if(req.body.messageId === undefined || req.body.commentId === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await deleteComment(req.body.messageId, req.body.userId, req.body.comment);
+        await deleteComment(req.body.messageId, req.body.comment);
         res.status(201).json({message: "commentaire supprimé", details: ""});
     }
 })

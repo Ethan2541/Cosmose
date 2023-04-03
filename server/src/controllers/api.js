@@ -6,7 +6,7 @@ exports.login = (req, res, next) => {
     db.collection("users").findOne({ "login": req.body.login })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ error: "User not found" });
+                return res.status(401).json({ error: "Invalid login or password" });
             }
             
             bcrypt.compare(req.body.password, user.password)
@@ -15,14 +15,16 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: "Invalid login or password" });
                     }
 
-                    res.status(200).json({
-                        userId: user._id,
-                        accessToken: jwt.sign(
-                            { userId: user._id },
-                            process.env.TOKEN_SECRET,
-                            { expiresIn: req.body.rememberMe ? "30d" : "2h" }
-                        )
-                    });
+                    const payload = {
+                        id: user._id, // ID de l'utilisateur
+                        login: user.login, // Nom d'utilisateur
+                    };
+
+                    const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: req.body.rememberMe ? "30d" : "2h" });
+
+                    res.status(200).json({  
+                                            accessToken: token
+                                        });
                 })
                 .catch(err => res.status(500).json({ error: err }));
         })

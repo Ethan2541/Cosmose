@@ -14,7 +14,7 @@ function LoginPage(props) {
     const [rememberMe, setRememberMe] = useState(true);
     const [passwordMask, setPasswordMask] = useState(true);
     const navigate = useNavigate();
-    axios.defaults.baseURL = 'http://localhost:8080';
+    axios.defaults.baseURL = 'http://localhost:3001';
 
     function handleLoginChange(evt) {
         let updatedUserData = userData;
@@ -48,14 +48,6 @@ function LoginPage(props) {
         })
             .then((res) => {
                 window.localStorage.setItem("token", res.data.accessToken);
-
-                axios.get(`/users/${userData.login}`, { login: userData.login })
-                    .then((res) => {
-                        const newUser = res.data.user;
-                        props.setUser(newUser);
-                        window.localStorage.setItem("user", JSON.stringify(newUser));
-                        navigate("/accueil");
-                    })
             })
             .catch((err) => console.log(err));
     }

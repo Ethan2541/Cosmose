@@ -7,9 +7,10 @@ exports.getCurrentUser = (req, res, next) => {
                 return res.status(401).json({ error: "User not found" });
             }
             const userData = {
+                _id: user._id,
                 login: user.login,
                 firstName: user.firstName,
-                lastName: user.lastName,
+                lastName: user.lastName
             }
             res.status(200).json({ user: userData });
         })
