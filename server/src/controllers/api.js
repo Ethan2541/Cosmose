@@ -22,9 +22,9 @@ exports.login = (req, res, next) => {
 
                     const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: req.body.rememberMe ? "30d" : "2h" });
 
-                    res.status(200).json({  
-                                            accessToken: token
-                                        });
+                    res.status(200).json({ 
+                        accessToken: token
+                    });
                 })
                 .catch(err => res.status(500).json({ error: err }));
         })
@@ -48,7 +48,8 @@ exports.signin = (req, res, next) => {
                         login: req.body.login,
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
-                        password: hash
+                        password: hash,
+                        theme: "whitedwarf"
                     };
 
                     db.collection("users").insertOne(newUser)

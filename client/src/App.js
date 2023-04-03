@@ -1,3 +1,4 @@
+import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
 import HomePage from "./pages/HomePage.js";
@@ -52,7 +53,14 @@ function App(props) {
     useEffect(() => {
         let root = document.documentElement;
         root.setAttribute("theme", currentTheme);
-        window.localStorage.setItem("theme", currentTheme)
+        window.localStorage.setItem("theme", currentTheme);
+        const token = window.localStorage.getItem("token");
+        axios.defaults.baseURL = 'http://localhost:3001';
+        axios.defaults.headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        axios.post("/api/theme", {theme: currentTheme})
+            .catch((err) => console.log(err));
     }, [currentTheme]);
 
     useEffect(() => {
@@ -69,7 +77,7 @@ function App(props) {
     <div>
         <Routes>
             <Route path="/" element={ isOffline(<WelcomePage />) }/>
-            <Route path="/connexion" element={ isOffline(<LoginPage setUser={ setUser } />) }/>
+            <Route path="/connexion" element={ isOffline(<LoginPage setCurrentTheme={ setCurrentTheme } setUser={ setUser } />) }/>
             <Route path="/inscription" element={ isOffline(<SigninPage />) }/>
             <Route path="/accueil" element={ isAllowed(<HomePage switchTheme={ switchTheme } logout={ logout } />) } />
             <Route path="/profil" element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } />) }/>
