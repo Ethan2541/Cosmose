@@ -18,3 +18,11 @@ exports.getCurrentUser = (req, res, next) => {
         })
         .catch(err => res.status(500).json({ error: err }));
 }
+
+exports.changeDefaultTheme = (req, res, next) => {
+    db.collection("users").updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
+        .then(res => {
+            return res.status(200).json({ message: "Theme updated" });
+        })
+        .catch(err => res.status(500).json({ error: err }));
+}

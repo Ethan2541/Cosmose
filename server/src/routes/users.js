@@ -1,7 +1,9 @@
+const auth = require("./../auth.js");
 const express = require("express");
 const router = express.Router();
 const usersCtrl = require("../controllers/users.js");
 
-router.get("/", usersCtrl.getCurrentUser);
+router.get("/", usersCtrl.getCurrentUser)
+.post("/theme", auth, usersCtrl.changeDefaultTheme);
 
 module.exports = router;

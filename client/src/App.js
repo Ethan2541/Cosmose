@@ -54,13 +54,17 @@ function App(props) {
         let root = document.documentElement;
         root.setAttribute("theme", currentTheme);
         window.localStorage.setItem("theme", currentTheme);
+
         const token = window.localStorage.getItem("token");
         axios.defaults.baseURL = 'http://localhost:3001';
         axios.defaults.headers = {
             Authorization: `Bearer ${token}`,
         };
-        axios.post("/api/theme", {theme: currentTheme})
-            .catch((err) => console.log(err));
+
+        if (token) {
+            axios.post("/users/theme", {theme: currentTheme})
+                .catch((err) => console.log(err));
+        }
     }, [currentTheme]);
 
     useEffect(() => {
