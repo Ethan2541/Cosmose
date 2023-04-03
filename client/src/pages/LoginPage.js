@@ -10,9 +10,9 @@ import "./styles/loginpage.css";
 import "./styles/common-loginpage-signinpage.css";
 
 function LoginPage(props) {
-    const [userData, setUserData] = useState({ login: "", password: "" });
+    const [userData, setUserData] = useState({ login: "", password: "", rememberMe: false });
+    const [rememberMe, setRememberMe] = useState(true);
     const [passwordMask, setPasswordMask] = useState(true);
-
     const navigate = useNavigate();
     axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -32,11 +32,19 @@ function LoginPage(props) {
         setPasswordMask(!passwordMask);
     }
 
+    function handleRememberMeChange(evt) {
+        let updatedUserData = userData;
+        setRememberMe(!rememberMe);
+        updatedUserData.rememberMe = rememberMe;
+        setUserData(updatedUserData);
+    }
+
 	function handleLogin(evt) {
 		evt.preventDefault();
 		axios.post("/api/login", {
             login: userData.login,
-            password: userData.password
+            password: userData.password,
+            rememberMe: userData.rememberMe
         })
             .then((res) => {
                 window.localStorage.setItem("token", res.data.accessToken);
@@ -63,6 +71,10 @@ function LoginPage(props) {
                     <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLoginChange(evt) }></input>
                     <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePasswordChange(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
                     <button type="submit">Se connecter</button>
+                    <div id="loginpage-rememberme">
+                        <input type="checkbox" id="rememberMe" onChange={ (evt) => handleRememberMeChange(evt) }></input>
+                        <label htmlFor="checkbox">Se souvenir de moi</label>
+                    </div>
                 </form>
             </div>
         </div>
