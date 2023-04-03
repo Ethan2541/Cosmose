@@ -1,7 +1,7 @@
-const express = require('express');
-const { v4: uuidv4 } = require('uuid');
-const db = require('./db');
-const auth = require('./auth');
+const auth = require("../auth");
+const db = require("../db");
+const express = require("express");
+const { v4: uuidv4 } = require("uuid");
 
 const isUserAuthorizedMessage = async (req, res, next) => {
     const messageId = req.body.messageId;
@@ -127,8 +127,8 @@ const deleteComment = async (messageId, commentId) => {
     );
 }
 
-const messages = express.Router();
-messages.use(express.json())
+const router = express.Router();
+router.use(express.json())
 .put('/like', async (req, res) => {
     if(req.body.messageId === undefined){
         res.status(400).json({message: "paramètres manquants"});
@@ -184,4 +184,4 @@ messages.use(express.json())
     }
 })
 
-module.exports = messages;
+module.exports = router;
