@@ -88,7 +88,7 @@
 
 .userpage-category {
     align-items: center;
-    background-color: rgba(140,107,203,1);
+    background-color: var(--border-color);
     border: 0;
     border-radius: 5px;
     color: rgba(255,255,255,1);

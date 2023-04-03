@@ -42,7 +42,9 @@ function App(props) {
     function switchTheme() {
         switch(currentTheme) {
             case "whitedwarf": setCurrentTheme("darkmatter"); break;
-            case "darkmatter": setCurrentTheme("whitedwarf"); break;
+            case "darkmatter": setCurrentTheme("purestar"); break;
+            case "purestar": setCurrentTheme("blackhole"); break;
+            case "blackhole": setCurrentTheme("whitedwarf"); break;
             default: setCurrentTheme("darkmatter");
         }
     }

@@ -23,7 +23,7 @@
 }
 
 #createmessage>button {
-    background-color: rgba(140,107,203,1);
+    background-color: var(--border-color);
     border: 0;
     color: rgba(255,255,255,1);
     cursor: pointer;

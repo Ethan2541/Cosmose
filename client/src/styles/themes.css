@@ -57,3 +57,43 @@
     --user-border-color: rgba(0,0,0,0.1);
     --userstats-bg-color: rgba(23,21,33,1);
 }
+
+:root[theme="purestar"] {
+    --border-color: rgba(108,141,162,1);
+    --createmessage-bg-color: rgba(255,255,255,0.85);
+    --createmessage-color: rgba(0,0,0,0.85);
+    --main-bg-color: rgba(255,255,255,1);
+    --menu-bg-color: rgba(54,70,81,1);
+    --message-bg-color: rgba(255,255,255,0.85);
+    --message-border-color: rgba(0,0,0,0.25);
+    --meta-color: rgba(0,0,0,0.25);
+    --searchbar-bg-color: rgba(0,0,0,0.075);
+    --searchbar-color: rgba(0,0,0,0.5);
+    --stars-color: rgba(140,107,203,0.15);
+    --stars-gradient1-color: rgba(140,107,203,0.1);
+    --stars-gradient2-color: rgba(140,107,203,1);
+    --text-color: rgba(0,0,0,1);
+    --user-bg-color: rgba(54,70,81,1);;
+    --user-border-color: rgba(0,0,0,0.1);
+    --userstats-bg-color: rgba(54,70,81,1);;
+}
+
+:root[theme="blackhole"] {
+    --border-color: rgba(108,141,162,1);
+    --createmessage-bg-color: rgba(25,37,49,1);
+    --createmessage-color: rgba(255,255,255,0.85);
+    --main-bg-color: rgba(16,24,32,1);
+    --menu-bg-color: rgba(25,37,49,1);
+    --message-bg-color: rgba(25,37,49,1);
+    --message-border-color: rgba(108,141,162,0.25);
+    --meta-color: rgba(255,255,255,0.5);
+    --searchbar-bg-color: rgba(255,255,255,0.05);
+    --searchbar-color: rgba(255,255,255,0.5);
+    --stars-color: rgba(255,255,255,0.15);
+    --stars-gradient1-color: rgba(255,255,255,0.1);
+    --stars-gradient2-color: rgba(255,255,255,1);
+    --text-color: rgba(255,255,255,1);
+    --user-bg-color: rgba(25,37,49,1);
+    --user-border-color: rgba(0,0,0,0.1);
+    --userstats-bg-color: rgba(25,37,49,1);
+}
