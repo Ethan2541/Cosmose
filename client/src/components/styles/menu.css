@@ -99,7 +99,7 @@
 }
 
 #menu-post {
-    color: var(--bordure-color);
+    color: var(--border-color);
     cursor: pointer;
     margin-bottom: 40px;
     text-decoration: none;
