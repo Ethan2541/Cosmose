@@ -21,8 +21,11 @@ exports.getCurrentUser = (req, res, next) => {
 
 exports.changeDefaultTheme = (req, res, next) => {
     db.collection("users").updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
-        .then(res => {
-            return res.status(200).json({ message: "Theme updated" });
+        .then(valid => {
+            if (!valid){
+                return res.status(401).json({ error: "User not found" });
+            }
+            res.status(200).json({ message: "Theme updated" });
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => res.status(500).json({ error: err , message: "coucou c'est moi choupi"}));
 }
