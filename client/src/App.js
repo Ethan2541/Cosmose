@@ -17,16 +17,16 @@ function App(props) {
     const location = useLocation();
     const navigate = useNavigate();
 
-    function sendElapsedTimeToServer() {
+    function sendElapsedTimeToServer(currentElapsedTime) {
         if (user) {
-            axios.post('/api/timespent', { time: elapsedTime })
+            axios.post('/api/timespent', { time: currentElapsedTime })
                 .then((response) => {
                     console.log('Le temps passé a été mis à jour sur le serveur');
                 })
                 .catch((err) => console.log(err));
-            setElapsedTime(0);
         }
     }
+      
 
     function getToken() {
         const token = localStorage.getItem("token");
@@ -90,23 +90,20 @@ function App(props) {
     }, [location]);
 
     useEffect(() => {
-        const updateInterval = 1000; // Mettre à jour le temps toutes les secondes (1000 ms)
-        const sendInterval = 5 * 60 * 1000; // Envoyer le temps passé au serveur toutes les 5 minutes (300000 ms)
-      
-        const updateTime = () => {
-          setElapsedTime((prevElapsedTime) => prevElapsedTime + updateInterval);
+        const handleBeforeUnload = (e) => {
+          sendElapsedTimeToServer(elapsedTime);
+          // La valeur de returnValue est nécessaire pour certains navigateurs
+            e.preventDefault();
+            e.returnValue = '';
         };
       
-        const intervalId = setInterval(updateTime, updateInterval);
-      
-        if (elapsedTime !== 0 && elapsedTime % sendInterval === 0) {
-          sendElapsedTimeToServer();
-        }
+        window.addEventListener('beforeunload', handleBeforeUnload);
       
         return () => {
-          clearInterval(intervalId);
+            window.removeEventListener('beforeunload', handleBeforeUnload);
         };
       }, [elapsedTime, user]);
+      
 
     return(
     <div>
