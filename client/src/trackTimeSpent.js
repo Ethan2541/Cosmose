@@ -5,7 +5,7 @@ function sendTimeSpent() {
   const timeSpent = endTime - startTime;
 
   // Envoi du temps passé au serveur
-  axios.post('/api/timespent', { timeSpent })
+  axios.post('/api/timespent', { time: timeSpent })
     .then(response => {
       console.log('Temps passé envoyé avec succès');
     })
@@ -17,8 +17,7 @@ function sendTimeSpent() {
   startTime = endTime;
 }
 
-// Envoyer le temps passé toutes les 5 minutes (300 000 millisecondes)
-const intervalId = setInterval(sendTimeSpent, 300000);
+
 
 // Envoyer le temps passé lors de la fermeture de l'onglet ou du navigateur
 window.addEventListener('beforeunload', () => {
