@@ -17,7 +17,7 @@ function HomePage(props) {
             </div>
             <div id="homepage-right">
                 <div id="homepage-searchbar">
-                    <Searchbar  placeholder={ "Naviguer dans le Cosmos..." } />
+                    <Searchbar  placeholder={ "Naviguer dans le Cosmos..." } type={ "messages" } />
                 </div>
                 <div id="homepage-posts">
                     <CreateMessage />

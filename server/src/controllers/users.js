@@ -1,7 +1,6 @@
 const db = require("../db");
 
 exports.getCurrentUser = (req, res, next) => {
-    console.log(req.query);
     db.collection("users").findOne({ login: req.query.login })
         .then(user => {
             if (!user) {

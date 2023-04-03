@@ -1,4 +1,3 @@
-import { FaHome } from "react-icons/fa";
 import { FaPalette } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -51,7 +50,7 @@ function UserPage(props) {
                 </div>
                 <div id="userpage-right">
                     <div id="userpage-searchbar">
-                        <Searchbar placeholder={"Naviguer dans votre constellation..."} />
+                        <Searchbar placeholder={"Naviguer dans votre constellation..."} type={ "messages" } />
                     </div>
                     <CreateMessage />
                     <div id="userpage-messageslist">

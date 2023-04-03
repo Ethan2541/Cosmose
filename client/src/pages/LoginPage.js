@@ -49,13 +49,11 @@ function LoginPage(props) {
         })
             .then((res) => {
                 const token = res.data.accessToken;
-                console.log(userData);
                 axios.get(`/users/`, { params: { login: userData.login } })
                     .then((res) => {
                         window.localStorage.setItem("token", token);
                         window.localStorage.setItem("user", res.data.user);
                         props.setCurrentTheme(res.data.user.theme);
-                        console.log(res.data.user);
                         navigate("/accueil");
                     })
                     .catch((err) => console.log(err));

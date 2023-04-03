@@ -3,8 +3,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
+const search = require("./routes/search.js");
 const users = require("./routes/users.js");
-const messages = require("./messages.js");
 
 const app = express();
 dotenv.config();
@@ -15,6 +15,7 @@ app.use(cors())
 .use(express.urlencoded({ extended: true }));
 
 app.use("/api", api);
+app.use("/search", search);
 app.use("/users", users);
 
 app.use("/*", (req, res, next) => {
