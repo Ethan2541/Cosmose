@@ -134,7 +134,7 @@ messages.use(express.json())
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await addLike(req.user._id, req.body.messageId,);
+        await addLike(req.user.id, req.body.messageId,);
         res.status(201).json({message: "like créé", details: ""});
     }
 })
@@ -143,7 +143,7 @@ messages.use(express.json())
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await addComment(req.user._id, req.body.messageId, req.body.comment);
+        await addComment(req.user.id, req.body.messageId, req.body.comment);
         res.status(201).json({message: "commentaire créé", details: ""});
     }
 })
@@ -152,7 +152,7 @@ messages.use(express.json())
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await createMessage(req.user._id, req.body.message)
+        await createMessage(req.user.id, req.body.message)
         res.status(201).json({message: "message créé", details: ""});
     }
 })
@@ -161,7 +161,7 @@ messages.use(express.json())
         res.status(400).json({message: "paramètres manquants"});
     }
     else{
-        await deleteLike(req.user._id, req.body.messageId);
+        await deleteLike(req.user.id, req.body.messageId);
         res.status(201).json({message: "like supprimé", details: ""});
     }
 })

@@ -13,8 +13,20 @@ import { useEffect, useState } from "react";
 function App(props) {
     const [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem("theme") ? window.localStorage.getItem("theme") : "whitedwarf")
     const [user, setUser] = useState(window.localStorage.getItem("user") ? window.localStorage.getItem("user") : null);
+    const [elapsedTime, setElapsedTime] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
+
+    function sendElapsedTimeToServer() {
+        if (user) {
+            axios.post('/api/timespent', { time: elapsedTime })
+                .then((response) => {
+                    console.log('Le temps passé a été mis à jour sur le serveur');
+                })
+                .catch((err) => console.log(err));
+            setElapsedTime(0);
+        }
+    }
 
     function getToken() {
         const token = localStorage.getItem("token");
@@ -76,6 +88,25 @@ function App(props) {
             }
         }
     }, [location]);
+
+    useEffect(() => {
+        const updateInterval = 1000; // Mettre à jour le temps toutes les secondes (1000 ms)
+        const sendInterval = 5 * 60 * 1000; // Envoyer le temps passé au serveur toutes les 5 minutes (300000 ms)
+      
+        const updateTime = () => {
+          setElapsedTime((prevElapsedTime) => prevElapsedTime + updateInterval);
+        };
+      
+        const intervalId = setInterval(updateTime, updateInterval);
+      
+        if (elapsedTime !== 0 && elapsedTime % sendInterval === 0) {
+          sendElapsedTimeToServer();
+        }
+      
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, [elapsedTime, user]);
 
     return(
     <div>

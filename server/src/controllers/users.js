@@ -27,5 +27,5 @@ exports.changeDefaultTheme = (req, res, next) => {
             }
             res.status(200).json({ message: "Theme updated" });
         })
-        .catch(err => res.status(500).json({ error: err , message: "coucou c'est moi choupi"}));
+        .catch(err => res.status(500).json({ error: err}));
 }

@@ -15,13 +15,10 @@ function CreateMessage(props){
 
     function sendMessage(evt){
         axios.put('/api/messages/', {
-            message
+            message: message
         })
             .then((res) => {
                 setMessage('');
-                console.log(document.getElementById("createmessage").value);
-                document.getElementById("createmessage").value = "";
-                console.log(document.getElementById("createmessage").value);
             })
             .catch((err) => console.log(err));
     }

@@ -49,7 +49,8 @@ exports.signin = (req, res, next) => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         password: hash,
-                        theme: "whitedwarf"
+                        theme: "whitedwarf",
+                        timespent: 0
                     };
 
                     db.collection("users").insertOne(newUser)
