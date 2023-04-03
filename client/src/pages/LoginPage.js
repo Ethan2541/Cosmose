@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import OfflineHeader from "../components/OfflineHeader.js";
 
 import { FaEye } from "react-icons/fa";
@@ -14,6 +14,7 @@ function LoginPage(props) {
     const [rememberMe, setRememberMe] = useState(true);
     const [passwordMask, setPasswordMask] = useState(true);
     const navigate = useNavigate();
+    
     axios.defaults.baseURL = 'http://localhost:3001';
 
     function handleLoginChange(evt) {
