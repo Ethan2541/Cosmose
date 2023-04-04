@@ -6,7 +6,7 @@ const timespent = require('./../controllers/timespent.js');
 const router = express.Router();
 
 router.post('/login', apiCtrl.login)
-.put('/signin', apiCtrl.signin)
+.put('/signup', apiCtrl.signup)
 .use('/messages', auth, messages)
 .post('/timespent', auth, timespent.timeSpent);  
 

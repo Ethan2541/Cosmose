@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles/offlineheader.css';
 
 function OfflineHeader(props) {
-    function displayLoginOrSignin() {
+    function displayLoginOrSignUp() {
         if (props.currentPage === 'loginpage') {
             return (
                 <Link to='/inscription' className='offlineheader-link offlineheader-button'>
@@ -11,7 +11,7 @@ function OfflineHeader(props) {
                 </Link>
             )
         }
-        else if (props.currentPage === 'signinpage') {
+        else if (props.currentPage === 'signuppage') {
             return (
                 <Link to='/connexion' className='offlineheader-link offlineheader-button'>
                     SE CONNECTER
@@ -26,7 +26,7 @@ function OfflineHeader(props) {
                 <Link to='/' className='offlineheader-link no-border'>
                     ACCUEIL
                 </Link>
-                { displayLoginOrSignin() }
+                { displayLoginOrSignUp() }
             </nav>
         </div>
     )

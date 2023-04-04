@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const usersCtrl = require('../controllers/users.js');
 
-router.get('/', usersCtrl.getCurrentUser)
+router.get('/:login', usersCtrl.getUser)
 .put('/theme', auth, usersCtrl.changeDefaultTheme);
 
 module.exports = router;

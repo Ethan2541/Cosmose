@@ -1,10 +1,10 @@
 const db = require('../db');
 
-exports.getCurrentUser = (req, res, next) => {
-    db.collection('users').findOne({ login: req.query.login })
+exports.getUser = (req, res, next) => {
+    db.collection('users').findOne({ login: req.params.login })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ error: 'User not found' });
+                return res.status(404).json({ error: 'User not found' });
             }
             const userData = {
                 _id: user._id,
@@ -24,7 +24,7 @@ exports.changeDefaultTheme = (req, res, next) => {
             if (!valid){
                 return res.status(401).json({ error: 'User not found' });
             }
-            res.status(200).json({ message: 'Theme updated' });
+            res.status(204);
         })
         .catch(err => res.status(500).json({ error: err}));
 }

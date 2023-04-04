@@ -1,4 +1,4 @@
-#signinpage {
+#signuppage {
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../../public/assets/img/background.png") center no-repeat;
     background-size: cover;
     height: 100%;
@@ -8,22 +8,22 @@
     width: 100%;
 }
 
-#signinpage-header {
+#signuppage-header {
     left: 0;
     position: sticky;
     top: 10px;
 }
 
-#signinpage-body {
+#signuppage-body {
     height: 475px;
     padding-top: 25px;
 }
 
-#signinpage-body>h2 {
+#signuppage-body>h2 {
     padding: 20px 0 20px 0;
 }
 
-#signinpage-form {
+#signuppage-form {
 	display: grid;
     grid-gap: 15px;
 	grid-template-columns: 1fr 1fr;
@@ -33,7 +33,7 @@
     grid-column: 1 / span 2;
 }
 
-#signinpage-form>div>input {
+#signuppage-form>div>input {
     border: 0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -43,29 +43,29 @@
     width: 100%;
 }
 
-#signinpage-form>div>i {
+#signuppage-form>div>i {
     cursor: pointer;
     transition: 0.3s linear;
 }
 
-#signinpage-form>div>input[type="password"] {
+#signuppage-form>div>input[type="password"] {
     padding-right: 30px;
 }
 
-#signinpage-form>div>input:focus {
+#signuppage-form>div>input:focus {
     outline: 3px solid rgba(140,107,203,1);
 }
 
-#signinpage-form>div>input::placeholder {
+#signuppage-form>div>input::placeholder {
     font-style: italic;
 }
 
-#signinpage-form>div>i {
+#signuppage-form>div>i {
     font-size: 14px;
     margin-left: -25px;
 }
 
-#signinpage-form>div>i:hover {
+#signuppage-form>div>i:hover {
     color: rgba(140,107,203,1);
 }
 

@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 import HomePage from './pages/HomePage.js';
 import LoginPage from './pages/LoginPage.js';
-import SigninPage from './pages/SigninPage.js';
+import SignUpPage from './pages/SignUpPage.js';
 import UserPage from './pages/UserPage.js';
 import WelcomePage from './pages/WelcomePage.js';
 
@@ -12,13 +12,13 @@ import { useEffect, useState } from 'react';
 
 function App(props) {
     const [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'whitedwarf')
-    const [user, setUser] = useState(window.localStorage.getItem('user') ? window.localStorage.getItem('user') : null);
+    const [currentUser, setCurrentUser] = useState(window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : null);
     const [elapsedTime, setElapsedTime] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
 
     function sendElapsedTimeToServer(currentElapsedTime) {
-        if (user) {
+        if (currentUser) {
             axios.post('/api/timespent', { time: currentElapsedTime })
                 .then((response) => {
                     console.log('Le temps passé a été mis à jour sur le serveur');
@@ -35,7 +35,7 @@ function App(props) {
     function logout() {
         window.localStorage.clear();
         setCurrentTheme('whitedwarf');
-        setUser(null);
+        setCurrentUser(null);
         navigate('/');
     }
 
@@ -100,17 +100,17 @@ function App(props) {
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
-      }, [elapsedTime, user]);
-      
+    }, [elapsedTime, currentUser]);
 
     return(
     <div>
         <Routes>
             <Route path='/' element={ isOffline(<WelcomePage />) }/>
-            <Route path='/connexion' element={ isOffline(<LoginPage setCurrentTheme={ setCurrentTheme } setUser={ setUser } />) }/>
-            <Route path='/inscription' element={ isOffline(<SigninPage />) }/>
+            <Route path='/connexion' element={ isOffline(<LoginPage setCurrentTheme={ setCurrentTheme } setCurrentUser={ setCurrentUser } />) }/>
+            <Route path='/inscription' element={ isOffline(<SignUpPage />) }/>
             <Route path='/accueil' element={ isAllowed(<HomePage switchTheme={ switchTheme } logout={ logout } />) } />
-            <Route path='/profil' element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } />) }/>
+            <Route path='/profil' element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } currentUser={ currentUser } />) }/>
+            <Route path='/profil/:login' element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } currentUser={ currentUser } />) }/>
             <Route path='*' element={ <Navigate to='/' replace /> } />
         </Routes>
     </div>

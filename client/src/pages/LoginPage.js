@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import './styles/loginpage.css';
-import './styles/common-loginpage-signinpage.css';
+import './styles/common-loginpage-signuppage.css';
 
 function LoginPage(props) {
     const [userData, setUserData] = useState({ login: '', password: '', rememberMe: false });
@@ -49,10 +49,11 @@ function LoginPage(props) {
         })
             .then((res) => {
                 const token = res.data.accessToken;
-                axios.get(`/users/`, { params: { login: userData.login } })
+                axios.get(`/users/${userData.login}`)
                     .then((res) => {
                         window.localStorage.setItem('token', token);
-                        window.localStorage.setItem('user', res.data.user);
+                        window.localStorage.setItem('user', JSON.stringify(res.data.user));
+                        props.setCurrentUser(res.data.user);
                         props.setCurrentTheme(res.data.user.theme);
                         navigate('/accueil');
                     })
@@ -66,7 +67,7 @@ function LoginPage(props) {
             <header id='loginpage-header'>
                 <OfflineHeader currentPage={ 'loginpage' }/>
             </header>
-            <main id='loginpage-body' className='common-loginpage-signinpage'>
+            <main id='loginpage-body' className='common-loginpage-signuppage'>
                 <h2>S'identifier</h2>
                 <form id='loginpage-form' onSubmit={ handleLogin }>
                     <input type='text' id='login' name='login' placeholder='Identifiant' onChange={ (evt) => handleLoginChange(evt) }></input>

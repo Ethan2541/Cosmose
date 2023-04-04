@@ -1,6 +1,6 @@
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Banner from '../components/Banner.js';
 import CreateMessage from '../components/CreateMessage.js';
@@ -13,6 +13,8 @@ import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 import './styles/userpage.css';
 
 function UserPage(props) {
+    const { login } = useParams();
+
     return (
         <div id='userpage'>
             <header>
@@ -27,8 +29,8 @@ function UserPage(props) {
             <main id='userpage-body'>
                 <aside id='userpage-left'>
                     <div id='userpage-info'>
-                        <h2 className='pseudo'>Rikkun</h2>
-                        <h3 className='login'>@rikunanase</h3>
+                        <h2 className='pseudo'>Riku Nanase</h2>
+                        <h3 className='login'>@rikkun</h3>
                     </div>
                     <UserMeters />
                     <div className='userpage-category'>STATISTIQUES</div>

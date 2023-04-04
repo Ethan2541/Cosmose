@@ -28,10 +28,10 @@ exports.login = (req, res, next) => {
                 })
                 .catch(err => res.status(500).json({ error: err }));
         })
-        .catch(err => res.status(500).json({ error: 'Request failed' }))
+        .catch(err => res.status(500).json({ error: err }))
 }
 
-exports.signin = (req, res, next) => {
+exports.signup = (req, res, next) => {
     if (!req.body.login || !req.body.password || !req.body.firstName || !req.body.lastName) {
         return res.status(400).json({ error: 'Missing parameters' });
     }

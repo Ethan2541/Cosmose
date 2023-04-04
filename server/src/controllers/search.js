@@ -5,5 +5,21 @@ exports.getFilteredMessagesList = (req, res, next) => {
         .then(messagesList => {
             res.status(200).json({ updatedMessagesList: messagesList });
         })
-        .catch(err => res.status(500).json({ error: 'Request failed' }));
+        .catch(err => res.status(500).json({ error: err }));
+}
+
+exports.getFilteredUserMessagesList = (req, res, next) => {
+    db.collection('messages').find({ $and: [ { author: { $eq: req.query.user.login } }, { message: { $regex: req.query.filters } }] }).toArray()
+        .then(messagesList => {
+            res.status(200).json({ updatedMessagesList: messagesList });
+        })
+        .catch(err => res.status(500).json({ error: err }));
+}
+
+exports.getFilteredUser = (req, res, next) => {
+    db.collection('users').findOne({ login: req.params.login })
+        .then(user => {
+            res.status(200).json({ filteredUserLogin: user ? user.login: null });
+        })
+        .catch(err => res.status(500).json({ error: err }));
 }

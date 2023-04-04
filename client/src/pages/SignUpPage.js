@@ -6,10 +6,10 @@ import { FaEyeSlash } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './styles/common-loginpage-signinpage.css';
-import './styles/signinpage.css';
+import './styles/common-loginpage-signuppage.css';
+import './styles/signuppage.css';
 
-function SigninPage(props) {
+function SignUpPage(props) {
     const [userData, setUserData] = useState({ login: '', firstName: '', lastName: '', password: '', password2: ''})
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
@@ -69,9 +69,9 @@ function SigninPage(props) {
         setPasswordMask2(!passwordMask2);
     }
 
-    function signin(evt) {
+    function signup(evt) {
         evt.preventDefault();
-        axios.put('/api/signin', {
+        axios.put('/api/signup', {
             login: userData.login,
             firstName: userData.firstName,
             lastName: userData.lastName,
@@ -84,13 +84,13 @@ function SigninPage(props) {
     }
 
     return (
-        <div id='signinpage'>
-            <header id='signinpage-header'>
-                <OfflineHeader currentPage={ 'signinpage' } />
+        <div id='signuppage'>
+            <header id='signuppage-header'>
+                <OfflineHeader currentPage={ 'signuppage' } />
             </header>
-            <main id='signinpage-body' className='common-loginpage-signinpage'>
+            <main id='signuppage-body' className='common-loginpage-signuppage'>
                 <h2>S'inscrire</h2>
-                <form id='signinpage-form' onSubmit={ signin }>
+                <form id='signuppage-form' onSubmit={ signup }>
                     <input type='text' id='firstName' name='firstName' placeholder='Prénom' onChange={ (evt) => handleFirstNameChange(evt) }></input>
                     <input type='text' id='lastName' name='lastName' placeholder='Nom' onChange={ (evt) => handleLastNameChange(evt) }></input>
                     <input className='large-field' type='text' id='login' name='login' placeholder='Identifiant' onChange={ (evt) => handleLoginChange(evt) }></input>
@@ -107,4 +107,4 @@ function SigninPage(props) {
     );
 }
 
-export default SigninPage;
+export default SignUpPage;
