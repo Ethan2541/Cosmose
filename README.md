@@ -2,7 +2,7 @@
 
 ![Bannière Cosmose](https://github.com/Ethan2541/Cosmose/blob/main/Cosmose.png) 
 
-<p>Cosmose est un clone du réseau social `Twitter` réalisé dans le cadre d'un projet de fin de semestre dans le cadre de l'unité d'enseignement `LU3IN017 - Technologies Web` à _Sorbonne Université_.</p>
+Cosmose est un clone du réseau social `Twitter` réalisé dans le cadre d'un projet de fin de semestre dans le cadre de l'unité d'enseignement `LU3IN017 - Technologies Web` à _Sorbonne Université_.
 
 
 <h2>Structure du Projet</h2>
