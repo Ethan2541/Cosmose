@@ -1,19 +1,16 @@
-import axios from 'axios';
-import "./styles/createmessage.css";
+import axios from '../axios.js';
+import './styles/createmessage.css';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 function CreateMessage(props){
     const [message, setMessage] = useState();
 
-    const token = window.localStorage.getItem("token");
-
-    axios.defaults.baseURL = 'http://localhost:3001';
-    axios.defaults.headers = {
-        Authorization: `Bearer ${token}`,
-    };
-
     function sendMessage(evt){
+        const token = window.localStorage.getItem('token');
+        axios.defaults.headers = {
+            Authorization: `Bearer ${token}`,
+        };
         axios.put('/api/messages/', {
             message: message
         })
@@ -24,9 +21,9 @@ function CreateMessage(props){
     }
 
     return(
-        <div id="createmessage">
-            <textarea maxLength={ 280 } placeholder="Nouveau message... (jusqu'à 280 caractères)" onChange={ (evt) => setMessage(evt.target.value) } id="createmessage"></textarea>
-            <button type="submit" onClick={sendMessage}>PUBLIER</button>
+        <div id='createmessage'>
+            <textarea maxLength={ 280 } placeholder='Nouveau message... (jusqu&#39;à 280 caractères)' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
+            <button type='submit' onClick={sendMessage}>PUBLIER</button>
         </div>
     );
 }

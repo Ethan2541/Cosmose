@@ -1,10 +1,10 @@
-const db = require("../db");
+const db = require('../db');
 
 exports.getCurrentUser = (req, res, next) => {
-    db.collection("users").findOne({ login: req.query.login })
+    db.collection('users').findOne({ login: req.query.login })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ error: "User not found" });
+                return res.status(401).json({ error: 'User not found' });
             }
             const userData = {
                 _id: user._id,
@@ -19,12 +19,12 @@ exports.getCurrentUser = (req, res, next) => {
 }
 
 exports.changeDefaultTheme = (req, res, next) => {
-    db.collection("users").updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
+    db.collection('users').updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
         .then(valid => {
             if (!valid){
-                return res.status(401).json({ error: "User not found" });
+                return res.status(401).json({ error: 'User not found' });
             }
-            res.status(200).json({ message: "Theme updated" });
+            res.status(200).json({ message: 'Theme updated' });
         })
         .catch(err => res.status(500).json({ error: err}));
 }

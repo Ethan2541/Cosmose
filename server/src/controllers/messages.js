@@ -6,14 +6,14 @@ exports.isUserAuthorizedMessage = (req, res, next) => {
     const messageId = req.body.messageId;
     const userId = req.user._id;
   
-    db.collection("messages").findOne({ _id: messageId })
+    db.collection('messages').findOne({ _id: messageId })
         .then(message => {
             if (!message) {
-                return res.status(404).json({ error: "Message not found" });
+                return res.status(404).json({ error: 'Message not found' });
             }
 
             if (message.userId !== userId) {
-                return res.status(403).json({ error: "Unauthorized access" });
+                return res.status(403).json({ error: 'Unauthorized access' });
             }
             next();
         })
@@ -25,18 +25,18 @@ exports.isUserAuthorizedComment = (req, res, next) => {
     const commentId = req.body.commentId;
     const userId = req.user._id;
   
-    db.collection("messages").findOne({ _id: messageId, "commentaires._id": commentId })
+    db.collection('messages').findOne({ _id: messageId, 'commentaires._id': commentId })
         .then(message => {
             if (!message) {
-                return res.status(404).json({ error: "Message not found"});
+                return res.status(404).json({ error: 'Message not found'});
             }
             
             const comment = message.commentaires.find((comment) => comment._id === commentId);
             if (!comment) {
-                return res.status(404).json({ error: "Comment not found" });
+                return res.status(404).json({ error: 'Comment not found' });
             }
             if (comment.userId !== userId) {
-                return res.status(403).json({ error: "Unauthorized access" });
+                return res.status(403).json({ error: 'Unauthorized access' });
             }
             next();
         })
@@ -47,18 +47,18 @@ exports.isUserAuthorizedLike = (req, res, next) => {
     const messageId = req.body.messageId;
     const userId = req.user._id;
   
-    db.collection("messages").findOne({ _id: messageId, "like.userId": userId })
+    db.collection('messages').findOne({ _id: messageId, 'like.userId': userId })
         .then(message => {
             if (!message) {
-                return res.status(404).json({message: "Message not found"});
+                return res.status(404).json({message: 'Message not found'});
             }
 
             const like = message.commentaires.find((like) => like._id === likeId);
             if (!like) {
-                return res.status(404).json({ error: "Comment not found" });
+                return res.status(404).json({ error: 'Comment not found' });
             }
             if (like.userId !== userId) {
-                return res.status(403).json({ error: "Unauthorized access" });
+                return res.status(403).json({ error: 'Unauthorized access' });
             }
             next();
         })

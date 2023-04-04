@@ -1,16 +1,16 @@
-import axios from "axios";
-import OfflineHeader from "../components/OfflineHeader.js";
+import axios from 'axios';
+import OfflineHeader from '../components/OfflineHeader.js';
 
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from 'react-icons/fa';
+import { FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useState } from 'react';
 
-import "./styles/loginpage.css";
-import "./styles/common-loginpage-signinpage.css";
+import './styles/loginpage.css';
+import './styles/common-loginpage-signinpage.css';
 
 function LoginPage(props) {
-    const [userData, setUserData] = useState({ login: "", password: "", rememberMe: false });
+    const [userData, setUserData] = useState({ login: '', password: '', rememberMe: false });
     const [rememberMe, setRememberMe] = useState(true);
     const [passwordMask, setPasswordMask] = useState(true);
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ function LoginPage(props) {
 
 	function handleLogin(evt) {
 		evt.preventDefault();
-		axios.post("/api/login", {
+		axios.post('/api/login', {
             login: userData.login,
             password: userData.password,
             rememberMe: userData.rememberMe
@@ -51,10 +51,10 @@ function LoginPage(props) {
                 const token = res.data.accessToken;
                 axios.get(`/users/`, { params: { login: userData.login } })
                     .then((res) => {
-                        window.localStorage.setItem("token", token);
-                        window.localStorage.setItem("user", res.data.user);
+                        window.localStorage.setItem('token', token);
+                        window.localStorage.setItem('user', res.data.user);
                         props.setCurrentTheme(res.data.user.theme);
-                        navigate("/accueil");
+                        navigate('/accueil');
                     })
                     .catch((err) => console.log(err));
             })
@@ -62,19 +62,19 @@ function LoginPage(props) {
     }
 
     return(
-        <div id="loginpage">
-            <div id="loginpage-header">
-                <OfflineHeader currentPage={ "loginpage" }/>
+        <div id='loginpage'>
+            <div id='loginpage-header'>
+                <OfflineHeader currentPage={ 'loginpage' }/>
             </div>
-            <div id="loginpage-body" className="common-loginpage-signinpage">
+            <div id='loginpage-body' className='common-loginpage-signinpage'>
                 <h2>S'identifier</h2>
-                <form id="loginpage-form" onSubmit={ handleLogin }>
-                    <input type="text" id="login" name="login" placeholder="Identifiant" onChange={ (evt) => handleLoginChange(evt) }></input>
-                    <input type={passwordMask ? "password" : "text"} id="password" name="password" placeholder="Mot de passe" onChange={ (evt) => handlePasswordChange(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
-                    <button type="submit">Se connecter</button>
-                    <div id="loginpage-rememberme">
-                        <input type="checkbox" id="rememberMe" onChange={ (evt) => handleRememberMeChange(evt) }></input>
-                        <label htmlFor="checkbox">Se souvenir de moi</label>
+                <form id='loginpage-form' onSubmit={ handleLogin }>
+                    <input type='text' id='login' name='login' placeholder='Identifiant' onChange={ (evt) => handleLoginChange(evt) }></input>
+                    <input type={passwordMask ? 'password' : 'text'} id='password' name='password' placeholder='Mot de passe' onChange={ (evt) => handlePasswordChange(evt) }></input><i onClick={ (evt) => handlePasswordMask(evt) }>{passwordMask ? <FaEye /> : <FaEyeSlash />}</i>
+                    <button type='submit'>Se connecter</button>
+                    <div id='loginpage-rememberme'>
+                        <input type='checkbox' id='rememberMe' onChange={ (evt) => handleRememberMeChange(evt) }></input>
+                        <label htmlFor='checkbox'>Se souvenir de moi</label>
                     </div>
                 </form>
             </div>

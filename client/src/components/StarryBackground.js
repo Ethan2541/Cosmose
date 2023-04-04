@@ -1,8 +1,8 @@
-import "./styles/starrybackground.css";
+import './styles/starrybackground.css';
 
 function StarryBackground(props) {
     return(
-        <div id="starrybackground">
+        <div id='starrybackground'>
             <section>
                 <span></span>
                 <span></span>

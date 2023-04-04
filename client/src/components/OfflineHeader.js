@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import "./styles/offlineheader.css";
+import './styles/offlineheader.css';
 
 function OfflineHeader(props) {
     function displayLoginOrSignin() {
-        if (props.currentPage === "loginpage") {
+        if (props.currentPage === 'loginpage') {
             return (
-                <Link to="/inscription" className="offlineheader-link offlineheader-button">
+                <Link to='/inscription' className='offlineheader-link offlineheader-button'>
                     S'INSCRIRE
                 </Link>
             )
         }
-        else if (props.currentPage === "signinpage") {
+        else if (props.currentPage === 'signinpage') {
             return (
-                <Link to="/connexion" className="offlineheader-link offlineheader-button">
+                <Link to='/connexion' className='offlineheader-link offlineheader-button'>
                     SE CONNECTER
                 </Link>
             )
         }
     }
     return (
-        <div id="offlineheader">
+        <div id='offlineheader'>
             <h1>COSMOSE</h1>
             <nav>
-                <Link to="/" className="offlineheader-link no-border">
+                <Link to='/' className='offlineheader-link no-border'>
                     ACCUEIL
                 </Link>
                 { displayLoginOrSignin() }
