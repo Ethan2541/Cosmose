@@ -23,5 +23,5 @@ app.use('/*', (req, res, next) => {
 })
 
 app.listen(process.env.PORT,  () => {
-    console.log(`server listening on: ${process.env.PORT}`);
+    console.log(`Server listening on port: ${process.env.PORT}`);
 });
