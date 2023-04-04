@@ -74,7 +74,7 @@ function App(props) {
         };
 
         if (token) {
-            axios.post("/users/theme", {theme: currentTheme})
+            axios.put("/users/theme", {theme: currentTheme})
                 .catch((err) => console.log(err));
         }
     }, [currentTheme]);

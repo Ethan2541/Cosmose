@@ -4,6 +4,6 @@ const router = express.Router();
 const usersCtrl = require("../controllers/users.js");
 
 router.get("/", usersCtrl.getCurrentUser)
-.post("/theme", auth, usersCtrl.changeDefaultTheme);
+.put("/theme", auth, usersCtrl.changeDefaultTheme);
 
 module.exports = router;

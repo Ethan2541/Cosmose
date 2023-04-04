@@ -128,8 +128,8 @@ const deleteComment = async (messageId, commentId) => {
 }
 
 const router = express.Router();
-router.use(express.json())
-.put('/like', async (req, res) => {
+
+router.put('/like', async (req, res) => {
     if(req.body.messageId === undefined){
         res.status(400).json({message: "paramètres manquants"});
     }

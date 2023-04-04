@@ -2,84 +2,67 @@ const auth = require('../auth');
 const db = require('../db');
 const { v4: uuidv4 } = require('uuid');
 
-const isUserAuthorizedMessage = async (req, res, next) => {
+exports.isUserAuthorizedMessage = (req, res, next) => {
     const messageId = req.body.messageId;
     const userId = req.user._id;
   
-    const messagesCollection = db.collection('messages');
-  
-    const message = await messagesCollection.findOne({ _id: messageId });
-  
-    if (!message) {
-      res.status(404).json({ message: 'Message non trouvé' });
-      return;
-    }
-  
-    if (message.userId !== userId) {
-      res.status(403).json({ message: 'Accès non autorisé' });
-      return;
-    }
-  
-    next();
+    db.collection("messages").findOne({ _id: messageId })
+        .then(message => {
+            if (!message) {
+                return res.status(404).json({ error: "Message not found" });
+            }
+
+            if (message.userId !== userId) {
+                return res.status(403).json({ error: "Unauthorized access" });
+            }
+            next();
+        })
+        .catch(err => res.status(500).json({ error: err }));
 };
 
-const isUserAuthorizedComment = async (req, res, next) => {
+exports.isUserAuthorizedComment = (req, res, next) => {
     const messageId = req.body.messageId;
     const commentId = req.body.commentId;
     const userId = req.user._id;
   
-    const messagesCollection = db.collection('messages');
-  
-    const message = await messagesCollection.findOne({
-         _id: messageId, 
-         "commentaires._id": commentId 
-    });
-
-    if (message) {
-        const comment = message.commentaires.find((comment) => comment._id === commentId);
-        if (!comment){
-            res.status(404).json({ message: 'Commentaire non trouvé' });
-            return;
-        }
-        if (comment.userId !== userId) {
-            res.status(403).json({ message: 'Accès non autorisé' });
-            return;
-        }
-    } else {
-        res.status(404).json({ message: 'Message non trouvé' });
-        return;
-    }
-  
-    next();
+    db.collection("messages").findOne({ _id: messageId, "commentaires._id": commentId })
+        .then(message => {
+            if (!message) {
+                return res.status(404).json({ error: "Message not found"});
+            }
+            
+            const comment = message.commentaires.find((comment) => comment._id === commentId);
+            if (!comment) {
+                return res.status(404).json({ error: "Comment not found" });
+            }
+            if (comment.userId !== userId) {
+                return res.status(403).json({ error: "Unauthorized access" });
+            }
+            next();
+        })
+        .catch(err => res.status(500).json({ error: err }));
 };
 
-const isUserAuthorizedLike = async (req, res, next) => {
+exports.isUserAuthorizedLike = (req, res, next) => {
     const messageId = req.body.messageId;
     const userId = req.user._id;
   
-    const messagesCollection = db.collection('messages');
-  
-    const message = await messagesCollection.findOne({
-         _id: messageId, 
-         "like.userId": userId
-    });
+    db.collection("messages").findOne({ _id: messageId, "like.userId": userId })
+        .then(message => {
+            if (!message) {
+                return res.status(404).json({message: "Message not found"});
+            }
 
-    if (message) {
-        const like = message.commentaires.find((like) => like._id === likeId);
-        if (!like){
-            res.status(404).json({ message: 'Commentaire non trouvé' });
-            return;
-        }
-        if (like.userId !== userId) {
-            res.status(403).json({ message: 'Accès non autorisé' });
-            return;
-        }
-    } else {
-        res.status(404).json({ message: 'Message non trouvé' });
-        return;
-    }
-  
-    next();
+            const like = message.commentaires.find((like) => like._id === likeId);
+            if (!like) {
+                return res.status(404).json({ error: "Comment not found" });
+            }
+            if (like.userId !== userId) {
+                return res.status(403).json({ error: "Unauthorized access" });
+            }
+            next();
+        })
+        .catch(err => res.status(500).json({ error: err }));  
 };
 
 const createMessage = async (userId, message) => {
@@ -87,7 +70,7 @@ const createMessage = async (userId, message) => {
         userId: userId,
         message: message,
         date: new Date(),
-        likes: [],
+        stars: [],
         commentaires: []
     });
 }
