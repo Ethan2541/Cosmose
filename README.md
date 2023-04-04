@@ -1,5 +1,4 @@
 <h1 align='center'> Cosmose </h1>
-<hr/>
 
 ![Bannière Cosmose](https://github.com/Ethan2541/Cosmose/blob/main/Cosmose.png) 
 
