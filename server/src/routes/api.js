@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post('/login', apiCtrl.login)
 .put('/signup', apiCtrl.signup)
-.use('/messages', auth, messages)
 .post('/timespent', auth, timespent.timeSpent);  
 
 module.exports = router;
