@@ -63,10 +63,10 @@ function LoginPage(props) {
 
     return(
         <div id='loginpage'>
-            <div id='loginpage-header'>
+            <header id='loginpage-header'>
                 <OfflineHeader currentPage={ 'loginpage' }/>
-            </div>
-            <div id='loginpage-body' className='common-loginpage-signinpage'>
+            </header>
+            <main id='loginpage-body' className='common-loginpage-signinpage'>
                 <h2>S'identifier</h2>
                 <form id='loginpage-form' onSubmit={ handleLogin }>
                     <input type='text' id='login' name='login' placeholder='Identifiant' onChange={ (evt) => handleLoginChange(evt) }></input>
@@ -77,7 +77,7 @@ function LoginPage(props) {
                         <label htmlFor='checkbox'>Se souvenir de moi</label>
                     </div>
                 </form>
-            </div>
+            </main>
         </div>
     );
 }

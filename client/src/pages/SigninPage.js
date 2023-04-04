@@ -85,10 +85,10 @@ function SigninPage(props) {
 
     return (
         <div id='signinpage'>
-            <div id='signinpage-header'>
+            <header id='signinpage-header'>
                 <OfflineHeader currentPage={ 'signinpage' } />
-            </div>
-            <div id='signinpage-body' className='common-loginpage-signinpage'>
+            </header>
+            <main id='signinpage-body' className='common-loginpage-signinpage'>
                 <h2>S'inscrire</h2>
                 <form id='signinpage-form' onSubmit={ signin }>
                     <input type='text' id='firstName' name='firstName' placeholder='Prénom' onChange={ (evt) => handleFirstNameChange(evt) }></input>
@@ -102,7 +102,7 @@ function SigninPage(props) {
                     </div>
                     <button className='large-field' type='submit'>Enregistrer</button>
                 </form>
-            </div>
+            </main>
         </div>
     );
 }

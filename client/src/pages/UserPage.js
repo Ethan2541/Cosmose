@@ -24,31 +24,31 @@ function UserPage(props) {
                 </div>
             </header>
             <Banner couverture={'./assets/cover/couverture.jpg'} avatar={'./assets/avatar/riku.png'} />
-            <div id='userpage-body'>
-                <div id='userpage-left'>
+            <main id='userpage-body'>
+                <aside id='userpage-left'>
                     <div id='userpage-info'>
                         <h2 className='pseudo'>Rikkun</h2>
                         <h3 className='login'>@rikunanase</h3>
                     </div>
                     <UserMeters />
                     <div className='userpage-category'>STATISTIQUES</div>
-                    <div className='userpage-userstats'>
+                    <article className='userpage-userstats'>
                         <UserStatsWrapper />
-                    </div>
+                    </article>
                     <div className='userpage-category'>VOTRE NEBULEUSE</div>
-                    <div id='userpage-followed'>
+                    <article id='userpage-followed'>
                         <User ami={'Mitsuki'} idAmi={2} img={'./assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
                         <User ami={'Mitsuki'} idAmi={2} img={'./assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
                         <User ami={'Mitsuki'} idAmi={2} img={'./assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
-                    </div>
+                    </article>
                     <div className='userpage-category'>CONSTELLATIONS FAVORABLES</div>
-                    <div id='userpage-followers'>
+                    <article id='userpage-followers'>
                         <User ami={'Tamaki'} idAmi={2} img={'./assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
                         <User ami={'Tamaki'} idAmi={2} img={'./assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
                         <User ami={'Tamaki'} idAmi={2} img={'./assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
-                    </div>
-                </div>
-                <div id='userpage-right'>
+                    </article>
+                </aside>
+                <section id='userpage-right'>
                     <div id='userpage-searchbar'>
                         <Searchbar placeholder={'Naviguer dans votre constellation...'} type={ 'usermessages' } />
                     </div>
@@ -62,8 +62,8 @@ function UserPage(props) {
                         <Message idMessage={6} auteur={'Sogo-san'} idAuteur={6} message={'Bonjour à tous !'} idUtilisateur={props.idUtilisateur} date={'28 mars 2023 à 14h00'} img={'./assets/avatar/sogo.png'}/>
                         <Message idMessage={7} auteur={'Iori-kun'} idAuteur={7} message={'Bonjour les amis.'} idUtilisateur={props.idUtilisateur} date={'28 mars 2023 à 14h00'} img={'./assets/avatar/iori.png'}/>
                     </div>
-                </div>
-            </div>
+                </section>
+            </main>
         </div>
     );
 }
