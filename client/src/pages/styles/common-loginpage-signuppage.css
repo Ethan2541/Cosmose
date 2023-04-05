@@ -54,7 +54,7 @@
     outline: 3px solid rgba(140,107,203,1);
 }
 
-.common-loginpage-signuppage>form>input[type="submit"]:focus {
+.common-loginpage-signuppage>form>input[type='submit']:focus {
     outline: 3px solid rgba(255,255,255,1);
 }
 

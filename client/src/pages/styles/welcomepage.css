@@ -1,5 +1,5 @@
 #welcomepage {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../../public/assets/img/background.png") center no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../../public/assets/img/background.png') center no-repeat;
     background-size: cover;
     height: 100%;
     position: absolute;

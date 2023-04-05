@@ -18,7 +18,7 @@
     --userstats-bg-color: rgba(44,43,74,1);
 }
 
-:root[theme="whitedwarf"] {
+:root[theme='whitedwarf'] {
     --border-color: rgba(140,107,203,1);
     --createmessage-bg-color: rgba(255,255,255,0.85);
     --createmessage-color: rgba(0,0,0,0.85);
@@ -38,7 +38,7 @@
     --userstats-bg-color: rgba(44,43,74,1);
 }
 
-:root[theme="darkmatter"] {
+:root[theme='darkmatter'] {
     --border-color: rgba(140,107,203,1);
     --createmessage-bg-color: rgba(23,21,33,0.85);
     --createmessage-color: rgba(255,255,255,0.85);
@@ -58,7 +58,7 @@
     --userstats-bg-color: rgba(23,21,33,1);
 }
 
-:root[theme="purestar"] {
+:root[theme='purestar'] {
     --border-color: rgba(108,141,162,1);
     --createmessage-bg-color: rgba(255,255,255,0.85);
     --createmessage-color: rgba(0,0,0,0.85);
@@ -78,7 +78,7 @@
     --userstats-bg-color: rgba(54,70,81,1);;
 }
 
-:root[theme="blackhole"] {
+:root[theme='blackhole'] {
     --border-color: rgba(108,141,162,1);
     --createmessage-bg-color: rgba(25,37,49,1);
     --createmessage-color: rgba(255,255,255,0.85);

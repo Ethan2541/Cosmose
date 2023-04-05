@@ -1,5 +1,5 @@
 #loginpage {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../../public/assets/img/background.png") center no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../../public/assets/img/background.png') center no-repeat;
     background-size: cover;
     height: 100%;
     min-height: 100%;
@@ -38,7 +38,7 @@
     margin-bottom: 15px;
 }
 
-#loginpage-form>input[type="password"] {
+#loginpage-form>input[type='password'] {
     padding-right: 30px;
 }
 

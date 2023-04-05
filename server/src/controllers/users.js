@@ -9,7 +9,8 @@ exports.getUser = (req, res, next) => {
 }
 
 exports.changeDefaultTheme = (req, res, next) => {
-    db.collection('users').updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
+    if (req.user) {
+        db.collection('users').updateOne({ login: req.user.login }, { $set: { theme: req.body.theme } })
         .then(valid => {
             if (!valid){
                 return res.status(401).json({ error: 'User not found' });
@@ -17,4 +18,5 @@ exports.changeDefaultTheme = (req, res, next) => {
             res.status(204);
         })
         .catch(err => res.status(500).json({ error: err}));
+    }
 }
