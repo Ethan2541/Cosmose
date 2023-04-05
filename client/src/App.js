@@ -70,7 +70,7 @@ function App(props) {
         axios.defaults.headers = {
             Authorization: `Bearer ${token}`,
         };
-        console.log("Bug à résoudre");
+        
         if (token) {
             axios.put('/users/theme', {theme: currentTheme})
                 .catch((err) => console.log(err));
