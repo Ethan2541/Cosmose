@@ -51,11 +51,13 @@ function LoginPage(props) {
                 const token = res.data.accessToken;
                 axios.get(`/users/${userData.login}`)
                     .then((res) => {
-                        window.localStorage.setItem('token', token);
-                        window.localStorage.setItem('user', JSON.stringify(res.data.user));
-                        props.setCurrentUser(res.data.user);
-                        props.setCurrentTheme(res.data.user.theme);
-                        navigate('/accueil');
+                        if (res.data.user) {
+                            window.localStorage.setItem('token', token);
+                            window.localStorage.setItem('user', JSON.stringify(res.data.user));
+                            props.setCurrentUser(res.data.user);
+                            props.setCurrentTheme(res.data.user.theme);
+                            navigate('/accueil');
+                        }
                     })
                     .catch((err) => console.log(err));
             })

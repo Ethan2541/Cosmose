@@ -1,7 +1,9 @@
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
+import axios from '../axios.js';
 import Banner from '../components/Banner.js';
 import CreateMessage from '../components/CreateMessage.js';
 import Message from '../components/Messages/Message.js';
@@ -13,7 +15,26 @@ import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 import './styles/userpage.css';
 
 function UserPage(props) {
+    const location = useLocation();
+    const navigate = useNavigate();
     const { login } = useParams();
+    const [user, setUser] = useState(props.currentUser);
+
+    useEffect(() => {
+        if (!login) {
+            setUser(props.currentUser);
+        }
+        axios.get(`/users/${login}`)
+            .then(res => {
+                if (!res.data.user) {
+                    navigate('/profil');
+                }
+                else {
+                    setUser(res.data.user);
+                }
+            })
+            .catch(err => console.log(err));
+    }, [login]);
 
     return (
         <div id='userpage'>
@@ -25,12 +46,12 @@ function UserPage(props) {
                     <i><FaSignOutAlt title='Se déconnecter' onClick={ props.logout } /></i>
                 </div>
             </header>
-            <Banner couverture={'/assets/cover/couverture.jpg'} avatar={'/assets/avatar/riku.png'} />
+            <Banner couverture={'/assets/cover/couverture.jpg'} avatar={'/assets/avatar/riku.png'} currentUser={ props.currentUser } user={ user } />
             <main id='userpage-body'>
                 <aside id='userpage-left'>
                     <div id='userpage-info'>
-                        <h2 className='pseudo'>Riku Nanase</h2>
-                        <h3 className='login'>@rikkun</h3>
+                        <h2 className='pseudo'>{user.firstName} {user.lastName}</h2>
+                        <h3 className='login'>@{user.login}</h3>
                     </div>
                     <UserMeters />
                     <div className='userpage-category'>STATISTIQUES</div>
@@ -56,13 +77,13 @@ function UserPage(props) {
                     </div>
                     <CreateMessage />
                     <div id='userpage-messageslist'>
-                        <Message author={'Rikkun'} idAuteur={1} message={'Coucou les amis !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/riku.png'}/>
-                        <Message author={'Mitsuki-kun'} idAuteur={2} message={'Ohayo ! Mina-san !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/mitsuki.png'}/>
-                        <Message author={'Nagi-san'} idAuteur={3} message={'Hello girls !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/nagi.png'}/>
-                        <Message author={'Yamato-san'} idAuteur={4} message={'Yo tout le monde !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/yamato.png'}/>
-                        <Message author={'Tamaki-kun'} idAuteur={5} message={'Salut les amis...'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/tamaki.png'}/>
-                        <Message author={'Sogo-san'} idAuteur={6} message={'Bonjour à tous !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/sogo.png'}/>
-                        <Message author={'Iori-kun'} idAuteur={7} message={'Bonjour les amis.'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/iori.png'}/>
+                        <Message author={'Rikkun'} message={'Coucou les amis !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/riku.png'}/>
+                        <Message author={'Mitsuki-kun'} message={'Ohayo ! Mina-san !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/mitsuki.png'}/>
+                        <Message author={'Nagi-san'} message={'Hello girls !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/nagi.png'}/>
+                        <Message author={'Yamato-san'} message={'Yo tout le monde !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/yamato.png'}/>
+                        <Message author={'Tamaki-kun'} message={'Salut les amis...'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/tamaki.png'}/>
+                        <Message author={'Sogo-san'} message={'Bonjour à tous !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/sogo.png'}/>
+                        <Message author={'Iori-kun'} message={'Bonjour les amis.'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/iori.png'}/>
                     </div>
                 </section>
             </main>

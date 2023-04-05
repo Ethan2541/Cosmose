@@ -40,6 +40,9 @@ function Searchbar(props){
                         if (res.data.filteredUserLogin) {
                             navigate(`/profil/${res.data.filteredUserLogin}`);
                         }
+                        else {
+                            navigate('/profil');
+                        }
                     })
                     .catch(err => console.log(err));
                 break;

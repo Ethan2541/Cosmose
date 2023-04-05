@@ -19,7 +19,7 @@ exports.getFilteredUserMessagesList = (req, res, next) => {
 exports.getFilteredUser = (req, res, next) => {
     db.collection('users').findOne({ login: req.params.login })
         .then(user => {
-            res.status(200).json({ filteredUserLogin: user ? user.login: null });
+            res.status(200).json({ filteredUserLogin: user ? user.login : null });
         })
         .catch(err => res.status(500).json({ error: err }));
 }
