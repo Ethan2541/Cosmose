@@ -48,6 +48,7 @@ function LoginPage(props) {
             rememberMe: userData.rememberMe
         })
             .then((res) => {
+                
                 const token = res.data.accessToken;
                 axios.get(`/users/${userData.login}`)
                     .then((res) => {

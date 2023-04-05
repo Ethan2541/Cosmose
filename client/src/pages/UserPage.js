@@ -39,7 +39,7 @@ function UserPage(props) {
     return (
         <div id='userpage'>
             <header>
-                <Link to='accueil' id='userpage-title'><h1>COSMOSE</h1></Link>
+                <Link to='/accueil' id='userpage-title'><h1>COSMOSE</h1></Link>
                 <Searchbar placeholder={'Rechercher des constellations...'} type={ 'users' } />
                 <div id='userpage-parameters'>
                     <i><FaPalette title='Changer de thème' onClick={ props.switchTheme } /></i>
