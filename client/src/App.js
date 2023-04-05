@@ -94,7 +94,7 @@ function App(props) {
             e.preventDefault();
             e.returnValue = '';
         };
-      
+        
         window.addEventListener('beforeunload', handleBeforeUnload);
       
         return () => {
