@@ -15,8 +15,8 @@ exports.changeDefaultTheme = (req, res, next) => {
             if (!valid){
                 return res.status(401).json({ error: 'User not found' });
             }
-            res.status(204);
+            res.status(204).json();
         })
-        .catch(err => res.status(500).json({ error: err}));
+        .catch(err => res.status(500).json({ error: err }));
     }
 }
