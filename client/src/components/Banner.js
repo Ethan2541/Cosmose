@@ -1,4 +1,6 @@
+import { FaMinusCircle } from 'react-icons/fa';
 import { FaPen } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 
 import './styles/banner.css';
 
@@ -7,11 +9,17 @@ function Banner(props) {
         if (props.currentUser.login === props.user.login) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'visible');
         }
+        else {
+            document.getElementById('banner-follow').style.setProperty('visibility', 'visible');
+        }
     }
 
     function hideEditBanner(evt) {
         if (props.currentUser.login === props.user.login) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'hidden');
+        }
+        else {
+            document.getElementById('banner-follow').style.setProperty('visibility', 'hidden');
         }
     }
 
@@ -46,6 +54,7 @@ function Banner(props) {
                 <input type='file'></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
             </div>
+            <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaPlusCircle /> SUIVRE</button>
             
             <img id='banner-picture' draggable='false' src={props.avatar} alt={ 'Couverture de ' + props.utilisateur } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>

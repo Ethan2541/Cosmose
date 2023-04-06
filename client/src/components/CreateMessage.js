@@ -22,7 +22,7 @@ function CreateMessage(props){
 
     return(
         <div id='createmessage'>
-            <textarea maxLength={ 280 } placeholder='Nouveau message... (jusqu&#39;à 280 caractères)' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
+            <textarea placeholder='Stimulez votre imagination, c&#39;est ici que votre histoire commence !' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
             <button type='submit' onClick={sendMessage}>PUBLIER</button>
         </div>
     );

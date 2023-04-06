@@ -12,6 +12,7 @@
 
 #banner-cover>img {
     user-select: none;
+    width: 100%;
 }
 
 #banner-edit {
@@ -51,6 +52,34 @@
     align-items: center;
     display: flex;
     gap: 10px;
+}
+
+#banner-follow {
+    align-items: center;
+    background-color: rgba(0,0,0,0.75);
+    border: 0;
+    border-radius: 10px;
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    gap: 5px;
+    height: 40px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 10px 0 10px;
+    position: absolute;
+    right: 10px;
+    top: 275px;
+    visibility: hidden;
+    width: auto;
+    z-index: 1;
+}
+
+#banner-follow:hover {
+    filter: brightness(80%);
 }
 
 #banner-picture {

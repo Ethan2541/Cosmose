@@ -46,7 +46,7 @@ function Menu(props) {
                 <li><button className='menu-button'>ETOILES MONTANTES</button></li>
                 <li><button className='menu-button'>MA GALAXIE</button></li>
                 <hr />
-                <li><a id='menu-post' href='#createmessage'>PUBLIER</a></li>
+                <li><a id='menu-post' onClick={ (evt) => window.scrollTo(0,0) }>PUBLIER</a></li>
             </ul>
         </div>
     );

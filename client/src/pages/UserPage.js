@@ -9,6 +9,7 @@ import CreateMessage from '../components/CreateMessage.js';
 import Message from '../components/Messages/Message.js';
 import Searchbar from '../components/Searchbar.js';
 import User from '../components/Users/User.js';
+import UsersList from '../components/Users/UsersList.js';
 import UserMeters from '../components/UserMeters.js';
 import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 
@@ -46,7 +47,7 @@ function UserPage(props) {
                     <i><FaSignOutAlt title='Se déconnecter' onClick={ props.logout } /></i>
                 </div>
             </header>
-            <Banner couverture={'/assets/cover/couverture.jpg'} avatar={'/assets/avatar/riku.png'} currentUser={ props.currentUser } user={ user } />
+            <Banner couverture={'/assets/cover/cover.jpg'} avatar={'/assets/avatar/avatar.jpg'} currentUser={ props.currentUser } user={ user } />
             <main id='userpage-body'>
                 <aside id='userpage-left'>
                     <div id='userpage-info'>
@@ -69,6 +70,7 @@ function UserPage(props) {
                         <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
                         <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
                         <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
+                        <User userLogin={'poupou'} avatar={'/assets/avatar/avatar.jpg'} date={'01 avril 2023'} />
                     </article>
                 </aside>
                 <section id='userpage-right'>

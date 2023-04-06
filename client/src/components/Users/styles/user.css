@@ -1,0 +1,43 @@
+.user {
+    background-color: var(--user-bg-color);
+    border: 1px solid var(--user-border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    display: grid;
+    font-family: inherit;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    margin-bottom: 5px;
+}
+
+.user:hover {
+    box-shadow: rgba(0,0,0,0.5) 0px 2px 2px;
+}
+
+.user>img {
+    border-radius: 50%;
+    height: 75px;
+    justify-self: center;
+    margin: 15px 25px 15px 15px;
+    width: 75px;
+}
+
+.user-metadata {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.user-metadata>h3 {
+    color: rgba(255,255,255,1);
+    font-size: 20px;
+    margin: auto 0 0 0;
+}
+
+.user-metadata>h4 {
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+}

@@ -85,6 +85,7 @@ function App(props) {
                 logout();
             }
         }
+        window.scrollTo(0,0);
     }, [location]);
 
     useEffect(() => {

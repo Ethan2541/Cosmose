@@ -29,7 +29,7 @@ function Message(props){
                     {starred ? <FaStar title='Ne plus aimer' /> : <FaRegStar title='Aimer' />}
                 </button>
                 <button className='message-features-button'>
-                    <FaRetweet title='Répondre' />
+                    <FaRetweet title='Citer' />
                 </button>
                 <button className='message-features-button'>
                     <FaRegCommentDots title='Commenter' />
