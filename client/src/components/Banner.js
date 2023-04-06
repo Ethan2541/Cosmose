@@ -1,12 +1,19 @@
+import axios from '../axios.js';
+
 import { FaMinusCircle } from 'react-icons/fa';
 import { FaPen } from 'react-icons/fa';
 import { FaPlusCircle } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './styles/banner.css';
 
 function Banner(props) {
+    const [userAssets, setUserAssets] = useState({ avatar: '/assets/avatar.jpg', cover: '/assets/cover.jpg' });
+    const location = useLocation();
+
     function renderEditBanner(evt) {
-        if (props.currentUser.login === props.user.login) {
+        if (props.currentUserLogin === props.userLogin) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'visible');
         }
         else {
@@ -15,7 +22,7 @@ function Banner(props) {
     }
 
     function hideEditBanner(evt) {
-        if (props.currentUser.login === props.user.login) {
+        if (props.currentUserLogin === props.userLogin) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'hidden');
         }
         else {
@@ -28,14 +35,14 @@ function Banner(props) {
     }
 
     function renderEditPicture(evt) {
-        if (props.currentUser.login === props.user.login) {
+        if (props.currentUserLogin === props.userLogin) {
             document.getElementById('picture-edit').style.setProperty('visibility', 'visible');
             document.getElementById('banner-picture').style.setProperty('filter', 'brightness(50%)');
         }
     }
 
     function hideEditPicture(evt) {
-        if (props.currentUser.login === props.user.login) {
+        if (props.currentUserLogin === props.userLogin) {
             document.getElementById('picture-edit').style.setProperty('visibility', 'hidden');
             document.getElementById('banner-picture').style.setProperty('filter', 'brightness(100%)');
         }
@@ -45,10 +52,22 @@ function Banner(props) {
         console.log("test");
     }
 
+    function getAssets() {
+        axios.get(`/users/assets/${props.userLogin}`)
+            .then(res => {
+                setUserAssets({ avatar: res.data.avatar, cover: res.data.cover });
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        getAssets();
+    }, [location])
+
     return(
         <div id='banner'>
             <div id='banner-cover'>
-                <img draggable='false' src={ props.couverture } alt={ 'Couverture de ' + props.utilisateur } onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } />
+                <img draggable='false' src={ userAssets.cover } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } />
             </div>
             <div id="banner-edit" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }>
                 <input type='file'></input>
@@ -56,7 +75,7 @@ function Banner(props) {
             </div>
             <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaPlusCircle /> SUIVRE</button>
             
-            <img id='banner-picture' draggable='false' src={props.avatar} alt={ 'Couverture de ' + props.utilisateur } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
+            <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>
                 <input type='file'></input>
                 <span><FaPen /></span>

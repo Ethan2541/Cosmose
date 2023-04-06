@@ -45,9 +45,11 @@ exports.signup = (req, res, next) => {
             bcrypt.hash(req.body.password, 10)
                 .then(hash => {
                     const newUser = {
-                        login: req.body.login,
+                        avatar: '/assets/avatar.jpg',
+                        cover: '/assets/cover.jpg',
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
+                        login: req.body.login,
                         password: hash,
                         theme: 'whitedwarf',
                         timespent: 0

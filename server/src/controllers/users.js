@@ -20,3 +20,18 @@ exports.changeDefaultTheme = (req, res, next) => {
         .catch(err => res.status(500).json({ error: err }));
     }
 }
+
+exports.getAssets = (req, res, next) => {
+    db.collection('users').findOne({ login: req.params.login })
+        .then(user => {
+            if (!user) {
+                return res.status(404).json('User not found');
+            }
+            res.status(200).json({ avatar: user.avatar, cover: user.cover });
+        })
+        .catch(err => res.status(500).json('Internal server error'));
+}
+
+exports.getMeters = (req, res, next) => {
+    let meters = { comments: 0, followers: 0, likes: 0 };
+}

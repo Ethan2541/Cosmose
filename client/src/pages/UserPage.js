@@ -1,6 +1,6 @@
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import axios from '../axios.js';
@@ -16,7 +16,6 @@ import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 import './styles/userpage.css';
 
 function UserPage(props) {
-    const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
     const [user, setUser] = useState(props.currentUser);
@@ -47,7 +46,7 @@ function UserPage(props) {
                     <i><FaSignOutAlt title='Se déconnecter' onClick={ props.logout } /></i>
                 </div>
             </header>
-            <Banner couverture={'/assets/cover/cover.jpg'} avatar={'/assets/avatar/avatar.jpg'} currentUser={ props.currentUser } user={ user } />
+            <Banner currentUserLogin={ props.currentUser.login } userLogin={ user.login } />
             <main id='userpage-body'>
                 <aside id='userpage-left'>
                     <div id='userpage-info'>
@@ -63,14 +62,11 @@ function UserPage(props) {
                     <article id='userpage-followed'>
                         <User userLogin={'Mitsuki'} avatar={'/assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
                         <User userLogin={'Mitsuki'} avatar={'/assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
-                        <User userLogin={'Mitsuki'} avatar={'/assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
                     </article>
                     <div className='userpage-category'>CONSTELLATIONS FAVORABLES</div>
                     <article id='userpage-followers'>
                         <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
                         <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
-                        <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
-                        <User userLogin={'poupou'} avatar={'/assets/avatar/avatar.jpg'} date={'01 avril 2023'} />
                     </article>
                 </aside>
                 <section id='userpage-right'>

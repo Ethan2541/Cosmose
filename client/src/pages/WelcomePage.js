@@ -8,7 +8,7 @@ function WelcomePage(props) {
                 <h1>COSMOSE</h1>
                 <Link to='connexion' id='welcomepage-login'>Se connecter</Link>
                 <Link to='inscription' id='welcomepage-signin'>S'inscrire</Link>
-                <img id='welcomepage-planet' draggable='false' src='./assets/img/planete.png' alt='Planète'/>
+                <img id='welcomepage-planet' draggable='false' src='./assets/planete.png' alt='Planète'/>
             </main>
         </div>
     );

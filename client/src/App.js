@@ -13,20 +13,9 @@ import { useEffect, useState } from 'react';
 function App(props) {
     const [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'whitedwarf')
     const [currentUser, setCurrentUser] = useState(window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : null);
-    const [elapsedTime, setElapsedTime] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
 
-    function sendElapsedTimeToServer(currentElapsedTime) {
-        if (currentUser) {
-            axios.post('/api/timespent', { time: currentElapsedTime })
-                .then((response) => {
-                    console.log('Le temps passé a été mis à jour sur le serveur');
-                })
-                .catch((err) => console.log(err));
-        }
-    }
-      
     function getToken() {
         const token = localStorage.getItem('token');
         return token;
@@ -82,26 +71,14 @@ function App(props) {
         if (token) {
             const decodedToken = jwt_decode(token);
             if (decodedToken.exp * 1000 < Date.now()) {
-                logout();
+                window.localStorage.clear();
+                setCurrentTheme('whitedwarf');
+                setCurrentUser(null);
+                navigate('/');
             }
         }
         window.scrollTo(0,0);
     }, [location]);
-
-    useEffect(() => {
-        const handleBeforeUnload = (e) => {
-          sendElapsedTimeToServer(elapsedTime);
-          // La valeur de returnValue est nécessaire pour certains navigateurs
-            e.preventDefault();
-            e.returnValue = '';
-        };
-        
-        window.addEventListener('beforeunload', handleBeforeUnload);
-      
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, [elapsedTime, currentUser]);
 
     return(
     <div>
