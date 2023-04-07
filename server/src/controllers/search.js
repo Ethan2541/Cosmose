@@ -9,7 +9,7 @@ exports.getFilteredMessagesList = (req, res, next) => {
 }
 
 exports.getFilteredUserMessagesList = (req, res, next) => {
-    db.collection('messages').find({ $and: [ { author: { $eq: req.query.user.login } }, { message: { $regex: req.query.filters } }] }).toArray()
+    db.collection('messages').find({ $and: [ { author: { $eq: req.query.userLogin } }, { message: { $regex: req.query.filters } }] }).toArray()
         .then(messagesList => {
             res.status(200).json({ updatedMessagesList: messagesList });
         })

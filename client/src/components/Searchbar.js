@@ -26,7 +26,7 @@ function Searchbar(props){
                 break;
 
             case 'usermessages':
-                axios.get('/search/usermessages', { params: { filters: filters, user: props.user.login } })
+                axios.get('/search/usermessages', { params: { filters: filters, userLogin: props.userLogin } })
                     .then(res => {
                         console.log(res.data.updatedMessagesList);
                         //props.setList(res.data.updatedMessagesList);
