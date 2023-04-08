@@ -34,12 +34,10 @@ exports.createMessage = (req, res, next) => {
                     return res.status(404).json({ error: 'User not found' });
                 }
 
-                const currentDate = new Date();
-
                 db.collection('messages').insertOne({
                     author: user.login,
                     avatar: user.avatar,
-                    date: `${String(currentDate.getDate()).padStart(2, '0')}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()} à ${currentDate.getHours()}h${currentDate.getMinutes()}`,
+                    date: new Date(),
                     likes: 0,
                     message: req.body.message
                 })

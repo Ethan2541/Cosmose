@@ -12,10 +12,9 @@ import './styles/homepage.css';
 
 function HomePage(props) {
     const [messagesList, setMessagesList] = useState(null);
-    const [limit, setLimit] = useState(5);
     const location = useLocation();
 
-    function getMessagesList() {
+    function getMessagesList(limit) {
         axios.get(`/messages/${limit}`)
             .then(res => {
                 let messages = res.data.messagesList;
@@ -25,7 +24,7 @@ function HomePage(props) {
     }
 
     useEffect(() => {
-        const updatedMessagesList = getMessagesList();
+        const updatedMessagesList = getMessagesList(5);
         console.log(updatedMessagesList)
         setMessagesList(updatedMessagesList);
     }, [location]);
@@ -40,12 +39,12 @@ function HomePage(props) {
             </aside>
             <main id='homepage-right'>
                 <div id='homepage-searchbar'>
-                    <Searchbar  placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } />
+                    <Searchbar placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } />
                 </div>
                 <section id='homepage-posts'>
                     <CreateMessage />
                     <div id='homepage-messageslist'>
-                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } currentLimit={ limit } setLimit={ setLimit } />
+                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } getList={ getMessagesList } />
                     </div>
                 </section>
             </main>
