@@ -11,7 +11,7 @@ function CreateMessage(props){
         axios.defaults.headers = {
             Authorization: `Bearer ${token}`,
         };
-        axios.put('/api/messages/', {
+        axios.put('/messages', {
             message: message
         })
             .then((res) => {
@@ -23,7 +23,7 @@ function CreateMessage(props){
     return(
         <div id='createmessage'>
             <textarea placeholder='Stimulez votre imagination, c&#39;est ici que votre histoire commence !' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
-            <button type='submit' onClick={sendMessage}>PUBLIER</button>
+            <button type='submit' onClick={ sendMessage }>PUBLIER</button>
         </div>
     );
 }

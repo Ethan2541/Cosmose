@@ -1,20 +1,17 @@
 import axios from '../../axios.js';
 import Message from './Message.js';
 
-function MessagesList(props){
-    const token = window.localStorage.getItem('token');
-    axios.defaults.headers = {
-        Authorization: `Bearer ${token}`,
-    };
-    axios.get('/api/messages/')
-        .then((res) => {
-            return(
-                res.messages.map((msg, index) => {<Message />})
-            );
-        })
-        .catch((err) => console.log(err));
+import { FaChevronDown } from 'react-icons/fa';
 
-    
+function MessagesList(props) {
+        return(
+            <div className='messageslist'>
+                <ul>
+                    { props.messages && props.messages.map((user, index) => {<Message />}) }
+                </ul>
+                <button className='messageslist-seemore'><FaChevronDown />Voir plus</button>
+            </div>
+        ); 
 }
 
 export default MessagesList;

@@ -1,9 +1,9 @@
-.userslist-seemore {
+.userslist {
     margin: 0;
     width: 100%;
 }
 
-.userslist-seemore-button {
+.userslist-seemore {
     align-items: center;
     background-color: var(--user-bg-color);
     border: 1px solid var(--user-border-color);
@@ -21,6 +21,6 @@
     width: 100%;
 }
 
-.userslist-seemore-button:hover {
+.userslist-seemore:hover {
     filter: brightness(80%);
 }

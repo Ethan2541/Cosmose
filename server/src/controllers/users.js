@@ -33,5 +33,14 @@ exports.getAssets = (req, res, next) => {
 }
 
 exports.getMeters = (req, res, next) => {
-    let meters = { comments: 0, followers: 0, likes: 0 };
+    const userMeters = { followers: 0, likes: 0, messages: 0 };
+
+    db.collection('messages').find({ author: { $eq: req.params.login } }).forEach(message => {
+        userMeters.likes += message.likes;
+        userMeters.messages += 1;
+    });
+
+    db.collection('followers').find({ userLogin: { $eq: req.params.login } }).forEach(relation => { userMeters.followers += 1; });
+
+    res.status(200).json({ userMeters: userMeters });
 }

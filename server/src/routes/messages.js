@@ -5,7 +5,8 @@ const messages = require('./../controllers/messages');
 
 const router = express.Router();
 
-router.put('/like', async (req, res) => {
+router.get('/:limit', messages.getMessagesList)
+.put('/like', async (req, res) => {
     if(req.body.messageId === undefined){
         res.status(400).json({message: 'paramètres manquants'});
     }
@@ -28,7 +29,7 @@ router.put('/like', async (req, res) => {
         res.status(400).json({message: 'paramètres manquants'});
     }
     else{
-        await messages.createMessage(req.user.id, req.body.message)
+        await messages.createMessage(req.user.login, req.body.message)
         res.status(201).json({message: 'message créé', details: ''});
     }
 })

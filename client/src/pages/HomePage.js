@@ -1,12 +1,35 @@
+import axios from '../axios.js';
 import CreateMessage from '../components/CreateMessage.js';
 import Menu from '../components/Menu.js';
-import Message from '../components/Messages/Message.js';
+import MessagesList from '../components/Messages/MessagesList.js';
 import Searchbar from '../components/Searchbar.js';
 import StarryBackground from '../components/StarryBackground.js';
+
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './styles/homepage.css';
 
 function HomePage(props) {
+    const [messagesList, setMessagesList] = useState(null);
+    const [limit, setLimit] = useState(5);
+    const location = useLocation();
+
+    function getMessagesList() {
+        axios.get(`/messages/${limit}`)
+            .then(res => {
+                let messages = res.data.messagesList;
+                setMessagesList(messages);
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        const updatedMessagesList = getMessagesList();
+        console.log(updatedMessagesList)
+        setMessagesList(updatedMessagesList);
+    }, [location]);
+
     return(
         <div id='homepage'>
             <div id='homepage-starrybackground'>
@@ -22,13 +45,7 @@ function HomePage(props) {
                 <section id='homepage-posts'>
                     <CreateMessage />
                     <div id='homepage-messageslist'>
-                    <Message author={'Rikkun'} idAuteur={1} message={'Coucou les amis !'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/riku.png'}/>
-                        <Message author={'Mitsuki-kun'} idAuteur={2} message={'Ohayo ! Mina-san !'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/mitsuki.png'}/>
-                        <Message author={'Nagi-san'} idAuteur={3} message={'Hello girls !'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/nagi.png'}/>
-                        <Message author={'Yamato-san'} idAuteur={4} message={'Yo tout le monde !'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/yamato.png'}/>
-                        <Message author={'Tamaki-kun'} idAuteur={5} message={'Salut les amis...'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/tamaki.png'}/>
-                        <Message author={'Sogo-san'} idAuteur={6} message={'Bonjour à tous !'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/sogo.png'}/>
-                        <Message author={'Iori-kun'} idAuteur={7} message={'Bonjour les amis.'} date={'28 mars 2023 à 14h00'} avatar={'./assets/avatar/iori.png'}/>
+                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } currentLimit={ limit } setLimit={ setLimit } />
                     </div>
                 </section>
             </main>

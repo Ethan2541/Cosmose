@@ -37,3 +37,11 @@ exports.deleteMessage = async (messageId) => {
         _id: messageId
     });
 }
+
+exports.getMessagesList = (req, res, next) => {
+    db.collection('messages').find().limit(Number(req.params.limit)).toArray()
+        .then(messagesList => {
+            res.status(200).json({ messagesList: messagesList });
+        })
+        .catch(err => console.log(err))
+}
