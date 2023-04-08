@@ -11,11 +11,11 @@ function CreateMessage(props){
         axios.defaults.headers = {
             Authorization: `Bearer ${token}`,
         };
-        axios.put('/messages', {
-            message: message
-        })
+
+        axios.put('/messages', { message: message })
             .then((res) => {
                 setMessage('');
+                window.location.reload();
             })
             .catch((err) => console.log(err));
     }

@@ -7,7 +7,7 @@ import { FaStar } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useState } from 'react';
 
-import './message.css'
+import './styles/message.css';
 
 function Message(props){
     const [starred, setStarred] = useState(false);

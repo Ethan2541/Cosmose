@@ -1,3 +1,4 @@
+const auth = require('../auth.js');
 const express = require('express');
 const comments = require('./../controllers/comments');
 const likes = require('./../controllers/likes');
@@ -6,6 +7,8 @@ const messages = require('./../controllers/messages');
 const router = express.Router();
 
 router.get('/:limit', messages.getMessagesList)
+.put('/', auth, messages.createMessage)
+
 .put('/like', async (req, res) => {
     if(req.body.messageId === undefined){
         res.status(400).json({message: 'paramètres manquants'});
@@ -22,15 +25,6 @@ router.get('/:limit', messages.getMessagesList)
     else{
         await comments.addComment(req.user.id, req.body.messageId, req.body.comment);
         res.status(201).json({message: 'commentaire créé', details: ''});
-    }
-})
-.put('/', async (req, res) => {
-    if(req.body.message === undefined){
-        res.status(400).json({message: 'paramètres manquants'});
-    }
-    else{
-        await messages.createMessage(req.user.login, req.body.message)
-        res.status(201).json({message: 'message créé', details: ''});
     }
 })
 .delete('/like', likes.isUserAuthorizedLike, async (req, res) => {

@@ -7,7 +7,6 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto auto;
     overflow: scroll;
-    width: 100%;
 }
 
 .message>img {
