@@ -13,7 +13,13 @@ function UserMeters(props) {
     const location = useLocation();
 
     useEffect(() => {
-        // API pour récupérer les compteurs
+        axios.get(`/users/stats/${props.userLogin}`)
+            .then(res => {
+                console.log(res.data.userMeters)
+                const meters = res.data.userMeters;
+                setUserMeters(meters);
+            })
+            .catch(err => console.log(err));
     }, [location]);
 
     return(
@@ -29,7 +35,7 @@ function UserMeters(props) {
             </div>
             <p>&bull;</p>
             <div title='Publications postées' >
-                <p>{ userMeters.comments }</p>
+                <p>{ userMeters.messages }</p>
                 <FaCommentAlt />
             </div>
         </div>

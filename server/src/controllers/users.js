@@ -34,13 +34,21 @@ exports.getAssets = (req, res, next) => {
 
 exports.getMeters = (req, res, next) => {
     const userMeters = { followers: 0, likes: 0, messages: 0 };
-
-    db.collection('messages').find({ author: { $eq: req.params.login } }).forEach(message => {
-        userMeters.likes += message.likes;
-        userMeters.messages += 1;
-    });
-
-    db.collection('followers').find({ userLogin: { $eq: req.params.login } }).forEach(relation => { userMeters.followers += 1; });
-
-    res.status(200).json({ userMeters: userMeters });
+    db.collection('messages').find({ author: { $eq: req.params.login } }).toArray()
+        .then(messagesList => {
+            for (let i = 0; i < messagesList.length; i++) {
+                userMeters.likes += messagesList[i].likes;
+                userMeters.messages += 1;
+            }
+            
+            db.collection('followers').find({ userLogin: { $eq: req.params.login } }).toArray()
+                .then(followersList => {
+                    for (let i = 0; i < followersList.length; i++) {
+                        userMeters.followers += 1;
+                    }
+                    res.status(200).json({ userMeters: userMeters });
+                })
+                .catch(err => res.status(500).json({ error: 'Internal server error' }));            
+        })
+        .catch(err => res.status(500).json({ error: 'Internal server error' }));
 }

@@ -25,7 +25,6 @@ function HomePage(props) {
 
     useEffect(() => {
         const updatedMessagesList = getMessagesList(5);
-        console.log(updatedMessagesList)
         setMessagesList(updatedMessagesList);
     }, [location]);
 

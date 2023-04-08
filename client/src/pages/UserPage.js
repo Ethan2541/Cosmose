@@ -2,11 +2,12 @@ import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import axios from '../axios.js';
 import Banner from '../components/Banner.js';
 import CreateMessage from '../components/CreateMessage.js';
-import Message from '../components/Messages/Message.js';
+import MessagesList from '../components/Messages/MessagesList.js';
 import Searchbar from '../components/Searchbar.js';
 import User from '../components/Users/User.js';
 import UsersList from '../components/Users/UsersList.js';
@@ -16,9 +17,20 @@ import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 import './styles/userpage.css';
 
 function UserPage(props) {
+    const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
+    const [messagesList, setMessagesList] = useState(null);
     const [user, setUser] = useState(props.currentUser);
+
+    function getMessagesList(limit) {
+        axios.get(`/messages/${limit}`)
+            .then(res => {
+                let messages = res.data.messagesList;
+                setMessagesList(messages);
+            })
+            .catch(err => console.log(err));
+    }
 
     useEffect(() => {
         if (!login) {
@@ -35,6 +47,11 @@ function UserPage(props) {
             })
             .catch(err => console.log(err));
     }, [login]);
+
+    useEffect(() => {
+        const updatedMessagesList = getMessagesList(5);
+        setMessagesList(updatedMessagesList);
+    }, [location]);
 
     return (
         <div id='userpage'>
@@ -53,7 +70,7 @@ function UserPage(props) {
                         <h2 className='pseudo'>{user.firstName} {user.lastName}</h2>
                         <h3 className='login'>@{user.login}</h3>
                     </div>
-                    <UserMeters />
+                    <UserMeters userLogin={ user.login } />
                     <div className='userpage-category'>STATISTIQUES</div>
                     <article className='userpage-userstats'>
                         <UserStatsWrapper />
@@ -75,13 +92,7 @@ function UserPage(props) {
                     </div>
                     <CreateMessage />
                     <div id='userpage-messageslist'>
-                        <Message author={'Rikkun'} message={'Coucou les amis !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/riku.png'}/>
-                        <Message author={'Mitsuki-kun'} message={'Ohayo ! Mina-san !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/mitsuki.png'}/>
-                        <Message author={'Nagi-san'} message={'Hello girls !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/nagi.png'}/>
-                        <Message author={'Yamato-san'} message={'Yo tout le monde !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/yamato.png'}/>
-                        <Message author={'Tamaki-kun'} message={'Salut les amis...'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/tamaki.png'}/>
-                        <Message author={'Sogo-san'} message={'Bonjour à tous !'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/sogo.png'}/>
-                        <Message author={'Iori-kun'} message={'Bonjour les amis.'} date={'28 mars 2023 à 14h00'} avatar={'/assets/avatar/iori.png'}/>
+                        <MessagesList messages={ messagesList } getList={ getMessagesList } />
                     </div>
                 </section>
             </main>
