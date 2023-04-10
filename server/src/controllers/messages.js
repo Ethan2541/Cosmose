@@ -66,3 +66,11 @@ exports.getMessagesList = (req, res, next) => {
         })
         .catch(err => console.log(err))
 }
+
+exports.getUserMessagesList = (req, res, next) => {
+    db.collection('messages').find({ author: req.params.userLogin }).limit(Number(req.params.limit)).sort({ date: -1 }).toArray()
+        .then(messagesList => {
+            res.status(200).json({ messagesList: messagesList });
+        })
+        .catch(err => console.log(err))
+}

@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/allmessages', auth, searchCtrl.getFilteredMessagesList)
 .get('/usermessages', auth, searchCtrl.getFilteredUserMessagesList)
-.get('/users/:login', auth, searchCtrl.getFilteredUser);
+.get('/users/:login', auth, searchCtrl.getFilteredUser)
+.get('/users', auth, searchCtrl.getFilteredUser);
 
 module.exports = router;

@@ -19,8 +19,7 @@ function Searchbar(props){
             case 'allmessages':
                 axios.get('/search/allmessages', { params: { filters: filters } })
                     .then(res => {
-                        console.log(res.data.updatedMessagesList);
-                        //props.setList(res.data.updatedMessagesList);
+                        props.setList(res.data.updatedMessagesList);
                     })
                     .catch(err => console.log(err));
                 break;
@@ -28,7 +27,7 @@ function Searchbar(props){
             case 'usermessages':
                 axios.get('/search/usermessages', { params: { filters: filters, userLogin: props.userLogin } })
                     .then(res => {
-                        //props.setList(res.data.updatedMessagesList);
+                        props.setList(res.data.updatedMessagesList);
                     })
                     .catch(err => console.log(err));
                 break;

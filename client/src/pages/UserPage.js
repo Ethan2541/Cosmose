@@ -23,8 +23,8 @@ function UserPage(props) {
     const [messagesList, setMessagesList] = useState(null);
     const [user, setUser] = useState(props.currentUser);
 
-    function getMessagesList(limit) {
-        axios.get(`/messages/${limit}`)
+    function getUserMessagesList(limit) {
+        axios.get(`/messages/${user.login}/${limit}`)
             .then(res => {
                 let messages = res.data.messagesList;
                 setMessagesList(messages);
@@ -43,13 +43,14 @@ function UserPage(props) {
                 }
                 else {
                     setUser(res.data.user);
+                    navigate(`/profil/${login}`);
                 }
             })
             .catch(err => console.log(err));
     }, [login]);
 
     useEffect(() => {
-        const updatedMessagesList = getMessagesList(5);
+        const updatedMessagesList = getUserMessagesList(5);
         setMessagesList(updatedMessagesList);
     }, [location]);
 
@@ -88,11 +89,11 @@ function UserPage(props) {
                 </aside>
                 <section id='userpage-right'>
                     <div id='userpage-searchbar'>
-                        <Searchbar placeholder={'Naviguer dans votre constellation...'} type={ 'usermessages' } />
+                        <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ getUserMessagesList } />
                     </div>
-                    <CreateMessage />
+                    { props.currentUser.login === user.login && <CreateMessage />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ messagesList } getList={ getMessagesList } />
+                        <MessagesList messages={ messagesList } getList={ getUserMessagesList } />
                     </div>
                 </section>
             </main>

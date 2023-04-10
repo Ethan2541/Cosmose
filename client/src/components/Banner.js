@@ -69,15 +69,18 @@ function Banner(props) {
             <div id='banner-cover'>
                 <img draggable='false' src={ userAssets.cover } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } />
             </div>
+            { props.currentUserLogin === props.userLogin ?
             <div id="banner-edit" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }>
-                <input type='file'></input>
+                <input type='file' accept='.png, .jpg, .jpeg'></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
-            </div>
-            <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaPlusCircle /> SUIVRE</button>
+            </div> :
+            props.currentUserLogin === props.userLogin ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaPlusCircle /> SUIVRE</button> :
+            <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaMinusCircle /> NE PLUS SUIVRE</button>
+            }
             
             <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>
-                <input type='file'></input>
+                <input type='file' accept='.png, .jpg, .jpeg'></input>
                 <span><FaPen /></span>
             </div>
         </div>

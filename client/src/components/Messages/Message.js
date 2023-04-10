@@ -21,7 +21,7 @@ function Message(props){
             <img draggable='false' src={ props.avatar } alt={ 'Avatar de ' + props.author } />
             <div className='message-metadata'>
                 <h3>{ props.author }</h3>
-                <h4>Le {`${String(props.date.getDay()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${props.date.getHours()}h${props.date.getMinutes()}`}</h4>
+                <h4>Le {`${String(props.date.getDate()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${String(props.date.getHours()).padStart(2, '0')}h${String(props.date.getMinutes()).padStart(2, '0')}`}</h4>
             </div>
             <p>{ props.message }</p>
             <div className='message-features'>

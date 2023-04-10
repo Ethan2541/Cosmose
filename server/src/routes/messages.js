@@ -7,6 +7,7 @@ const messages = require('./../controllers/messages');
 const router = express.Router();
 
 router.get('/:limit', messages.getMessagesList)
+.get('/:userLogin/:limit', messages.getUserMessagesList)
 .put('/', auth, messages.createMessage)
 
 .put('/like', async (req, res) => {

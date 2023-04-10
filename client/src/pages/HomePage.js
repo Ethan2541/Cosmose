@@ -38,7 +38,7 @@ function HomePage(props) {
             </aside>
             <main id='homepage-right'>
                 <div id='homepage-searchbar'>
-                    <Searchbar placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } />
+                    <Searchbar placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } setList={ setMessagesList } />
                 </div>
                 <section id='homepage-posts'>
                     <CreateMessage />
