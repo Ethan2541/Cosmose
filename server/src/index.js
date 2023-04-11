@@ -18,7 +18,7 @@ app.use(cors())
 app.use('/api', api);
 app.use('/search', search);
 app.use('/users', users);
-app.use('/messages', messages)
+app.use('/messages', messages);
 
 app.use('/*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));

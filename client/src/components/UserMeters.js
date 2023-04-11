@@ -15,7 +15,6 @@ function UserMeters(props) {
     useEffect(() => {
         axios.get(`/users/stats/${props.userLogin}`)
             .then(res => {
-                console.log(res.data.userMeters)
                 const meters = res.data.userMeters;
                 setUserMeters(meters);
             })

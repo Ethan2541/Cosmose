@@ -3,7 +3,7 @@ const db = require('../db');
 const jwt = require('jsonwebtoken');
 
 exports.login = (req, res, next) => {
-    db.collection('users').findOne({ 'login': req.body.login })
+    db.collection('users').findOne({ login: req.body.login })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Invalid login or password' });

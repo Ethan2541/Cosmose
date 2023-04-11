@@ -20,14 +20,14 @@ function UserPage(props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
-    const [messagesList, setMessagesList] = useState(null);
+    const [userMessagesList, setUserMessagesList] = useState(null);
     const [user, setUser] = useState(props.currentUser);
 
     function getUserMessagesList(limit) {
         axios.get(`/messages/${user.login}/${limit}`)
             .then(res => {
                 let messages = res.data.messagesList;
-                setMessagesList(messages);
+                setUserMessagesList(messages);
             })
             .catch(err => console.log(err));
     }
@@ -50,8 +50,8 @@ function UserPage(props) {
     }, [login]);
 
     useEffect(() => {
-        const updatedMessagesList = getUserMessagesList(5);
-        setMessagesList(updatedMessagesList);
+        const updatedUserMessagesList = getUserMessagesList(5);
+        setUserMessagesList(updatedUserMessagesList);
     }, [location]);
 
     return (
@@ -89,11 +89,11 @@ function UserPage(props) {
                 </aside>
                 <section id='userpage-right'>
                     <div id='userpage-searchbar'>
-                        <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ getUserMessagesList } />
+                        <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ setUserMessagesList } userLogin={ user.login } />
                     </div>
                     { props.currentUser.login === user.login && <CreateMessage />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ messagesList } getList={ getUserMessagesList } />
+                        <MessagesList messages={ userMessagesList } getList={ getUserMessagesList } />
                     </div>
                 </section>
             </main>
