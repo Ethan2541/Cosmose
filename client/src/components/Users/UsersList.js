@@ -19,9 +19,9 @@ function UsersList(props) {
     return(
         <div className='userslist'>
             <ul>
-                { props.users.map((user, index) => { <User userId={ user.id } userLogin={ user.login } avatar={ user.avatar } date={ user.date } /> }) }
+                { props.users && props.users.map((user, index) => { <User userId={ user.id } userLogin={ user.login } avatar={ user.avatar } date={ user.date } /> }) }
             </ul>
-            <button className='userslist-seemore' onClick={ handleSeeMore }><FaChevronDown />Voir plus</button>
+            { props.users && props.users.length > 0 ? <button className='userslist-seemore' onClick={ handleSeeMore }><FaChevronDown />Voir plus</button> : <button className='userslist-empty'>Liste vide</button> }
         </div>
         
     );

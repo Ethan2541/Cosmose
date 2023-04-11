@@ -34,11 +34,11 @@ function Message(props){
                 <button className='message-features-button'>
                     <FaRegCommentDots title='Commenter' />
                 </button>
-                { props.userId != props.authorId && 
+                { props.currentUserLogin !== props.author && 
                 <button className='message-follow-button'>
                     <FaPlusCircle title='Suivre' />
                 </button> }
-                { props.userId == props.authorId && 
+                { props.currentUserLogin === props.author && 
                 <button className='message-delete-button'>
                     <FaTrashAlt title='Supprimer' />
                 </button> }

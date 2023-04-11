@@ -43,7 +43,7 @@ function HomePage(props) {
                 <section id='homepage-posts'>
                     <CreateMessage />
                     <div id='homepage-messageslist'>
-                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } getList={ getMessagesList } />
+                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } getList={ getMessagesList } currentUserLogin={ props.currentUser.login } />
                     </div>
                 </section>
             </main>

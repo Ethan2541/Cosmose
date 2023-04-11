@@ -86,7 +86,7 @@ function App(props) {
                 <Route path='/' element={ isOffline(<WelcomePage />) }/>
                 <Route path='/connexion' element={ isOffline(<LoginPage setCurrentTheme={ setCurrentTheme } setCurrentUser={ setCurrentUser } />) }/>
                 <Route path='/inscription' element={ isOffline(<SignUpPage />) }/>
-                <Route path='/accueil' element={ isAllowed(<HomePage switchTheme={ switchTheme } logout={ logout } />) } />
+                <Route path='/accueil' element={ isAllowed(<HomePage switchTheme={ switchTheme } logout={ logout } currentUser={ currentUser } />) } />
                 <Route path='/profil' element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } currentUser={ currentUser } />) }/>
                 <Route path='/profil/:login' element={ isAllowed(<UserPage switchTheme={ switchTheme } logout={ logout } currentUser={ currentUser } />) }/>
                 <Route path='*' element={ <Navigate to='/' replace /> } />

@@ -20,6 +20,8 @@ function UserPage(props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
+    const [followedList, setFollowedList] = useState(null);
+    const [followersList, setFollowersList] = useState(null);
     const [userMessagesList, setUserMessagesList] = useState(null);
     const [user, setUser] = useState(props.currentUser);
 
@@ -28,6 +30,24 @@ function UserPage(props) {
             .then(res => {
                 let messages = res.data.messagesList;
                 setUserMessagesList(messages);
+            })
+            .catch(err => console.log(err));
+    }
+
+    function getFollowedList(limit) {
+        axios.get(`/users/followed/${user.login}/${limit}`)
+            .then(res => {
+                let followed = res.data.followedList;
+                setFollowersList(followed);
+            })
+            .catch(err => console.log(err));
+    }
+
+    function getFollowersList(limit) {
+        axios.get(`/users/followers/${user.login}/${limit}`)
+            .then(res => {
+                let followers = res.data.followersList;
+                setFollowersList(followers);
             })
             .catch(err => console.log(err));
     }
@@ -52,6 +72,10 @@ function UserPage(props) {
     useEffect(() => {
         const updatedUserMessagesList = getUserMessagesList(5);
         setUserMessagesList(updatedUserMessagesList);
+        const updatedFollowersList = getFollowersList(5);
+        setFollowersList(updatedFollowersList);
+        const updatedFollowedList = getFollowedList(5);
+        setFollowedList(updatedFollowedList);
     }, [location]);
 
     return (
@@ -78,13 +102,11 @@ function UserPage(props) {
                     </article>
                     <div className='userpage-category'>VOTRE NEBULEUSE</div>
                     <article id='userpage-followed'>
-                        <User userLogin={'Mitsuki'} avatar={'/assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
-                        <User userLogin={'Mitsuki'} avatar={'/assets/avatar/mitsuki.png'} date={'01 janvier 2000'} />
+                        <UsersList users={ followedList } getList={ getFollowedList } />
                     </article>
                     <div className='userpage-category'>CONSTELLATIONS FAVORABLES</div>
                     <article id='userpage-followers'>
-                        <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
-                        <User userLogin={'Tamaki'} avatar={'/assets/avatar/tamaki.png'} date={'01 janvier 2000'} />
+                        <UsersList users={ followersList } getList={ getFollowersList } />
                     </article>
                 </aside>
                 <section id='userpage-right'>
@@ -93,7 +115,7 @@ function UserPage(props) {
                     </div>
                     { props.currentUser.login === user.login && <CreateMessage />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ userMessagesList } getList={ getUserMessagesList } />
+                        <MessagesList messages={ userMessagesList } getList={ getUserMessagesList } currentUserLogin={ props.currentUser.login } />
                     </div>
                 </section>
             </main>

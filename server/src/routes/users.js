@@ -8,7 +8,7 @@ router.get('/:login', usersCtrl.getUser)
 .put('/theme', auth, usersCtrl.changeDefaultTheme)
 .get('/assets/:login', usersCtrl.getAssets)
 .get('/stats/:login', usersCtrl.getMeters)
-.get('/followers/:login/:limit', auth, followersCtrl.getUserFollowersList)
-.get('/followed/:login/:limit', auth, followersCtrl.getUserFollowedList);
+.get('/followers/:login/:limit', followersCtrl.getUserFollowersList)
+.get('/followed/:login/:limit', followersCtrl.getUserFollowedList);
 
 module.exports = router;
