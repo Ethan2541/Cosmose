@@ -3,6 +3,11 @@
     width: 100%;
 }
 
+.userslist>ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .userslist-seemore {
     align-items: center;
     background-color: var(--user-bg-color);
@@ -22,7 +27,7 @@
 }
 
 .userslist-seemore:hover {
-    filter: brightness(80%);
+    box-shadow: rgba(0,0,0,0.5) 0px 2px 2px;
 }
 
 .userslist-empty {

@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import './styles/banner.css';
 
 function Banner(props) {
+    const [followStatus, setFollowStatus] = useState(false);
     const [userAssets, setUserAssets] = useState({ avatar: '/assets/avatar.jpg', cover: '/assets/cover.jpg' });
     const location = useLocation();
 
@@ -52,6 +53,19 @@ function Banner(props) {
         console.log("test");
     }
 
+    function isFollower() {
+        axios.get(`/users/isfollower/${props.currentUserLogin}/${props.userLogin}`)
+            .then(res => {
+                setFollowStatus(res.data.found);
+            })
+            .catch(err => console.log(err));
+    }
+
+    function follow() {
+        axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.author })
+            .catch(err => console.log(err));
+    }
+
     function getAssets() {
         axios.get(`/users/assets/${props.userLogin}`)
             .then(res => {
@@ -62,7 +76,8 @@ function Banner(props) {
 
     useEffect(() => {
         getAssets();
-    }, [location])
+        isFollower();
+    }, [location]);
 
     return(
         <div id='banner'>
@@ -74,10 +89,9 @@ function Banner(props) {
                 <input type='file' accept='.png, .jpg, .jpeg'></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
             </div> :
-            props.currentUserLogin === props.userLogin ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaPlusCircle /> SUIVRE</button> :
-            <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaMinusCircle /> NE PLUS SUIVRE</button>
+            followStatus ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaMinusCircle /> NE PLUS SUIVRE</button> :
+            <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } onClick={ follow }><FaPlusCircle /> SUIVRE</button>
             }
-            
             <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>
                 <input type='file' accept='.png, .jpg, .jpeg'></input>

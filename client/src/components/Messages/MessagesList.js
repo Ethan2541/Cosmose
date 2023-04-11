@@ -19,7 +19,7 @@ function MessagesList(props) {
     return(
         <div className='messageslist'>
             <ul>
-                { props.messages && props.messages.map((msg, index) => <Message author={ msg.author } avatar={ msg.avatar } date={ new Date(msg.date) } key={ msg._id } message={ msg.message } currentUserLogin={ props.currentUserLogin } />) }
+                { props.messages && props.messages.map((msg, index) => <li key={ msg._id }><Message author={ msg.author } avatar={ msg.avatar } date={ new Date(msg.date) } message={ msg.message } currentUserLogin={ props.currentUserLogin } /></li>) }
             </ul>
             { props.messages && props.messages.length > 0 ? <button className='messageslist-seemore' onClick={ handleSeeMore }><FaChevronDown />Voir plus</button> : <div className='messageslist-empty'>Liste vide</div> }
         </div>

@@ -1,3 +1,5 @@
+import axios from '../../axios.js';
+
 import { FaMinusCircle } from 'react-icons/fa';
 import { FaPlusCircle } from 'react-icons/fa';
 import { FaRegCommentDots } from 'react-icons/fa';
@@ -5,16 +7,36 @@ import { FaRegStar } from 'react-icons/fa';
 import { FaRetweet } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';
 import { FaTrashAlt } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './styles/message.css';
 
 function Message(props){
+    const [followStatus, setFollowStatus] = useState(false);
     const [starred, setStarred] = useState(false);
+    const location = useLocation();
 
     function handleStarred(evt) {
         setStarred(!starred);
     }
+
+    function follow() {
+        axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.author })
+            .catch(err => console.log(err));
+    }
+
+    function isFollower() {
+        axios.get(`/users/isfollower/${props.currentUserLogin}/${props.author}`)
+            .then(res => {
+                setFollowStatus(res.data.found);
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        isFollower();
+    }, [location]);
 
     return(
         <div id={ props.messageId } className='message'>
@@ -34,10 +56,13 @@ function Message(props){
                 <button className='message-features-button'>
                     <FaRegCommentDots title='Commenter' />
                 </button>
-                { props.currentUserLogin !== props.author && 
-                <button className='message-follow-button'>
+                { props.currentUserLogin !== props.author && (followStatus ?
+                <button className='message-unfollow-button'>
+                <FaMinusCircle title='Ne plus suivre' />
+                </button> :
+                <button className='message-follow-button' onClick={ follow }>
                     <FaPlusCircle title='Suivre' />
-                </button> }
+                </button>) }
                 { props.currentUserLogin === props.author && 
                 <button className='message-delete-button'>
                     <FaTrashAlt title='Supprimer' />

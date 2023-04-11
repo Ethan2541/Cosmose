@@ -38,7 +38,7 @@ function UserPage(props) {
         axios.get(`/users/followed/${user.login}/${limit}`)
             .then(res => {
                 let followed = res.data.followedList;
-                setFollowersList(followed);
+                setFollowedList(followed);
             })
             .catch(err => console.log(err));
     }
@@ -97,17 +97,17 @@ function UserPage(props) {
                     </div>
                     <UserMeters userLogin={ user.login } />
                     <div className='userpage-category'>STATISTIQUES</div>
-                    <article className='userpage-userstats'>
+                    <section className='userpage-userstats'>
                         <UserStatsWrapper />
-                    </article>
+                    </section>
                     <div className='userpage-category'>VOTRE NEBULEUSE</div>
-                    <article id='userpage-followed'>
-                        <UsersList users={ followedList } getList={ getFollowedList } />
-                    </article>
+                    <section id='userpage-followed'>
+                        <UsersList users={ followedList } getList={ getFollowedList } type={ 'followed' } />
+                    </section>
                     <div className='userpage-category'>CONSTELLATIONS FAVORABLES</div>
-                    <article id='userpage-followers'>
-                        <UsersList users={ followersList } getList={ getFollowersList } />
-                    </article>
+                    <section id='userpage-followers'>
+                        <UsersList users={ followersList } getList={ getFollowersList } type={ 'followers' } />
+                    </section>
                 </aside>
                 <section id='userpage-right'>
                     <div id='userpage-searchbar'>

@@ -67,6 +67,10 @@
     color: var(--border-color);
 }
 
+.message-unfollow-button:hover {
+    color: rgba(255,69,0,1);
+}
+
 .message-follow-button:hover {
     color: rgba(70,141,78,1);
 }
