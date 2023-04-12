@@ -1,3 +1,4 @@
+const cloudinary = require('../utils/cloudinary');
 const db = require('../utils/db');
 
 exports.getUser = (req, res, next) => {
@@ -30,6 +31,17 @@ exports.getAssets = (req, res, next) => {
             res.status(200).json({ avatar: user.avatar, cover: user.cover });
         })
         .catch(err => res.status(500).json('Internal server error'));
+}
+
+exports.postAssets = (req, res, next) => {
+    console.log(req.file)
+    cloudinary.uploader.upload(req.file.path)
+        .then(result => {
+            console.log(result.secure_url);
+            console.log(result.public_id);
+            res.status(204).json()
+        })
+        .catch(err => res.status(500).json({ error: err }));
 }
 
 exports.getMeters = (req, res, next) => {

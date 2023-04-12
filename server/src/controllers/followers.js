@@ -5,7 +5,7 @@ exports.follow = (req, res, next) => {
     db.collection('followers').findOne({ followerLogin: req.body.followerLogin, followedLogin: req.body.followedLogin })
         .then(exists => {
             if (exists) {
-                return res.status(400).json({ error: 'Already followed' })
+                return res.status(409).json({ error: 'Already followed' })
             }
             db.collection('users').findOne({ login: req.body.followedLogin })
                 .then(followedUser => {
