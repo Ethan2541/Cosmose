@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../utils/db');
 
 exports.timeSpent = (req, res, next) => {
     db.collection('users').updateOne({ login: req.user.login }, { $inc: { timespent: req.body.time } })

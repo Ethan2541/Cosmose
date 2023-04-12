@@ -1,4 +1,4 @@
-const db = require('./../db');
+const db = require('../utils/db');
 
 exports.isUserAuthorizedLike = async (req, res, next) => {
     const messageId = req.body.messageId;

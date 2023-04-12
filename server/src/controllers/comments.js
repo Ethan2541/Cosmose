@@ -1,4 +1,4 @@
-const db = require('./../db');
+const db = require('../utils/db');
 const { v4: uuidv4 } = require('uuid');
 
 exports.isUserAuthorizedComment = async (req, res, next) => {

@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../utils/db');
 
 exports.getFilteredMessagesList = (req, res, next) => {
     db.collection('messages').find({ $or: [ { author: { $regex: req.query.filters } }, { message: { $regex: req.query.filters, $options: 'i' } }] }).sort({ date: -1 }).toArray()

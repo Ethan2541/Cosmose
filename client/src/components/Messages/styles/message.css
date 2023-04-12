@@ -45,6 +45,7 @@
     grid-area: 2 / 2 / 3 / 3;
     margin: 10px 10% 0 25px;
     padding: 10px 0 10px 0;
+    white-space: pre-line;
 }
 
 .message-features {

@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../utils/db');
 
 exports.getUser = (req, res, next) => {
     db.collection('users').findOne({ login: req.params.login })

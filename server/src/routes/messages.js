@@ -1,4 +1,4 @@
-const auth = require('../auth.js');
+const auth = require('../utils/auth.js');
 const express = require('express');
 const comments = require('./../controllers/comments');
 const likes = require('./../controllers/likes');

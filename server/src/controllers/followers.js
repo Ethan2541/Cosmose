@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const db = require('../db');
+const db = require('../utils/db');
 
 exports.follow = (req, res, next) => {
     db.collection('followers').findOne({ followerLogin: req.body.followerLogin, followedLogin: req.body.followedLogin })
