@@ -37,7 +37,7 @@
     align-items: center;
     background-color: var(--message-bg-color);
     border: 1px solid var(--message-border-color);
-    color: rgba(255,255,255,1);
+    color: var(--text-color);
     display: flex;
     font-family: inherit;
     font-size: 16px;

@@ -1,7 +1,7 @@
 const db = require('../db');
 
 exports.getFilteredMessagesList = (req, res, next) => {
-    db.collection('messages').find({ $or: [ { author: { $regex: req.query.filters } }, { message: { $regex: req.query.filters } }] }).sort({ date: -1 }).toArray()
+    db.collection('messages').find({ $or: [ { author: { $regex: req.query.filters } }, { message: { $regex: req.query.filters, $options: 'i' } }] }).sort({ date: -1 }).toArray()
         .then(messagesList => {
             res.status(200).json({ updatedMessagesList: messagesList });
         })
@@ -9,7 +9,7 @@ exports.getFilteredMessagesList = (req, res, next) => {
 }
 
 exports.getFilteredUserMessagesList = (req, res, next) => {
-    db.collection('messages').find({ $and: [ { author: req.query.userLogin }, { message: { $regex: req.query.filters } }] }).sort({ date: -1 }).toArray()
+    db.collection('messages').find({ $and: [ { author: req.query.userLogin }, { message: { $regex: req.query.filters, $options: 'i' } }] }).sort({ date: -1 }).toArray()
         .then(messagesList => {
             res.status(200).json({ updatedMessagesList: messagesList });
         })

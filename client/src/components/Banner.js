@@ -62,7 +62,14 @@ function Banner(props) {
     }
 
     function follow() {
-        axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.author })
+        axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.userLogin })
+            .then(res => setFollowStatus(true))
+            .catch(err => console.log(err));
+    }
+
+    function unfollow() {
+        axios.delete('/users/follow', { params: { followerLogin: props.currentUserLogin, followedLogin: props.userLogin } })
+            .then(res => setFollowStatus(false))
             .catch(err => console.log(err));
     }
 
@@ -89,7 +96,7 @@ function Banner(props) {
                 <input type='file' accept='.png, .jpg, .jpeg'></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
             </div> :
-            followStatus ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }><FaMinusCircle /> NE PLUS SUIVRE</button> :
+            followStatus ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } onClick={ unfollow }><FaMinusCircle /> NE PLUS SUIVRE</button> :
             <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } onClick={ follow }><FaPlusCircle /> SUIVRE</button>
             }
             <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />

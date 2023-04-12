@@ -1,4 +1,5 @@
 const db = require('./../db');
+const mongo = require('mongodb')
 
 exports.isUserAuthorizedMessage = async (req, res, next) => {
     const messageId = req.body.messageId;
@@ -53,10 +54,24 @@ exports.createMessage = (req, res, next) => {
     }
 }
 
-exports.deleteMessage = async (messageId) => {
-    await db.collection('messages').deleteOne({
-        _id: messageId
-    });
+exports.deleteMessage = (req, res, next) => {
+    db.collection('messages').findOne({ _id: new mongo.ObjectId(req.query.messageId) })
+        .then(message => {
+            if (!message) {
+                return res.status(400).json({ error: 'Message does not exist' });
+            }
+            if (req.query.currentUserLogin !== message.author) {
+                return res.status(403).json({ error: 'Current user does not match the author of the message' });
+            }
+            db.collection('messages').deleteOne({ _id: new mongo.ObjectId(req.query.messageId) })
+                .then(valid => {
+                    if (!valid) {
+                        return res.status(400).json({ error: 'Could not delete the message' });
+                    }
+                    res.status(204).json();
+                })
+                .catch(err => res.status(500).json({ error: err }));
+        })
 }
 
 exports.getMessagesList = (req, res, next) => {

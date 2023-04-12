@@ -12,7 +12,7 @@ function CreateMessage(props){
             Authorization: `Bearer ${token}`,
         };
 
-        axios.put('/messages', { message: message })
+        axios.post('/messages', { message: message })
             .then((res) => {
                 setMessage('');
                 window.location.reload();

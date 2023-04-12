@@ -9,6 +9,7 @@ router.get('/:login', usersCtrl.getUser)
 .get('/assets/:login', usersCtrl.getAssets)
 .get('/stats/:login', usersCtrl.getMeters)
 .post('/follow', followersCtrl.follow)
+.delete('/follow', followersCtrl.unfollow)
 .get('/followers/:login/:limit', followersCtrl.getUserFollowersList)
 .get('/followed/:login/:limit', followersCtrl.getUserFollowedList)
 .get('/isfollower/:followerLogin/:followedLogin', followersCtrl.isFollower);

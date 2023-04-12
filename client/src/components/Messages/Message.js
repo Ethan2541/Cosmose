@@ -23,6 +23,13 @@ function Message(props){
 
     function follow() {
         axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.author })
+            .then(res => window.location.reload())
+            .catch(err => console.log(err));
+    }
+
+    function unfollow() {
+        axios.delete('/users/follow', { params: { followerLogin: props.currentUserLogin, followedLogin: props.author } })
+            .then(res => window.location.reload())
             .catch(err => console.log(err));
     }
 
@@ -31,6 +38,12 @@ function Message(props){
             .then(res => {
                 setFollowStatus(res.data.found);
             })
+            .catch(err => console.log(err));
+    }
+
+    function deleteMessage() {
+        axios.delete('/messages', { params: { author: props.author, date: props.date, message: props.message, messageId: props.messageId, currentUserLogin: props.currentUserLogin } })
+            .then(res => window.location.reload())
             .catch(err => console.log(err));
     }
 
@@ -57,14 +70,14 @@ function Message(props){
                     <FaRegCommentDots title='Commenter' />
                 </button>
                 { props.currentUserLogin !== props.author && (followStatus ?
-                <button className='message-unfollow-button'>
+                <button className='message-unfollow-button' onClick={ unfollow }>
                 <FaMinusCircle title='Ne plus suivre' />
                 </button> :
                 <button className='message-follow-button' onClick={ follow }>
                     <FaPlusCircle title='Suivre' />
                 </button>) }
                 { props.currentUserLogin === props.author && 
-                <button className='message-delete-button'>
+                <button className='message-delete-button' onClick={ deleteMessage }>
                     <FaTrashAlt title='Supprimer' />
                 </button> }
             </div>

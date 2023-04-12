@@ -8,7 +8,8 @@ const router = express.Router();
 
 router.get('/:limit', messages.getMessagesList)
 .get('/:userLogin/:limit', messages.getUserMessagesList)
-.put('/', auth, messages.createMessage)
+.post('/', auth, messages.createMessage)
+.delete('/', messages.deleteMessage)
 
 .put('/like', async (req, res) => {
     if(req.body.messageId === undefined){
@@ -44,15 +45,6 @@ router.get('/:limit', messages.getMessagesList)
     else{
         await comments.deleteComment(req.body.messageId, req.body.comment);
         res.status(201).json({message: 'commentaire supprimé', details: ''});
-    }
-})
-.delete('/', messages.isUserAuthorizedMessage, async (req, res) => {
-    if(req.body.messageId === undefined){
-        res.status(400).json({message: 'paramètres manquants'});
-    }
-    else{
-        await messages.deleteMessage(req.body.messageId);
-        res.status(201).json({message: 'message supprimé', details: ''});
     }
 })
 
