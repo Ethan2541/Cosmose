@@ -8,7 +8,7 @@ function UserStats(props) {
                     <p>{ props.friendsNumber }</p>
                 </div>
                 <div className='userstats-large-field userstats-bordercolor'>
-                    <p>constellations favorables</p>
+                    <p>constellations suivies</p>
                 </div>
             </section>
             <section>
@@ -16,7 +16,7 @@ function UserStats(props) {
                     <p>{ props.timeSpent }</p>
                 </div>
                 <div className='userstats-large-field userstats-white'>
-                    <p>à naviguer dans le Cosmos</p>
+                    <p>étoiles données au total</p>
                 </div>
             </section>
         </div>

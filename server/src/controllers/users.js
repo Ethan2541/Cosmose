@@ -53,7 +53,7 @@ exports.getMeters = (req, res, next) => {
                 userMeters.messages += 1;
             }
             
-            db.collection('followers').find({ userLogin: { $eq: req.params.login } }).toArray()
+            db.collection('followers').find({ followedLogin: { $eq: req.params.login } }).toArray()
                 .then(followersList => {
                     for (let i = 0; i < followersList.length; i++) {
                         userMeters.followers += 1;

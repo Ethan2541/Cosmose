@@ -108,7 +108,7 @@ function UserPage(props) {
                     <div id='userpage-searchbar'>
                         <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ setUserMessagesList } userLogin={ user.login } />
                     </div>
-                    { props.currentUser.login === user.login && <CreateMessage />}
+                    { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } />}
                     <div id='userpage-messageslist'>
                         <MessagesList messages={ userMessagesList } getList={ getUserMessagesList } currentUserLogin={ props.currentUser.login } />
                     </div>

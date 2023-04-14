@@ -14,8 +14,8 @@ function CreateMessage(props){
 
         axios.post('/messages', { message: message })
             .then((res) => {
-                setMessage('');
-                window.location.reload();
+                document.getElementById('createmessage').children[0].value = '';
+                props.getMessagesList(5);
             })
             .catch((err) => console.log(err));
     }

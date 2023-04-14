@@ -30,14 +30,14 @@ exports.isUserAuthorizedLike = async (req, res, next) => {
 };
 
 exports.addLike = async (userId, messageId) => {
-    await db.collection('messages').updateOne(
+    await db.collection('likes').updateOne(
         { _id: messageId },
         { $push: { likes: userId }}
     );
 }
 
 exports.deleteLike = async (userId, messageId) => {
-    await db.collection('messages').updateOne(
+    await db.collection('likes').updateOne(
         { _id: messageId },
         { $pull: { likes: userId }}
     );

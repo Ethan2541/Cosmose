@@ -20,7 +20,7 @@ function Message(props){
     function deleteMessage() {
         if (window.confirm('Souhaitez-vous vraiment supprimer ce message ?')) {
             axios.delete('/messages', { params: { author: props.author, date: props.date, message: props.message, messageId: props.messageId, currentUserLogin: props.currentUserLogin } })
-                .then(res => window.location.reload())
+                .then(res => props.getMessagesList(5))
                 .catch(err => console.log(err));
         }
     }

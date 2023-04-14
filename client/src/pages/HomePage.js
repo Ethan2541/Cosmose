@@ -41,7 +41,7 @@ function HomePage(props) {
                     <Searchbar placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } setList={ setMessagesList } />
                 </div>
                 <section id='homepage-posts'>
-                    <CreateMessage />
+                    <CreateMessage getMessagesList={ getMessagesList } />
                     <div id='homepage-messageslist'>
                         <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } getList={ getMessagesList } currentUserLogin={ props.currentUser.login } />
                     </div>
