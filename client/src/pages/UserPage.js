@@ -1,15 +1,13 @@
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import axios from '../axios.js';
 import Banner from '../components/Banner.js';
 import CreateMessage from '../components/CreateMessage.js';
 import MessagesList from '../components/Messages/MessagesList.js';
 import Searchbar from '../components/Searchbar.js';
-import User from '../components/Users/User.js';
 import UsersList from '../components/Users/UsersList.js';
 import UserMeters from '../components/UserMeters.js';
 import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
@@ -20,9 +18,9 @@ function UserPage(props) {
     const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
-    const [followedList, setFollowedList] = useState(null);
-    const [followersList, setFollowersList] = useState(null);
-    const [userMessagesList, setUserMessagesList] = useState(null);
+    const [followedList, setFollowedList] = useState();
+    const [followersList, setFollowersList] = useState();
+    const [userMessagesList, setUserMessagesList] = useState();
     const [user, setUser] = useState(props.currentUser);
 
     function getUserMessagesList(limit) {
@@ -70,12 +68,9 @@ function UserPage(props) {
     }, [login]);
 
     useEffect(() => {
-        const updatedUserMessagesList = getUserMessagesList(5);
-        setUserMessagesList(updatedUserMessagesList);
-        const updatedFollowersList = getFollowersList(5);
-        setFollowersList(updatedFollowersList);
-        const updatedFollowedList = getFollowedList(5);
-        setFollowedList(updatedFollowedList);
+        getUserMessagesList(5);
+        getFollowedList(5);
+        getFollowersList(5);
     }, [location]);
 
     return (

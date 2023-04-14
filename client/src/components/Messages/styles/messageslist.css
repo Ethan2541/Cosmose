@@ -22,11 +22,12 @@
     justify-content: center;
     margin-bottom: 5px;
     padding: 0;
+    transition: 0.3s linear;
     width: 100%;
 }
 
 .messageslist-seemore:hover {
-    filter: brightness(80%);
+    filter: brightness(85%);
 }
 
 .messageslist-empty {

@@ -9,16 +9,20 @@ import { useLocation } from 'react-router-dom';
 import './styles/usermeters.css';
 
 function UserMeters(props) {
-    const [userMeters, setUserMeters] = useState({ comments: 0, followers: 0, likes: 0 });
     const location = useLocation();
+    const [userMeters, setUserMeters] = useState({ comments: 0, followers: 0, likes: 0 });
 
-    useEffect(() => {
+    function getUserMeters() {
         axios.get(`/users/stats/${props.userLogin}`)
             .then(res => {
                 const meters = res.data.userMeters;
                 setUserMeters(meters);
             })
             .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        getUserMeters();
     }, [location]);
 
     return(
