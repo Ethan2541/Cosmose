@@ -38,6 +38,10 @@
     text-decoration: none;
 }
 
+.message-metadata>h3>a:hover {
+    text-decoration: underline;
+}
+
 .message-metadata>h4 {
     color: var(--meta-color);
     font-size: 12px;
