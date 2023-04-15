@@ -1,28 +1,6 @@
 const db = require('../utils/db');
 const mongo = require('mongodb')
 
-exports.isUserAuthorizedMessage = async (req, res, next) => {
-    const messageId = req.body.messageId;
-    const userId = req.user._id;
-  
-    const messagesCollection = db.collection('messages');
-  
-    const message = await messagesCollection.findOne({ _id: messageId });
-  
-    if (!message) {
-      res.status(404).json({ message: 'Message non trouvé' });
-      return;
-    }
-  
-    if (message.userId !== userId) {
-      res.status(403).json({ message: 'Accès non autorisé' });
-      return;
-    }
-  
-    next();
-};
-
-
 exports.createMessage = (req, res, next) => {
     if (req.user) {
         if (!req.body.message) {
