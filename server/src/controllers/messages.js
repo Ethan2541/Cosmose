@@ -53,7 +53,7 @@ exports.deleteMessage = (req, res, next) => {
 }
 
 exports.getMessagesList = (req, res, next) => {
-    db.collection('messages').find().limit(Number(req.params.limit)).sort({ date: -1 }).toArray()
+    db.collection('messages').find().sort({ date: -1 }).toArray()
         .then(messagesList => {
             res.status(200).json({ messagesList: messagesList });
         })
@@ -61,7 +61,7 @@ exports.getMessagesList = (req, res, next) => {
 }
 
 exports.getUserMessagesList = (req, res, next) => {
-    db.collection('messages').find({ author: req.params.userLogin }).limit(Number(req.params.limit)).sort({ date: -1 }).toArray()
+    db.collection('messages').find({ author: req.params.userLogin }).sort({ date: -1 }).toArray()
         .then(messagesList => {
             res.status(200).json({ messagesList: messagesList });
         })

@@ -14,8 +14,8 @@ function HomePage(props) {
     const [messagesList, setMessagesList] = useState(null);
     const location = useLocation();
 
-    function getMessagesList(limit) {
-        axios.get(`/messages/${limit}`)
+    function getMessagesList() {
+        axios.get('/messages')
             .then(res => {
                 let messages = res.data.messagesList;
                 setMessagesList(messages);
@@ -24,7 +24,7 @@ function HomePage(props) {
     }
 
     useEffect(() => {
-        const updatedMessagesList = getMessagesList(5);
+        const updatedMessagesList = getMessagesList();
         setMessagesList(updatedMessagesList);
     }, [location]);
 
@@ -43,7 +43,7 @@ function HomePage(props) {
                 <section id='homepage-posts'>
                     <CreateMessage getMessagesList={ getMessagesList } />
                     <div id='homepage-messageslist'>
-                        <MessagesList messages={ messagesList } setMessagesList={ setMessagesList } getList={ getMessagesList } currentUserLogin={ props.currentUser.login } />
+                        <MessagesList messages={ messagesList } currentUserLogin={ props.currentUser.login } />
                     </div>
                 </section>
             </main>

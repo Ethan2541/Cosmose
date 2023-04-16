@@ -1,7 +1,7 @@
 import Message from './Message.js';
 
 import { FaChevronDown } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import './styles/messageslist.css';
 
@@ -12,16 +12,12 @@ function MessagesList(props) {
         setLimit(limit + 5);
     }
 
-    useEffect(() => {
-        props.getList(limit);
-    }, [limit]);
-
     return(
         <div className='messageslist'>
             <ul>
-                { props.messages && props.messages.map((msg, index) => <li key={ msg._id }><Message author={ msg.author } avatar={ msg.avatar } date={ new Date(msg.date) } getMessagesList={ props.getList } message={ msg.message } messageId={ msg._id } currentUserLogin={ props.currentUserLogin } /></li>) }
+                { props.messages && props.messages.slice(0, limit).map((msg, index) => <li key={ msg._id }><Message author={ msg.author } avatar={ msg.avatar } date={ new Date(msg.date) } getMessagesList={ props.getList } message={ msg.message } messageId={ msg._id } currentUserLogin={ props.currentUserLogin } /></li>) }
             </ul>
-            { props.messages && props.messages.length > 0 ? <button className='messageslist-seemore' onClick={ handleSeeMore }><FaChevronDown />Voir plus</button> : <div className='messageslist-empty'>Liste vide</div> }
+            { props.messages && props.messages.length > 0 ? limit < props.messages.length && <button className='messageslist-seemore' onClick={ handleSeeMore }><FaChevronDown />Voir plus</button> : <div className='messageslist-empty'>Liste vide</div> }
         </div>
     ); 
 }

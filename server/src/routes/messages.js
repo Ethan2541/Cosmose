@@ -6,8 +6,8 @@ const messages = require('./../controllers/messages');
 
 const router = express.Router();
 
-router.get('/:limit', messages.getMessagesList)
-.get('/:userLogin/:limit', messages.getUserMessagesList)
+router.get('/', messages.getMessagesList)
+.get('/:userLogin', messages.getUserMessagesList)
 .post('/', auth, messages.createMessage)
 .delete('/', messages.deleteMessage);
 

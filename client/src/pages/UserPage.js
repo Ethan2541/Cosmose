@@ -23,8 +23,8 @@ function UserPage(props) {
     const [userMessagesList, setUserMessagesList] = useState();
     const [user, setUser] = useState(props.currentUser);
 
-    function getUserMessagesList(limit) {
-        axios.get(`/messages/${user.login}/${limit}`)
+    function getUserMessagesList() {
+        axios.get(`/messages/${user.login}`)
             .then(res => {
                 let messages = res.data.messagesList;
                 setUserMessagesList(messages);
@@ -32,8 +32,8 @@ function UserPage(props) {
             .catch(err => console.log(err));
     }
 
-    function getFollowedList(limit) {
-        axios.get(`/users/followed/${user.login}/${limit}`)
+    function getFollowedList() {
+        axios.get(`/users/followed/${user.login}`)
             .then(res => {
                 let followed = res.data.followedList;
                 setFollowedList(followed);
@@ -42,7 +42,7 @@ function UserPage(props) {
     }
 
     function getFollowersList(limit) {
-        axios.get(`/users/followers/${user.login}/${limit}`)
+        axios.get(`/users/followers/${user.login}`)
             .then(res => {
                 let followers = res.data.followersList;
                 setFollowersList(followers);
@@ -68,9 +68,9 @@ function UserPage(props) {
     }, [login]);
 
     useEffect(() => {
-        getUserMessagesList(5);
-        getFollowedList(5);
-        getFollowersList(5);
+        getUserMessagesList();
+        getFollowedList();
+        getFollowersList();
     }, [location]);
 
     return (
@@ -97,11 +97,11 @@ function UserPage(props) {
                     </section>
                     <div className='userpage-category'>VOTRE NEBULEUSE</div>
                     <section id='userpage-followed'>
-                        <UsersList users={ followedList } getList={ getFollowedList } type={ 'followed' } />
+                        <UsersList users={ followedList } type={ 'followed' } />
                     </section>
                     <div className='userpage-category'>CONSTELLATIONS FAVORABLES</div>
                     <section id='userpage-followers'>
-                        <UsersList users={ followersList } getList={ getFollowersList } type={ 'followers' } />
+                        <UsersList users={ followersList } type={ 'followers' } />
                     </section>
                 </aside>
                 <section id='userpage-right'>
@@ -110,7 +110,7 @@ function UserPage(props) {
                     </div>
                     { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ userMessagesList } getList={ getUserMessagesList } currentUserLogin={ props.currentUser.login } />
+                        <MessagesList messages={ userMessagesList } currentUserLogin={ props.currentUser.login } />
                     </div>
                 </section>
             </main>
