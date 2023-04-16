@@ -6,10 +6,10 @@ import { useState } from 'react';
 import './styles/userslist.css'
 
 function UsersList(props) {
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(3);
 
     function handleSeeMore() {
-        setLimit(limit + 5);
+        setLimit(limit + 3);
     }
 
     return(

@@ -60,7 +60,7 @@ exports.isFollower = (req, res, next) => {
 }
 
 exports.getUserFollowersList = (req, res, next) => {
-    db.collection('followers').find({ followedLogin: req.params.login }).limit(Number(req.params.limit)).toArray()
+    db.collection('followers').find({ followedLogin: req.params.login }).collation({ locale: 'en' }).sort({ followerLogin: 1 }).toArray()
         .then(followersList => {
             res.status(200).json({ followersList: followersList });
         })
@@ -68,7 +68,7 @@ exports.getUserFollowersList = (req, res, next) => {
 }
 
 exports.getUserFollowedList = (req, res, next) => {
-    db.collection('followers').find({ followerLogin: req.params.login }).limit(Number(req.params.limit)).toArray()
+    db.collection('followers').find({ followerLogin: req.params.login }).collation({ locale: 'en' }).sort({ followedLogin: 1 }).toArray()
         .then(followedList => {
             res.status(200).json({ followedList: followedList });
         })
