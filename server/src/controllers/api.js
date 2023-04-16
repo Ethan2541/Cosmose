@@ -46,7 +46,9 @@ exports.signup = (req, res, next) => {
                 .then(hash => {
                     const newUser = {
                         avatar: '/assets/avatar.jpg',
+                        avatarId: null,
                         cover: '/assets/cover.jpg',
+                        coverId: null,
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         login: req.body.login,

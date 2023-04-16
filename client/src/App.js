@@ -55,13 +55,9 @@ function App(props) {
         root.setAttribute('theme', currentTheme);
         window.localStorage.setItem('theme', currentTheme);
 
-        const token = window.localStorage.getItem('token');
-        axios.defaults.headers = {
-            Authorization: `Bearer ${token}`,
-        };
-        
+        const token = window.localStorage.getItem('token');        
         if (token) {
-            axios.put('/users/theme', {theme: currentTheme})
+            axios.put('/users/theme', { theme: currentTheme }, { headers: { Authorization: `Bearer ${token}`} })
                 .catch((err) => console.log(err));
         }
     }, [currentTheme]);

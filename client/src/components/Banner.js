@@ -32,7 +32,20 @@ function Banner(props) {
     }
 
     function editBanner(evt) {
-        console.log("test");
+        const data = new FormData();
+        const file = document.getElementById('banner-cover-input').files[0];
+        data.append('image', file);
+        axios.post('/users/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(res => {
+                const newUrl = res.data.newUrl;
+                axios.put('/users/assets/banner', null, { params: { login: props.currentUserLogin, url: newUrl } })
+                    .then(res => {
+                        console.log('Banner updated successfully');
+                        window.location.reload();
+                    })
+                    .catch(err => console.log('Could not update the banner'));
+            })
+            .catch(err => console.log('Could not load the file'));
     }
 
     function renderEditPicture(evt) {
@@ -50,7 +63,21 @@ function Banner(props) {
     }
 
     function editPicture(evt) {
-        console.log("test");
+        const data = new FormData();
+        const file = document.getElementById('banner-picture-input').files[0];
+        data.append('image', file);
+        axios.post('/users/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+            .then(res => {
+                const newUrl = res.data.newUrl;
+                const newId = res.data.newId;
+                axios.put('/users/assets/avatar', null, { params: { login: props.currentUserLogin, url: newUrl, id: newId } })
+                    .then(res => {
+                        console.log('Avatar updated successfully');
+                        window.location.reload();
+                    })
+                    .catch(err => console.log('Could not update the avatar'));
+            })
+            .catch(err => console.log('Could not load the file'));
     }
 
     function isFollower() {
@@ -93,7 +120,7 @@ function Banner(props) {
             </div>
             { props.currentUserLogin === props.userLogin ?
             <div id="banner-edit" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }>
-                <input type='file' accept='.png, .jpg, .jpeg'></input>
+                <input id='banner-cover-input' type='file' accept='.png, .jpg, .jpeg' onChange={ editBanner }></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
             </div> :
             followStatus ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } onClick={ unfollow }><FaMinusCircle /> NE PLUS SUIVRE</button> :
@@ -101,7 +128,7 @@ function Banner(props) {
             }
             <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>
-                <input type='file' accept='.png, .jpg, .jpeg'></input>
+                <input id='banner-picture-input' type='file' accept='.png, .jpg, .jpeg' onChange={ editPicture }></input>
                 <span><FaPen /></span>
             </div>
         </div>

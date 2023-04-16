@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axios.js';
 import OfflineHeader from '../components/OfflineHeader.js';
 
 import { FaEye } from 'react-icons/fa';
@@ -17,8 +17,6 @@ function SignUpPage(props) {
     const [passwordMask2, setPasswordMask2] = useState(true);
 
     const navigate = useNavigate();
-
-    axios.defaults.baseURL = 'http://localhost:3001';
 
     useEffect(() => {
         if (password === password2) {

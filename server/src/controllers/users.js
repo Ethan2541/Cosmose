@@ -34,12 +34,52 @@ exports.getAssets = (req, res, next) => {
 }
 
 exports.postAssets = (req, res, next) => {
-    console.log(req.file)
     cloudinary.uploader.upload(req.file.path)
         .then(result => {
-            console.log(result.secure_url);
-            console.log(result.public_id);
-            res.status(204).json()
+            res.status(200).json({ newUrl: result.secure_url, newId: result.public_id })
+        })
+        .catch(err => res.status(500).json({ error: err }));
+}
+
+exports.changeBanner = (req, res, next) => {
+    db.collection('users').findOne({ login: req.query.login })
+        .then(user => {
+            if (!user) {
+                return res.status(404).json('User not found')
+            }
+            db.collection('users').updateOne({ login: req.query.login }, { $set: { cover: req.query.url, coverId: req.query.id } })
+                .then(valid => {
+                    if (!valid) {
+                        return res.status(400).json({ error: 'Could not update the banner' });
+                    }
+                    res.status(204).json();
+                })
+                .catch(err => res.status(500).json({ error: err }));
+        })
+        .catch(err => res.status(500).json({ error: err }));
+}
+
+exports.changeAvatar = (req, res, next) => {
+    db.collection('users').findOne({ login: req.query.login })
+        .then(user => {
+            if (!user) {
+                return res.status(404).json('User not found')
+            }
+            db.collection('users').updateOne({ login: req.query.login }, { $set: { avatar: req.query.url, avatarId: req.query.id } })
+                .then(valid => {
+                    if (!valid) {
+                        return res.status(400).json({ error: 'Could not update the avatar' });
+                    }
+                    db.collection('messages').updateMany({ author: req.query.login }, { $set: { avatar: req.query.url }})
+                        .then(valid => {
+                            if (!valid) {
+                                return res.status(400).json({ error: 'Could not update the avatar' });
+                            }
+                            res.status(204).json();
+                        })
+                        .catch(err => res.status(500).json({ error: err }))
+                })
+                .catch(err => res.status(500).json({ error: err }));
         })
         .catch(err => res.status(500).json({ error: err }));
 }

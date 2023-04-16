@@ -8,11 +8,7 @@ function CreateMessage(props){
 
     function sendMessage(evt){
         const token = window.localStorage.getItem('token');
-        axios.defaults.headers = {
-            Authorization: `Bearer ${token}`,
-        };
-
-        axios.post('/messages', { message: message })
+        axios.post('/messages', { message: message }, { headers: { Authorization: `Bearer ${token}`} })
             .then((res) => {
                 document.getElementById('createmessage').children[0].value = '';
                 props.getMessagesList(5);

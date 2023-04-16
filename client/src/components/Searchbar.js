@@ -12,12 +12,9 @@ function Searchbar(props){
 
     function handleFilters(filters) {
         const token = window.localStorage.getItem('token');
-        axios.defaults.headers = {
-            Authorization: `Bearer ${token}`,
-        };
         switch(props.type) {
             case 'allmessages':
-                axios.get('/search/allmessages', { params: { filters: filters } })
+                axios.get('/search/allmessages', { params: { filters: filters } }, { headers: { Authorization: `Bearer ${token}`} })
                     .then(res => {
                         props.setList(res.data.updatedMessagesList);
                     })
@@ -25,7 +22,7 @@ function Searchbar(props){
                 break;
 
             case 'usermessages':
-                axios.get('/search/usermessages', { params: { filters: filters, userLogin: props.userLogin } })
+                axios.get('/search/usermessages', { params: { filters: filters, userLogin: props.userLogin } }, { headers: { Authorization: `Bearer ${token}`} })
                     .then(res => {
                         props.setList(res.data.updatedMessagesList);
                     })
@@ -33,7 +30,7 @@ function Searchbar(props){
                 break;
 
             case 'users':
-                axios.get(`/search/users/${filters}`)
+                axios.get(`/search/users/${filters}`, { headers: { Authorization: `Bearer ${token}`} })
                     .then(res => {
                         if (res.data.filteredUserLogin) {
                             navigate(`/profil/${res.data.filteredUserLogin}`);
