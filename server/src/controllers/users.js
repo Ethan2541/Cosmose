@@ -45,43 +45,79 @@ exports.changeBanner = (req, res, next) => {
     db.collection('users').findOne({ login: req.query.login })
         .then(user => {
             if (!user) {
-                return res.status(404).json('User not found')
+                cloudinary.uploader.destroy(req.query.id)
+                    .then(result => res.status(404).json({ error: 'User not found' }))
+                    .catch(error => res.status(500).json({ error: error }));
             }
+            const oldId = user.coverId;
             db.collection('users').updateOne({ login: req.query.login }, { $set: { cover: req.query.url, coverId: req.query.id } })
                 .then(valid => {
                     if (!valid) {
-                        return res.status(400).json({ error: 'Could not update the banner' });
+                        cloudinary.uploader.destroy(req.query.id)
+                            .then(result => res.status(400).json({ error: 'Could not update the cover' }))
+                            .catch(error => res.status(500).json({ error: error }));
                     }
-                    res.status(204).json();
+                    cloudinary.uploader.destroy(oldId)
+                        .then(result => res.status(204).json())
+                        .catch(error => res.status(500).json('Image could not be deleted'));    
                 })
-                .catch(err => res.status(500).json({ error: err }));
+                .catch(err => {
+                    cloudinary.uploader.destroy(req.query.id)
+                        .then(result => res.status(500).json({ error: err }))
+                        .catch(error => res.status(500).json({ error: error }));
+                });
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => {
+            cloudinary.uploader.destroy(req.query.id)
+                .then(result => res.status(500).json({ error: err }))
+                .catch(error => res.status(500).json({ error: error }));
+        });
 }
 
 exports.changeAvatar = (req, res, next) => {
     db.collection('users').findOne({ login: req.query.login })
         .then(user => {
             if (!user) {
-                return res.status(404).json('User not found')
+                cloudinary.uploader.destroy(req.query.id)
+                    .then(result => res.status(404).json({ error: 'User not found' }))
+                    .catch(error => res.status(500).json({ error: error }));
             }
+            const oldId = user.avatarId;
             db.collection('users').updateOne({ login: req.query.login }, { $set: { avatar: req.query.url, avatarId: req.query.id } })
                 .then(valid => {
                     if (!valid) {
-                        return res.status(400).json({ error: 'Could not update the avatar' });
+                        cloudinary.uploader.destroy(req.query.id)
+                            .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
+                            .catch(error => res.status(500).json({ error: error }));
                     }
                     db.collection('messages').updateMany({ author: req.query.login }, { $set: { avatar: req.query.url }})
                         .then(valid => {
                             if (!valid) {
-                                return res.status(400).json({ error: 'Could not update the avatar' });
+                                cloudinary.uploader.destroy(req.query.id)
+                                    .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
+                                    .catch(error => res.status(500).json({ error: error }));
                             }
-                            res.status(204).json();
+                            cloudinary.uploader.destroy(oldId)
+                                .then(result => res.status(204).json())
+                                .catch(error => res.status(500).json('Image could not be deleted'));                            
                         })
-                        .catch(err => res.status(500).json({ error: err }))
+                        .catch(err => {
+                            cloudinary.uploader.destroy(req.query.id)
+                                .then(result => res.status(500).json({ error: err }))
+                                .catch(error => res.status(500).json({ error: error }));
+                        })
                 })
-                .catch(err => res.status(500).json({ error: err }));
+                .catch(err => {
+                    cloudinary.uploader.destroy(req.query.id)
+                        .then(result => res.status(500).json({ error: err }))
+                        .catch(error => res.status(500).json({ error: error }));
+                });
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => {
+            cloudinary.uploader.destroy(req.query.id)
+                .then(result => res.status(500).json({ error: err }))
+                .catch(error => res.status(500).json({ error: error }));
+        });
 }
 
 exports.getMeters = (req, res, next) => {
