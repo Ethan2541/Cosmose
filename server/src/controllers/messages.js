@@ -62,6 +62,7 @@ exports.deleteMessage = (req, res, next) => {
                 return res.status(403).json({ error: 'Current user does not match the author of the message' });
             }
             // Message deletion
+            const messageId = message._id;
             const retweetId = message.retweetId;
             db.collection('messages').deleteOne({ _id: new mongo.ObjectId(req.query.messageId) })
                 .then(valid => {
@@ -74,7 +75,15 @@ exports.deleteMessage = (req, res, next) => {
                             if (!valid) {
                                 return res.status(400).json({ error: 'Could not take into account the decrease in retweet' })
                             }
-                            res.status(204).json();
+                            // Delete the likes
+                            db.collection('likes').deleteMany({ messageId: messageId })
+                                .then(valid => {
+                                    if (!valid) {
+                                        return res.status(400).json({ error: 'Failed to delete the related likes' })
+                                    }
+                                    res.status(204).json();
+                                })
+                                .catch('Could not properly remove the related likes')
                         })
                         .catch(err => res.status(500).json({ error: 'Could not properly update the retweeted messages' }));
                     }
@@ -109,9 +118,6 @@ exports.getUserMessagesList = (req, res, next) => {
 exports.getMessage = (req, res, next) => {
     db.collection('messages').findOne({ _id: new mongo.ObjectId(req.params.messageId) })
     .then(message => {
-        if (!message) {
-            return res.status(400).json({ error: 'Message does not exist' });
-        }
         res.status(200).json({ message: message })
     })
     .catch(err => res.status(500).json({ error: 'Could not find the message' }));
