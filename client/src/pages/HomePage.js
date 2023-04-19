@@ -35,7 +35,7 @@ function HomePage(props) {
                 <StarryBackground />
             </div>
             <aside id='homepage-left'> 
-                <Menu switchTheme={ props.switchTheme } logout={ props.logout } />
+                <Menu switchTheme={ props.switchTheme } logout={ props.logout } currentUserLogin={ props.currentUser.login } setList={ setMessagesList } />
             </aside>
             <main id='homepage-right'>
                 <div id='homepage-searchbar'>
@@ -44,7 +44,7 @@ function HomePage(props) {
                 <section id='homepage-posts'>
                     <CreateMessage getMessagesList={ getMessagesList } retweet={ retweet } setRetweet={ setRetweet } />
                     <div id='homepage-messageslist'>
-                        <MessagesList messages={ messagesList } currentUserLogin={ props.currentUser.login } getList={ getMessagesList }setRetweet={ setRetweet } />
+                        <MessagesList messages={ messagesList } currentUserLogin={ props.currentUser.login } getList={ getMessagesList } setRetweet={ setRetweet } />
                     </div>
                 </section>
             </main>

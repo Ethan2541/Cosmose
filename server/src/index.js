@@ -2,6 +2,7 @@ const api = require('./routes/api.js');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
+const menu = require('./routes/menu.js');
 const messages = require('./routes/messages.js');
 const path = require('path');
 const search = require('./routes/search.js');
@@ -16,6 +17,7 @@ app.use(cors())
 .use(express.urlencoded({ extended: true }));
 
 app.use('/api', api);
+app.use('/menu', menu);
 app.use('/search', search);
 app.use('/users', users);
 app.use('/messages', messages);

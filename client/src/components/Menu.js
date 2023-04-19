@@ -1,3 +1,5 @@
+import axios from '../axios.js';
+
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -18,6 +20,24 @@ function Menu(props) {
             dropdown.style.height = '0';
         }
     }, [toggleParameters]);
+
+    function getMostStarred() {
+        axios.get('/menu/moststarred')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log(err));
+    }
+
+    function getRisingStars() {
+        axios.get('/menu/mostretweeted')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log(err));
+    }
+
+    function getGalaxy() {
+        axios.get(`/menu/authorandliked/${props.currentUserLogin}`)
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log(err));
+    }
 
     return(
         <div id='menu'>
@@ -42,9 +62,9 @@ function Menu(props) {
                     </ul>
                 </li>
                 <hr />
-                <li><button className='menu-button'>LES PLUS ETOILES</button></li>
-                <li><button className='menu-button'>ETOILES MONTANTES</button></li>
-                <li><button className='menu-button'>MA GALAXIE</button></li>
+                <li><button className='menu-button' onClick={ getMostStarred }>LES PLUS ETOILES</button></li>
+                <li><button className='menu-button' onClick={ getRisingStars }>ETOILES MONTANTES</button></li>
+                <li><button className='menu-button' onClick={ getGalaxy }>MA GALAXIE</button></li>
                 <hr />
                 <li><a id='menu-post' onClick={ (evt) => window.scrollTo(0,0) }>PUBLIER</a></li>
             </ul>
