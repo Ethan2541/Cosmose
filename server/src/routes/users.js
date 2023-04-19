@@ -16,6 +16,7 @@ router.get('/:login', usersCtrl.getUser)
 .delete('/follow', followersCtrl.unfollow)
 .get('/followers/:login', followersCtrl.getUserFollowersList)
 .get('/followed/:login', followersCtrl.getUserFollowedList)
-.get('/isfollower/:followerLogin/:followedLogin', followersCtrl.isFollower);
+.get('/isfollower/:followerLogin/:followedLogin', followersCtrl.isFollower)
+.get('/likes/:login', usersCtrl.getUserLikesList);
 
 module.exports = router;

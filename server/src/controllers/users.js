@@ -140,3 +140,11 @@ exports.getMeters = (req, res, next) => {
         })
         .catch(err => res.status(500).json({ error: 'Internal server error' }));
 }
+
+exports.getUserLikesList = (req, res, next) => {
+    db.collection('likes').find({ userLogin: req.params.login }).toArray()
+        .then(likesList => {
+            res.status(200).json({ likesList: likesList });
+        })
+        .catch(err => res.status(500).json({ error: err }))
+}

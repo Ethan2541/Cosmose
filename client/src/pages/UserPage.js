@@ -20,10 +20,10 @@ function UserPage(props) {
     const { login } = useParams();
     const [followedList, setFollowedList] = useState();
     const [followersList, setFollowersList] = useState();
-    const [retweet, setRetweet] = useState(false);
+    const [retweet, setRetweet] = useState(null);
     const [userMessagesList, setUserMessagesList] = useState();
     const [user, setUser] = useState(props.currentUser);
-
+    
     function getUserMessagesList() {
         axios.get(`/messages/${user.login}`)
             .then(res => {
@@ -94,7 +94,7 @@ function UserPage(props) {
                     <UserMeters userLogin={ user.login } />
                     <div className='userpage-category'>STATISTIQUES</div>
                     <section className='userpage-userstats'>
-                        <UserStatsWrapper />
+                        <UserStatsWrapper userLogin={ user.login } />
                     </section>
                     <div className='userpage-category'>VOTRE NEBULEUSE</div>
                     <section id='userpage-followed'>

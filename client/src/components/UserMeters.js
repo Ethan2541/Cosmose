@@ -10,7 +10,7 @@ import './styles/usermeters.css';
 
 function UserMeters(props) {
     const location = useLocation();
-    const [userMeters, setUserMeters] = useState({ comments: 0, followers: 0, likes: 0 });
+    const [userMeters, setUserMeters] = useState({ followers: 0, likes: 0, messages: 0 });
 
     function getUserMeters() {
         axios.get(`/users/stats/${props.userLogin}`)

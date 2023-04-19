@@ -10,6 +10,7 @@ router.get('/', messages.getMessagesList)
 .get('/:userLogin', messages.getUserMessagesList)
 .post('/', auth, messages.createMessage)
 .delete('/', messages.deleteMessage)
+.get('/likes/:userLogin/:messageId', likes.getLike)
 .post('/likes', likes.addLike)
 .delete('/likes', likes.deleteLike);
 

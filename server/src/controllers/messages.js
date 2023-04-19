@@ -1,5 +1,5 @@
 const db = require('../utils/db');
-const mongo = require('mongodb')
+const mongo = require('mongodb');
 
 exports.createMessage = (req, res, next) => {
     if (req.user) {
@@ -19,7 +19,7 @@ exports.createMessage = (req, res, next) => {
                     date: new Date(),
                     likes: 0,
                     message: req.body.message,
-                    retweetId: new mongo.ObjectId(req.body.retweetId),
+                    retweetId: req.body.retweetId ? new mongo.ObjectId(req.body.retweetId) : null,
                     retweets: 0
                 })
                     .then(valid => {

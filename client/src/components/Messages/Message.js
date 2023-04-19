@@ -12,6 +12,7 @@ import './styles/message.css';
 function Message(props){
     const [retweetMessage, setRetweetMessage] = useState(null);
     const [starred, setStarred] = useState(false);
+    const [stars, setStars] = useState(props.likes);
 
     function handleStarred(evt) {
         setStarred(!starred);
@@ -45,8 +46,27 @@ function Message(props){
         }
     }
 
+    function like() {
+        axios.post('/messages/likes', { userLogin: props.currentUserLogin, messageId: props.messageId })
+            .then(res => setStars(stars + 1))
+            .catch(err => console.log(err))
+    }
+
+    function unlike() {
+        axios.delete('/messages/likes', { params: { userLogin: props.currentUserLogin, messageId: props.messageId }})
+            .then(res => setStars(stars - 1))
+            .catch(err => console.log(err));
+    }
+
+    function isLiked() {
+        axios.get(`/messages/likes/${props.currentUserLogin}/${props.messageId}`)
+            .then(res => res.data.like ? setStarred(true) : setStarred(false))
+            .catch(err => console.log(err));
+    }
+
     useEffect(() => {
         getRetweetMessage();
+        isLiked();
     }, [])
 
     return(
@@ -72,7 +92,7 @@ function Message(props){
             </div>
             <div className='message-features'>
                 <button className='message-features-button' onClick={ (evt) => handleStarred(evt) }>
-                    { props.likes } {starred ? <FaStar title='Ne plus aimer' /> : <FaRegStar title='Aimer' />}
+                    { stars } {starred ? <FaStar title='Ne plus aimer' onClick={ unlike } /> : <FaRegStar title='Aimer' onClick={ like } />}
                 </button>
                 <button className='message-features-button'>
                     { props.retweets } <FaRetweet title='Citer' onClick={ retweet } />

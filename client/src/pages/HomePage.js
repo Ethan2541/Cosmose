@@ -11,10 +11,10 @@ import { useLocation } from 'react-router-dom';
 import './styles/homepage.css';
 
 function HomePage(props) {
-    const [retweet, setRetweet] = useState(false);
+    const [retweet, setRetweet] = useState(null);
     const [messagesList, setMessagesList] = useState(null);
     const location = useLocation();
-
+    
     function getMessagesList() {
         axios.get('/messages')
             .then(res => {
