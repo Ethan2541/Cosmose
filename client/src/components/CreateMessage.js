@@ -27,7 +27,7 @@ function CreateMessage(props){
     return(
         <div id='createmessage'>
             { props.retweet && <div className='createmessage-retweet'><button className='createmessage-cancel' onClick={ (evt) => { props.setRetweet(null) } }><FaTimesCircle /></button>Partagez l'histoire de { props.retweet.author }</div>}
-            <textarea placeholder='Stimulez votre imagination, c&#39;est ici que votre histoire commence !' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
+            <textarea maxLength={ 280 } placeholder='Stimulez votre imagination, c&#39;est ici que votre histoire commence !' onChange={ (evt) => setMessage(evt.target.value) } id='createmessage'></textarea>
             <button type='submit' onClick={ sendMessage }>PUBLIER</button>
         </div>
     );
