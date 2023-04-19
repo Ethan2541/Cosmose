@@ -18,17 +18,11 @@ function Banner(props) {
         if (props.currentUserLogin === props.userLogin) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'visible');
         }
-        else {
-            document.getElementById('banner-follow').style.setProperty('visibility', 'visible');
-        }
     }
 
     function hideEditBanner(evt) {
         if (props.currentUserLogin === props.userLogin) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'hidden');
-        }
-        else {
-            document.getElementById('banner-follow').style.setProperty('visibility', 'hidden');
         }
     }
 
