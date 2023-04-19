@@ -12,6 +12,8 @@ function CreateMessage(props){
         axios.post('/messages', { message: message, retweetId: props.retweet ? props.retweet.messageId : null }, { headers: { Authorization: `Bearer ${token}`} })
             .then((res) => {
                 document.getElementById('createmessage').children[0].value = '';
+                document.getElementById('createmessage').children[1].value = '';
+                props.setRetweet(null);
                 props.getMessagesList(5);
             })
             .catch((err) => console.log(err));

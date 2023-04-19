@@ -59,7 +59,7 @@ exports.changeBanner = (req, res, next) => {
                     }
                     cloudinary.uploader.destroy(oldId)
                         .then(result => res.status(204).json())
-                        .catch(error => res.status(500).json('Image could not be deleted'));    
+                        .catch(error => res.status(500).json({ error: 'Image could not be deleted' }));    
                 })
                 .catch(err => {
                     cloudinary.uploader.destroy(req.query.id)
@@ -99,7 +99,7 @@ exports.changeAvatar = (req, res, next) => {
                             }
                             cloudinary.uploader.destroy(oldId)
                                 .then(result => res.status(204).json())
-                                .catch(error => res.status(500).json('Image could not be deleted'));                            
+                                .catch(error => res.status(500).json({ error: 'Image could not be deleted' }));                            
                         })
                         .catch(err => {
                             cloudinary.uploader.destroy(req.query.id)

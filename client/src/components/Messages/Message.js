@@ -54,9 +54,9 @@ function Message(props){
             <img draggable='false' src={ props.avatar } alt={ 'Avatar de ' + props.author } />
             <div className='message-metadata'>
                 <h3><Link to={ `/profil/${props.author}` }>{ props.author }</ Link></h3>
-                <h4>Le {`${String(props.date.getDate()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${String(props.date.getHours()).padStart(2, '0')}h${String(props.date.getMinutes()).padStart(2, '0')}`}{props.retweedId && ', a partagé :'}</h4>
+                <h4>Le {`${String(props.date.getDate()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${String(props.date.getHours()).padStart(2, '0')}h${String(props.date.getMinutes()).padStart(2, '0')}`}{retweetMessage && ', a partagé :'}</h4>
             </div>
-            <p>
+            <div className='message-content'>
                 { props.message }
                 {
                     retweetMessage &&
@@ -64,18 +64,18 @@ function Message(props){
                         <img draggable='false' src={ retweetMessage.avatar } alt={ 'Avatar de ' + retweetMessage.author } />
                         <div className='message-metadata'>
                             <h3><Link to={ `/profil/${retweetMessage.author}` }>{ retweetMessage.author }</ Link></h3>
-                            <h4>Le {`${String(retweetMessage.date.getDate()).padStart(2, '0')}/${String(retweetMessage.date.getMonth() + 1).padStart(2, '0')}/${retweetMessage.date.getFullYear()} à ${String(retweetMessage.date.getHours()).padStart(2, '0')}h${String(retweetMessage.date.getMinutes()).padStart(2, '0')}`}{retweetMessage.retweedId && ', a partagé :'}</h4>
+                            <h4>Le {`${String(retweetMessage.date.getDate()).padStart(2, '0')}/${String(retweetMessage.date.getMonth() + 1).padStart(2, '0')}/${retweetMessage.date.getFullYear()} à ${String(retweetMessage.date.getHours()).padStart(2, '0')}h${String(retweetMessage.date.getMinutes()).padStart(2, '0')}`}{retweetMessage.retweetId && ', a partagé :'}</h4>
                         </div>
-                        <p>{ retweetMessage.message }</p>
+                        <div className='message-content'>{ retweetMessage.message }</div>
                     </div>
                 }
-            </p>
+            </div>
             <div className='message-features'>
                 <button className='message-features-button' onClick={ (evt) => handleStarred(evt) }>
-                    {starred ? <FaStar title='Ne plus aimer' /> : <FaRegStar title='Aimer' />}
+                    { props.likes } {starred ? <FaStar title='Ne plus aimer' /> : <FaRegStar title='Aimer' />}
                 </button>
                 <button className='message-features-button'>
-                    <FaRetweet title='Citer' onClick={ retweet } />
+                    { props.retweets } <FaRetweet title='Citer' onClick={ retweet } />
                 </button>
                 { props.currentUserLogin === props.author && 
                 <button className='message-delete-button' onClick={ deleteMessage }>
