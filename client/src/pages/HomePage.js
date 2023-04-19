@@ -11,23 +11,29 @@ import { useLocation } from 'react-router-dom';
 import './styles/homepage.css';
 
 function HomePage(props) {
+    // States
     const [retweet, setRetweet] = useState(null);
     const [messagesList, setMessagesList] = useState(null);
     const location = useLocation();
     
+
+    // Useful functions
     function getMessagesList() {
         axios.get('/messages')
             .then(res => {
                 let messages = res.data.messagesList;
                 setMessagesList(messages);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log('Could not get the global list of messages'));
     }
 
+
+    // Get the list of messages
     useEffect(() => {
         const updatedMessagesList = getMessagesList();
         setMessagesList(updatedMessagesList);
     }, [location]);
+
 
     return(
         <div id='homepage'>

@@ -1,35 +1,8 @@
 const db = require('../utils/db');
 const mongo = require('mongodb');
 
-exports.isUserAuthorizedLike = async (req, res, next) => {
-    const messageId = req.body.messageId;
-    const userId = req.user._id;
-  
-    const messagesCollection = db.collection('messages');
-  
-    const message = await messagesCollection.findOne({
-         _id: messageId, 
-         'like.userId': userId
-    });
 
-    if (message) {
-        const like = message.commentaires.find((like) => like._id === likeId);
-        if (!like){
-            res.status(404).json({ message: 'Commentaire non trouvé' });
-            return;
-        }
-        if (like.userId !== userId) {
-            res.status(403).json({ message: 'Accès non autorisé' });
-            return;
-        }
-    } else {
-        res.status(404).json({ message: 'Message non trouvé' });
-        return;
-    }
-  
-    next();
-};
-
+// Add like
 exports.addLike = (req, res, next) => {
     db.collection('likes').insertOne(
         {
@@ -38,9 +11,11 @@ exports.addLike = (req, res, next) => {
             date: new Date()
         })
         .then(valid => {
+            // Invalid insertion
             if (!valid) {
                 return res.status(400).json({ error: 'Could not like' })
             }
+            // Increase the message's likes counter
             db.collection('messages').updateOne({ _id: new mongo.ObjectId(req.body.messageId) }, { $inc: { likes: 1 } })
                 .then(result => {
                     if (!result) {
@@ -48,17 +23,21 @@ exports.addLike = (req, res, next) => {
                     }
                     res.status(204).json();
                 })
-                .catch(err => res.status(500).json({ error: err }));
+                .catch(err => res.status(500).json({ error: 'Could not increase the number of likes' }));
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => res.status(500).json({ error: 'Could not like' }));
 }
 
+
+// Delete like
 exports.deleteLike = (req, res, next) => {
     db.collection('likes').deleteOne({ userLogin: req.query.userLogin, messageId: new mongo.ObjectId(req.query.messageId) })
         .then(valid => {
+            // Invalid deletion
             if (!valid) {
                 return res.status(400).json({ error: 'Could not unlike' })
             }
+            // Decrease the message's likes counter
             db.collection('messages').updateOne({ _id: new mongo.ObjectId(req.query.messageId) }, { $inc: { likes: -1 } })
                 .then(result => {
                     if (!result) {
@@ -66,15 +45,17 @@ exports.deleteLike = (req, res, next) => {
                     }
                     res.status(204).json();
                 })
-                .catch(err => res.status(500).json({ error: err }));
+                .catch(err => res.status(500).json({ error: 'Could not decrease the number of likes' }));
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => res.status(500).json({ error: 'Could not unlike' }));
 }
 
+
+// Check whether the user has liked a message
 exports.getLike = (req, res, next) => {
     db.collection('likes').findOne({ userLogin: req.params.userLogin, messageId: new mongo.ObjectId(req.params.messageId) })
         .then(like => {
             res.status(200).json({ like: like })
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => res.status(500).json({ error: 'Could not check if the user liked the message' }));
 }

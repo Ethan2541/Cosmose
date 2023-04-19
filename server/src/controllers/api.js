@@ -2,46 +2,55 @@ const bcrypt = require('bcrypt');
 const db = require('../utils/db');
 const jwt = require('jsonwebtoken');
 
+
+// Login
 exports.login = (req, res, next) => {
     db.collection('users').findOne({ login: req.body.login })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Invalid login or password' });
             }
-            
+            // Verify the password
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Invalid login or password' });
                     }
 
+                    // Token payload
                     const payload = {
-                        id: user._id, // ID de l'utilisateur
-                        login: user.login, // Nom d'utilisateur
+                        id: user._id,
+                        login: user.login,
                     };
 
+                    // Authentication Token
                     const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: req.body.rememberMe ? '30d' : '2h' });
 
                     res.status(200).json({ 
                         accessToken: token
                     });
                 })
-                .catch(err => res.status(500).json({ error: err }));
+                .catch(err => res.status(500).json({ error: 'Could not verify the password' }));
         })
-        .catch(err => res.status(500).json({ error: err }))
+        .catch(err => res.status(500).json({ error: 'Could not look for an existing user' }))
 }
 
+
+// Sign up
 exports.signup = (req, res, next) => {
+    // The fields must not be empty
     if (!req.body.login || !req.body.password || !req.body.firstName || !req.body.lastName) {
         return res.status(400).json({ error: 'Missing parameters' });
     }
 
+    // Check if the user already exists
     db.collection('users').findOne({ login: req.body.login })
         .then(user => {
             if (user) {
                 return res.status(401).json({ error: 'User already exists' });
             }
             
+            // Hash password
             bcrypt.hash(req.body.password, 10)
                 .then(hash => {
                     const newUser = {
@@ -57,6 +66,7 @@ exports.signup = (req, res, next) => {
                         timespent: 0
                     };
 
+                    // User creation
                     db.collection('users').insertOne(newUser)
                         .then(valid => {
                             if (!valid) {
@@ -65,9 +75,9 @@ exports.signup = (req, res, next) => {
                             
                             res.status(201).json({ message: 'User successfully created' });
                         })
-                        .catch(err => res.status(500).json({ error: err }))
+                        .catch(err => res.status(500).json({ error: 'Could not create the user'}))
                 })
-                .catch(err => res.status(500).json({ error: err }))
+                .catch(err => res.status(500).json({ error: 'Could not hash the password' }))
         })
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(err => res.status(500).json({ error: 'Could not check if the user already exists' }));
 }

@@ -9,8 +9,37 @@ import { useState } from 'react';
 import './styles/menu.css';
 
 function Menu(props) {
+    // State
     const [toggleParameters, setToggleParameters] = useState(false);
 
+
+    // Useful functions
+    function getMostStarred() {
+        axios.get('/menu/moststarred')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the most starred messages'));
+    }
+
+    function getRisingStars() {
+        axios.get('/menu/mostretweeted')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the most retweeted messages'));
+    }
+
+    function getGalaxy() {
+        axios.get(`/menu/authorandliked/${props.currentUserLogin}`)
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the messages from the user and liked by the user'));
+    }
+
+    function getMessagesList() {
+        axios.get('/messages')
+            .then(res => props.setList(res.data.messagesList))
+            .catch(err => console.log('Could not get the global list of messages'));
+    }
+
+
+    // Handle dropdown
     useEffect(() => {
         let dropdown = document.getElementById('menu-parameters');
         if (toggleParameters) {
@@ -21,29 +50,6 @@ function Menu(props) {
         }
     }, [toggleParameters]);
 
-    function getMostStarred() {
-        axios.get('/menu/moststarred')
-            .then(res => props.setList(res.data.updatedMessagesList))
-            .catch(err => console.log(err));
-    }
-
-    function getRisingStars() {
-        axios.get('/menu/mostretweeted')
-            .then(res => props.setList(res.data.updatedMessagesList))
-            .catch(err => console.log(err));
-    }
-
-    function getGalaxy() {
-        axios.get(`/menu/authorandliked/${props.currentUserLogin}`)
-            .then(res => props.setList(res.data.updatedMessagesList))
-            .catch(err => console.log(err));
-    }
-
-    function getMessagesList() {
-        axios.get('/messages')
-            .then(res => props.setList(res.data.messagesList))
-            .catch(err => console.log(err));
-    }
 
     return(
         <div id='menu'>

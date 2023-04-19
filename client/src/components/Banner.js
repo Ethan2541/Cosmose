@@ -1,18 +1,19 @@
 import axios from '../axios.js';
 
-import { FaMinusCircle } from 'react-icons/fa';
-import { FaPen } from 'react-icons/fa';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaMinusCircle, FaPen, FaPlusCircle } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './styles/banner.css';
 
 function Banner(props) {
+    // States
     const [followStatus, setFollowStatus] = useState(false);
     const [userAssets, setUserAssets] = useState({ avatar: '/assets/avatar.jpg', cover: '/assets/cover.jpg' });
     const location = useLocation();
 
+
+    // Useful functions
     function renderEditBanner(evt) {
         if (props.currentUserLogin === props.userLogin) {
             document.getElementById('banner-edit').style.setProperty('visibility', 'visible');
@@ -109,11 +110,14 @@ function Banner(props) {
             .catch(err => console.log(err));
     }
 
+
+    // Get assets and if the current user follows the user whose page is displayed
     useEffect(() => {
         getAssets();
         isFollower();
     }, [location]);
 
+    
     return(
         <div id='banner'>
             <div id='banner-cover'>

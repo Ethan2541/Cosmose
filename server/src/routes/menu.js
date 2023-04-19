@@ -6,4 +6,5 @@ const router = express.Router();
 router.get('/moststarred', menuCtrl.getMostLiked)
 .get('/mostretweeted', menuCtrl.getMostRetweeted)
 .get('/authorandliked/:login', menuCtrl.getAuthorAndLiked);
+
 module.exports = router;

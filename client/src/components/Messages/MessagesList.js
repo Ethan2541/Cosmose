@@ -6,12 +6,16 @@ import { useState } from 'react';
 import './styles/messageslist.css';
 
 function MessagesList(props) {
+    // State
     const [limit, setLimit] = useState(5);
 
+
+    // Useful function
     function handleSeeMore() {
         setLimit(limit + 5);
     }
 
+    
     return(
         <div className='messageslist'>
             <ul>

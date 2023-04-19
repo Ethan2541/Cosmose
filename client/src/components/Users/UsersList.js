@@ -6,12 +6,16 @@ import { useState } from 'react';
 import './styles/userslist.css'
 
 function UsersList(props) {
+    // State
     const [limit, setLimit] = useState(3);
 
+
+    // Useful function
     function handleSeeMore() {
         setLimit(limit + 3);
     }
 
+    
     return(
         <div className='userslist'>
             <ul>

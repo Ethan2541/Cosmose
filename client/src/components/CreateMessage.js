@@ -1,12 +1,16 @@
 import axios from '../axios.js';
-import './styles/createmessage.css';
 
 import { FaTimesCircle } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 
+import './styles/createmessage.css';
+
 function CreateMessage(props){
+    // State
     const [message, setMessage] = useState();
 
+
+    // Useful function
     function sendMessage(evt){
         const token = window.localStorage.getItem('token');
         axios.post('/messages', { message: message, retweetId: props.retweet ? props.retweet.messageId : null }, { headers: { Authorization: `Bearer ${token}`} })
@@ -16,8 +20,9 @@ function CreateMessage(props){
                 props.setRetweet(null);
                 props.getMessagesList(5);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log('Could not create the message'));
     }
+
 
     return(
         <div id='createmessage'>
