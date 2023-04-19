@@ -1,4 +1,5 @@
 #menu {
+    -ms-overflow-style: none;
     align-items: flex-start;
     background-color: var(--menu-bg-color);
     border-right: 3px solid var(--border-color);
@@ -12,8 +13,13 @@
     margin: 0;
     overflow: scroll;
     padding: 0;
+    scrollbar-width: none;
     width: 100%;
     z-index: 1;
+}
+
+#menu::-webkit-scrollbar {
+    display: none;
 }
 
 #menu-title {

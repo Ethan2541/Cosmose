@@ -1,4 +1,5 @@
 .message {
+    -ms-overflow-style: none;
     background-color: var(--message-bg-color);
     border: 1px solid var(--message-border-color);
     display: grid;
@@ -7,6 +8,11 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto auto;
     overflow: scroll;
+    scrollbar-width: none;
+}
+
+.message::-webkit-scrollbar {
+    display: none;
 }
 
 .message>img {

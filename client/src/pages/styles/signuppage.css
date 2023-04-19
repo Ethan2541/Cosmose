@@ -1,11 +1,17 @@
 #signuppage {
+    -ms-overflow-style: none;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("../../../public/assets/background.png") center no-repeat;
     background-size: cover;
     height: 100%;
     min-height: 100%;
     overflow: scroll;
     position: absolute;
+    scrollbar-width: none;
     width: 100%;
+}
+
+#signuppage::-webkit-scrollbar {
+    display: none;
 }
 
 #signuppage-header {
