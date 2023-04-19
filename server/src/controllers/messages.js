@@ -18,7 +18,8 @@ exports.createMessage = (req, res, next) => {
                     avatar: user.avatar,
                     date: new Date(),
                     likes: 0,
-                    message: req.body.message
+                    message: req.body.message,
+                    retweetId: req.body.retweetId
                 })
                     .then(valid => {
                         if (!valid) {
@@ -66,4 +67,15 @@ exports.getUserMessagesList = (req, res, next) => {
             res.status(200).json({ messagesList: messagesList });
         })
         .catch(err => console.log(err))
+}
+
+exports.getMessage = (req, res, next) => {
+    db.collection('messages').findOne({ _id: new mongo.ObjectId(req.params.messageId) })
+    .then(message => {
+        if (!message) {
+            return res.status(400).json({ error: 'Message does not exist' });
+        }
+        res.status(200).json({ message: message })
+    })
+    .catch(err => res.status(500).json({ error: err }));
 }

@@ -20,6 +20,7 @@ function UserPage(props) {
     const { login } = useParams();
     const [followedList, setFollowedList] = useState();
     const [followersList, setFollowersList] = useState();
+    const [retweet, setRetweet] = useState(false);
     const [userMessagesList, setUserMessagesList] = useState();
     const [user, setUser] = useState(props.currentUser);
 
@@ -108,9 +109,9 @@ function UserPage(props) {
                     <div id='userpage-searchbar'>
                         <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ setUserMessagesList } userLogin={ user.login } />
                     </div>
-                    { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } />}
+                    { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } retweet={ retweet } setRetweet={ setRetweet } />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ userMessagesList } currentUserLogin={ props.currentUser.login } />
+                        <MessagesList messages={ userMessagesList } currentUserLogin={ props.currentUser.login } getList={ getUserMessagesList } setRetweet={ setRetweet } />
                     </div>
                 </section>
             </main>

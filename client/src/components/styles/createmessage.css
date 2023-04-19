@@ -39,3 +39,27 @@
 #createmessage>button:hover {
     filter: brightness(85%);
 }
+
+.createmessage-retweet {
+    align-items: baseline;
+    border-radius: 10px;
+    color: var(--createmessage-color);
+    display: flex;
+    font-family: inherit;
+    gap: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.createmessage-cancel {
+    background: none;
+    border: 0;
+    color: var(--createmessage-color);
+    cursor: pointer;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.createmessage-cancel:hover {
+    filter: brightness(75%);
+}

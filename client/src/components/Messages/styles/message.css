@@ -90,3 +90,8 @@
 .message-delete-button:hover {
     color: rgba(255,69,0,1);
 }
+
+.message-retweet {
+    grid-area: 2 / 2 / 3 / 3;
+    margin-top: 5px;
+}

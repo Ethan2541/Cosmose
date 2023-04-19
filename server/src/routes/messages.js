@@ -7,6 +7,7 @@ const messages = require('./../controllers/messages');
 const router = express.Router();
 
 router.get('/', messages.getMessagesList)
+.get('/id/:messageId', messages.getMessage)
 .get('/:userLogin', messages.getUserMessagesList)
 .post('/', auth, messages.createMessage)
 .delete('/', messages.deleteMessage);

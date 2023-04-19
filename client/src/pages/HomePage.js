@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import './styles/homepage.css';
 
 function HomePage(props) {
+    const [retweet, setRetweet] = useState(false);
     const [messagesList, setMessagesList] = useState(null);
     const location = useLocation();
 
@@ -41,9 +42,9 @@ function HomePage(props) {
                     <Searchbar placeholder={ 'Naviguer dans le Cosmos...' } type={ 'allmessages' } setList={ setMessagesList } />
                 </div>
                 <section id='homepage-posts'>
-                    <CreateMessage getMessagesList={ getMessagesList } />
+                    <CreateMessage getMessagesList={ getMessagesList } retweet={ retweet } setRetweet={ setRetweet } />
                     <div id='homepage-messageslist'>
-                        <MessagesList messages={ messagesList } currentUserLogin={ props.currentUser.login } />
+                        <MessagesList messages={ messagesList } currentUserLogin={ props.currentUser.login } getList={ getMessagesList }setRetweet={ setRetweet } />
                     </div>
                 </section>
             </main>
