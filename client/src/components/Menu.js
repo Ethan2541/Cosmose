@@ -39,9 +39,15 @@ function Menu(props) {
             .catch(err => console.log(err));
     }
 
+    function getMessagesList() {
+        axios.get('/messages')
+            .then(res => props.setList(res.data.messagesList))
+            .catch(err => console.log(err));
+    }
+
     return(
         <div id='menu'>
-            <h1>COSMOSE</h1>
+            <button id='menu-title' onClick={ getMessagesList }><h1>COSMOSE</h1></button>
             <ul>
                 <li><Link to='/profil' className='menu-link'>MA CONSTELLATION</Link></li>
                 <li>
