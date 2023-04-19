@@ -35,6 +35,7 @@ function Message(props) {
     function retweet() {
         const retweet = {messageId: props.messageId, author: props.author, avatar: props.avatar, date: props.date, likes: props.likes, message: props.message }
         props.setRetweet(retweet);
+        window.scrollTo(0,0);
     }
 
     function getRetweetMessage() {
@@ -82,7 +83,7 @@ function Message(props) {
                 <h3><Link to={ `/profil/${props.author}` }>{ props.author }</ Link></h3>
                 <h4>Le {`${String(props.date.getDate()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${String(props.date.getHours()).padStart(2, '0')}h${String(props.date.getMinutes()).padStart(2, '0')}`}{retweetMessage && ', a partagé :'}</h4>
             </div>
-            <div className='message-content'>
+            <div className='message-content message-border-bottom'>
                 { props.message }
                 {
                     retweetMessage &&
