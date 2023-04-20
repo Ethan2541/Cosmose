@@ -51,6 +51,7 @@ function LoginPage(props) {
                 const token = res.data.accessToken;
                 axios.get(`/users/${userData.login}`)
                     .then((res) => {
+                        document.getElementById('loginpage-invalid').style.setProperty('visibility', 'hidden');
                         // Store the token
                         if (res.data.user) {
                             window.localStorage.setItem('token', token);
@@ -60,9 +61,15 @@ function LoginPage(props) {
                             navigate('/accueil');
                         }
                     })
-                    .catch((err) => console.log('Could not log in'));
+                    .catch((err) => {
+                        document.getElementById('loginpage-invalid').style.setProperty('visibility', 'visible');
+                        console.log('Could not log in');
+                    });
             })
-            .catch((err) => console.log('Could not log in'));
+            .catch((err) => {
+                document.getElementById('loginpage-invalid').style.setProperty('visibility', 'visible');
+                console.log('Could not log in');
+            });
     }
 
 
@@ -81,6 +88,7 @@ function LoginPage(props) {
                         <input type='checkbox' id='rememberMe' onChange={ (evt) => handleRememberMeChange(evt) }></input>
                         <label htmlFor='checkbox'>Se souvenir de moi</label>
                     </div>
+                    <p id='loginpage-invalid' className='common-loginpage-signuppage-invalid'>Identifiants invalides</p>
                 </form>
             </main>
         </div>

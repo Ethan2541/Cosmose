@@ -69,9 +69,13 @@ function SignUpPage(props) {
             password: userData.password
         })
             .then((res) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'hidden');
                 navigate('/connexion');
             })
-            .catch((err) => { console.log('Could not sign up') });
+            .catch((err) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
+                console.log('Could not sign up');
+            });
     }
 
 
@@ -105,6 +109,7 @@ function SignUpPage(props) {
                     </div>
                     <button className='large-field' type='submit'>Enregistrer</button>
                 </form>
+                <p id='signuppage-invalid' className='common-loginpage-signuppage-invalid'>Informations invalides</p>
             </main>
         </div>
     );
