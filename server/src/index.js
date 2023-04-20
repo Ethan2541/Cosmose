@@ -37,10 +37,6 @@ app.use('/api', api)
 .use('/users', users)
 .use('/messages', messages);
 
-httpsServer.listen(process.env.PORT,  () => {
-    console.log(`Server listening on port: ${process.env.PORT}`);
-});
-
 const httpServer = http.createServer(app);
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/privkey.pem', 'utf8');
@@ -52,6 +48,10 @@ const httpsOptions = {
 };
 
 const httpsServer = https.createServer(httpsOptions, app);
+
+httpsServer.listen(process.env.PORT,  () => {
+    console.log(`Server listening on port: ${process.env.PORT}`);
+});
 
 httpServer.listen(80, () => {
     console.log('Serveur HTTP en écoute sur le port 80');
