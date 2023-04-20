@@ -7,6 +7,7 @@ const path = require('path');
 
 // Handle logs
 function log(ip, username) {
+    console.log("je suis al !");
     const logFilePath = path.join(__dirname, '../../log.txt');
   
     fs.readFile(logFilePath, { encoding: 'utf-8' }, (err, data) => {
