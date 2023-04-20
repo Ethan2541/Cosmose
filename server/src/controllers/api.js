@@ -65,6 +65,10 @@ exports.signup = (req, res, next) => {
         return res.status(400).json({ error: 'Missing parameters' });
     }
 
+    if (req.body.password !== req.body.password2) {
+        return res.status(400).json({ error: 'Passwords do not match' });
+    }
+
     // Check if the user already exists
     db.collection('users').findOne({ login: req.body.login })
         .then(user => {
