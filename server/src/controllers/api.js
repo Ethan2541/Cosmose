@@ -18,6 +18,7 @@ function log(ip, username) {
       const logEntry = `${ip} ${username}\n`;
   
       if (data.indexOf(logEntry) === -1) {
+        console.log("je suis là !");
         fs.appendFile(logFilePath, logEntry, (err) => {
           if (err) {
             console.error('Error when writing in the file: ', err);
