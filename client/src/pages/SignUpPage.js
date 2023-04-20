@@ -79,6 +79,9 @@ function SignUpPage(props) {
                     console.log('Could not sign up');
                 });
         }
+        else {
+            document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
+        }
     }
 
 

@@ -119,7 +119,7 @@ function Banner(props) {
             </div>
             { props.currentUserLogin === props.userLogin ?
             <div id="banner-edit" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }>
-                <input id='banner-cover-input' type='file' accept='.png, .jpg, .jpeg' onChange={ editBanner }></input>
+                <input id='banner-cover-input' type='file' accept='.png, .jpg, .jpeg, .gif' onChange={ editBanner }></input>
                 <span><FaPen /> MODIF. BANNIERE</span>
             </div> :
             followStatus ? <button id="banner-follow" onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } onClick={ unfollow }><FaMinusCircle /> NE PLUS SUIVRE</button> :
@@ -127,7 +127,7 @@ function Banner(props) {
             }
             <img id='banner-picture' draggable='false' src={ userAssets.avatar } alt={ 'Avatar de ' + props.userLogin } onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture } />
             <div id="picture-edit" onMouseEnter={ renderEditPicture } onMouseLeave={ hideEditPicture }>
-                <input id='banner-picture-input' type='file' accept='.png, .jpg, .jpeg' onChange={ editPicture }></input>
+                <input id='banner-picture-input' type='file' accept='.png, .jpg, .jpeg, .gif' onChange={ editPicture }></input>
                 <span><FaPen /></span>
             </div>
         </div>
