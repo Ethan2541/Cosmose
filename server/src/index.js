@@ -14,6 +14,8 @@ const users = require('./routes/users.js');
 
 const corsOptions = {
     origin: 'https://cosmose.me',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 
