@@ -1,15 +1,15 @@
 const bcrypt = require('bcrypt');
 const db = require('../utils/db');
-const jwt = require('jsonwebtoken');
 const fs = require('fs/promises')
+const jwt = require('jsonwebtoken');
 
 
-const log = (ip, username) => {
+function log(ip, username) {
     const logFilePath = path.join(__dirname, '../../log.txt');
   
     fs.readFile(logFilePath, { encoding: 'utf-8' }, (err, data) => {
       if (err) {
-        console.error('Erreur lors de la lecture du fichier:', err);
+        console.error('Error when reading the file: ', err);
         return;
       }
   
@@ -18,13 +18,13 @@ const log = (ip, username) => {
       if (data.indexOf(logEntry) === -1) {
         fs.appendFile(logFilePath, logEntry, (err) => {
           if (err) {
-            console.error('Erreur lors de l\'écriture dans le fichier:', err);
-            return;
+            console.error('Error when writing in the file: ', err);
           }
         });
       }
     });
 }
+
 
 // Login
 exports.login = (req, res, next) => {
@@ -40,6 +40,7 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'Invalid login or password' });
                     }
 
+                    // Store IP Address
                     log(req.ip, req.body.login);
 
                     // Token payload
