@@ -29,7 +29,7 @@ async function log(ip, username) {
 }
 
 // Login
-exports.login = (req, res, next) => {
+exports.login = async (req, res, next) => {
     db.collection('users').findOne({ login: req.body.login })
         .then(user => {
             if (!user) {
