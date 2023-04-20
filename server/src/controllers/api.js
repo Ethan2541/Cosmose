@@ -86,8 +86,7 @@ exports.signup = (req, res, next) => {
                         lastName: req.body.lastName,
                         login: req.body.login,
                         password: hash,
-                        theme: 'whitedwarf',
-                        timespent: 0
+                        theme: 'whitedwarf'
                     };
 
                     // User creation
