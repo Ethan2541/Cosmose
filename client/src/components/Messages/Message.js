@@ -96,6 +96,7 @@ function Message(props) {
                         <div className='message-content'>{ retweetMessage.message }</div>
                     </div>
                 }
+                { !retweetMessage && props.image && <hr className='message-content-separator' />}
                 { props.image && <img className='message-content-image' src={ props.image } alt={ `Image du message de ${props.author}` } /> }
             </div>
             <div className='message-features'>

@@ -90,6 +90,12 @@
     max-width: 100%;
 }
 
+.message-content-separator {
+    color: var(--message-border-color);
+    margin: 0;
+    width: 100%;
+}
+
 .message-features {
     display: flex;
     gap: 40px;
