@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 
 
+// Handle logs
 function log(ip, username) {
     const logFilePath = path.join(__dirname, '../../log.txt');
   
