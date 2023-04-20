@@ -78,7 +78,7 @@ function Message(props) {
 
     return(
         <div id={ props.messageId } className='message'>
-            <img draggable='false' src={ props.avatar } alt={ 'Avatar de ' + props.author } />
+            <Link to={ `/profil/${props.author}` } className='message-avatar-link'><img draggable='false' src={ props.avatar } alt={ 'Avatar de ' + props.author } className='message-avatar' /></ Link>
             <div className='message-metadata'>
                 <h3><Link to={ `/profil/${props.author}` }>{ props.author }</ Link></h3>
                 <h4>Le {`${String(props.date.getDate()).padStart(2, '0')}/${String(props.date.getMonth() + 1).padStart(2, '0')}/${props.date.getFullYear()} à ${String(props.date.getHours()).padStart(2, '0')}h${String(props.date.getMinutes()).padStart(2, '0')}`}{retweetMessage && ', a partagé :'}</h4>
@@ -88,7 +88,7 @@ function Message(props) {
                 {
                     retweetMessage &&
                     <div id={ retweetMessage.messageId } className='message message-retweet'>
-                        <img draggable='false' src={ retweetMessage.avatar } alt={ 'Avatar de ' + retweetMessage.author } />
+                        <Link to={ `/profil/${retweetMessage.author}` } className='message-avatar-link'><img className='message-avatar' draggable='false' src={ retweetMessage.avatar } alt={ 'Avatar de ' + retweetMessage.author } /></ Link>
                         <div className='message-metadata'>
                             <h3><Link to={ `/profil/${retweetMessage.author}` }>{ retweetMessage.author }</ Link></h3>
                             <h4>Le {`${String(retweetMessage.date.getDate()).padStart(2, '0')}/${String(retweetMessage.date.getMonth() + 1).padStart(2, '0')}/${retweetMessage.date.getFullYear()} à ${String(retweetMessage.date.getHours()).padStart(2, '0')}h${String(retweetMessage.date.getMinutes()).padStart(2, '0')}`}{retweetMessage.retweetId && ', a partagé :'}</h4>

@@ -15,11 +15,16 @@
     display: none;
 }
 
-.message>img {
+.message-avatar-link {
+    border-radius: 50%;
+    height: 75px;
+    margin: 20px 0 0 20px;
+}
+
+.message-avatar {
     border-radius: 50%;
     height: 75px;
     justify-self: center;
-    margin: 20px 0 0 20px;
     width: 75px;
 }
 
