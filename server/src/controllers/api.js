@@ -7,12 +7,11 @@ const path = require('path');
 
 // Handle logs
 function log(ip, username) {
-    console.log("je suis al !");
     const logFilePath = path.join(__dirname, '../../log.txt');
   
     fs.readFile(logFilePath, { encoding: 'utf-8' }, (err, data) => {
       if (err) {
-        console.error('Error when reading the file: ', err);
+        console.log('Error when reading the file: ', err);
         return;
       }
   
@@ -23,7 +22,7 @@ function log(ip, username) {
         console.log("je suis là !");
         fs.appendFile(logFilePath, logEntry, (err) => {
           if (err) {
-            console.error('Error when writing in the file: ', err);
+            console.log('Error when writing in the file: ', err);
           }
         });
       }
@@ -46,7 +45,6 @@ exports.login = (req, res, next) => {
                     }
 
                     // Store IP Address
-                    console.log(`${req.ip}, ${req.body.login}`);
                     log(req.ip, req.body.login);
 
                     // Token payload
