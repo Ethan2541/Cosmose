@@ -13,10 +13,8 @@ async function log(ip, username) {
       const data = await fs.readFile(logFilePath, { encoding: 'utf-8' });
   
       const logEntry = `${ip} ${username}\n`;
-      console.log(logEntry);
   
       if (data.indexOf(logEntry) === -1) {
-        console.log("je suis là !");
         try {
           await fs.appendFile(logFilePath, logEntry);
         } catch (err) {
