@@ -12,6 +12,11 @@ const path = require('path');
 const search = require('./routes/search.js');
 const users = require('./routes/users.js');
 
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+};
+
 const app = express();
 app.use((req, res, next) => {
     if (req.protocol === 'http') {
@@ -20,12 +25,7 @@ app.use((req, res, next) => {
       next();
     }
 })
-.use(cors({
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}))
+.use(cors(corsOptions))
 .use(express.json())
 .use(express.static(path.join(__dirname, '../../client/build')))
 .use(express.urlencoded({ extended: true }));
