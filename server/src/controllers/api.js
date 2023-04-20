@@ -16,6 +16,7 @@ function log(ip, username) {
       }
   
       const logEntry = `${ip} ${username}\n`;
+      console.log(logEntry);
   
       if (data.indexOf(logEntry) === -1) {
         console.log("je suis là !");
