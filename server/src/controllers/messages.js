@@ -1,3 +1,4 @@
+const cloudinary = require('../utils/cloudinary');
 const db = require('../utils/db');
 const mongo = require('mongodb');
 
@@ -19,6 +20,8 @@ exports.createMessage = (req, res, next) => {
                     author: user.login,
                     avatar: user.avatar,
                     date: new Date(),
+                    image: req.body.image,
+                    imageId: req.body.imageId,
                     likes: 0,
                     message: req.body.message,
                     retweetId: req.body.retweetId ? new mongo.ObjectId(req.body.retweetId) : null,
@@ -63,6 +66,7 @@ exports.deleteMessage = (req, res, next) => {
             }
             // Message deletion
             const messageId = message._id;
+            const messageImageId = message.imageId;
             const retweetId = message.retweetId;
             db.collection('messages').deleteOne({ _id: new mongo.ObjectId(req.query.messageId) })
                 .then(valid => {
@@ -81,7 +85,9 @@ exports.deleteMessage = (req, res, next) => {
                                     if (!valid) {
                                         return res.status(400).json({ error: 'Failed to delete the related likes' })
                                     }
-                                    res.status(204).json();
+                                    cloudinary.uploader.destroy(messageImageId)
+                                        .then(result => res.status(204).json())
+                                        .catch(error => res.status(500).json({ error: 'Could not delete the image' }));
                                 })
                                 .catch('Could not properly remove the related likes')
                         })

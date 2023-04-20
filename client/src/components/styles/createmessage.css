@@ -22,7 +22,15 @@
     border: 3px solid var(--border-color);
 }
 
-#createmessage>button {
+#createmessage-buttons {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+    width: 100%;
+}
+
+.createmessage-button {
     background-color: var(--border-color);
     border: 0;
     color: rgba(255,255,255,1);
@@ -36,8 +44,17 @@
     width: 100%;
 }
 
-#createmessage>button:hover {
+.createmessage-button:hover {
     filter: brightness(85%);
+}
+
+#createmessage-image {
+    height: 50px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .createmessage-retweet {
