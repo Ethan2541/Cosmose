@@ -29,7 +29,7 @@ async function log(ip, username) {
 }
 
 // Login
-exports.login = async (req, res, next) => {
+exports.login = (req, res, next) => {
     db.collection('users').findOne({ login: req.body.login })
         .then(user => {
             if (!user) {
@@ -37,7 +37,7 @@ exports.login = async (req, res, next) => {
             }
             // Verify the password
             bcrypt.compare(req.body.password, user.password)
-                .then(valid => {
+                .then(async valid => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Invalid login or password' });
                     }
