@@ -70,7 +70,7 @@ const httpsOptions = {
     cert: certificate,
 };
 
-//const httpsServer = https.createServer(httpsOptions, app);
+const httpsServer = https.createServer(httpsOptions, app);
 
 httpsServer.listen(process.env.PORT,  () => {
     console.log(`Server listening on port: ${process.env.PORT}`);
