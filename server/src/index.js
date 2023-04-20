@@ -13,8 +13,10 @@ const search = require('./routes/search.js');
 const users = require('./routes/users.js');
 
 const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200
+    origin: 'https://cosmose.me',
+    credentials: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+
 };
 
 const app = express();
