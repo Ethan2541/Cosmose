@@ -12,6 +12,15 @@ const path = require('path');
 const search = require('./routes/search.js');
 const users = require('./routes/users.js');
 
+const corsOptions = {
+    origin: 'https://cosmose.me',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+
+};
+
 const app = express();
 app.use((req, res, next) => {
     if (req.protocol === 'http') {
@@ -20,12 +29,20 @@ app.use((req, res, next) => {
       next();
     }
 })
-.use(cors({
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}))
+.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://local:8001');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header(
+    'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, X-Api-Key'
+    );
+    res.header('Access-Control-Allow-Credentials', 'true');
+    if ('OPTIONS' === req.method) {
+    res.sendStatus(200);
+    }
+    else {
+    next();
+    }
+})
 .use(express.json())
 .use(express.static(path.join(__dirname, '../../client/build')))
 .use(express.urlencoded({ extended: true }));
