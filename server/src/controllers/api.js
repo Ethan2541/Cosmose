@@ -14,13 +14,11 @@ async function log(ip, username) {
     const date = `${currentDate.getHours()}:${currentDate.getMinutes()} | ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
   
     const logEntry = `${date} ${ip} ${username}\n`;
-  
-    if (data.indexOf(logEntry) === -1) {
-        try {
-            await fs.appendFile(logFilePath, logEntry);
-        } catch (err) {
-            console.log('Error when writing in the file: ', err);
-        }
+
+    try {
+        await fs.appendFile(logFilePath, logEntry);
+    } catch (err) {
+        console.log('Error when writing in the file: ', err);
     }
 }
 
