@@ -20,7 +20,12 @@ app.use((req, res, next) => {
       next();
     }
 })
-.use(cors())
+.use(cors({
+    origin: '*',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
 .use(express.json())
 .use(express.static(path.join(__dirname, '../../client/build')))
 .use(express.urlencoded({ extended: true }));
