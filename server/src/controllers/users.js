@@ -40,16 +40,6 @@ exports.getAssets = (req, res, next) => {
 }
 
 
-// Upload assets
-exports.postAssets = (req, res, next) => {
-    cloudinary.uploader.upload(req.file.path)
-        .then(result => {
-            res.status(200).json({ newUrl: result.secure_url, newId: result.public_id })
-        })
-        .catch(err => res.status(500).json({ error: 'Could not post the assets' }));
-}
-
-
 // Change user's banner ; If invalid -> delete the new assets and keep the old assets ; If valid -> delete the old assets
 exports.changeBanner = (req, res, next) => {
     // The user must exist

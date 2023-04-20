@@ -30,7 +30,7 @@ function Banner(props) {
         const data = new FormData();
         const file = document.getElementById('banner-cover-input').files[0];
         data.append('image', file);
-        axios.post('/users/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+        axios.post('/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
                 const newUrl = res.data.newUrl;
                 const newId = res.data.newId;
@@ -62,7 +62,7 @@ function Banner(props) {
         const data = new FormData();
         const file = document.getElementById('banner-picture-input').files[0];
         data.append('image', file);
-        axios.post('/users/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
+        axios.post('/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
                 const newUrl = res.data.newUrl;
                 const newId = res.data.newId;
