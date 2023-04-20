@@ -1,7 +1,7 @@
 const api = require('./routes/api.js');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const express = require('express');
+const express = require('express');;
 const menu = require('./routes/menu.js');
 const messages = require('./routes/messages.js');
 const path = require('path');
@@ -21,6 +21,8 @@ app.use('/menu', menu);
 app.use('/search', search);
 app.use('/users', users);
 app.use('/messages', messages);
+
+
 
 app.use('/*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
