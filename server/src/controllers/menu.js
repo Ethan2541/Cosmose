@@ -1,4 +1,5 @@
 const db = require('../utils/db');
+const mongo = require('mongodb');
 
 
 // Most liked messages
@@ -23,26 +24,19 @@ exports.getMostRetweeted = (req, res, next) => {
 
 // Messages from the user and messages liked by the user
 exports.getAuthorAndLiked = (req, res, next) => {
-    db.collection('messages').find().sort({ date: -1 }).toArray()
-        .then(messagesList => {
-            let updatedMessagesList = [];
-            for (let i = 0; i < messagesList.length; i++) {
-                // Message is from the user
-                if (messagesList[i].author === req.params.login) {
-                    updatedMessagesList.push(messagesList[i]);
-                }
-                else {
-                    // The user has liked the message
-                    db.collection('likes').findOne({ userLogin: req.params.login, messageId: new mongo.ObjectId(messagesList[i]._id) })
-                        .then(like => {
-                            if (like) {
-                                updatedMessagesList.push(messagesList[i])
-                            }
-                        })
-                        .catch(err => res.status(500).json({ error: 'Could not find whether the user has liked the message' }));
-                }
+    // Messages liked by the user
+    db.collection('likes').find({ userLogin: req.params.login }).toArray()
+        .then(likedMessages => {
+            const likedMessagesIds = [];
+            for (let i = 0; i < likedMessages.length; i++) {
+                likedMessagesIds.push(likedMessages[i].messageId);
             }
-            res.status(200).json({ updatedMessagesList: updatedMessagesList });
+            // Messages from the user or liked by the user
+            db.collection('messages').find({ $or: [{ author: req.params.login }, { _id: { $in: likedMessagesIds } }] }).sort({ date: -1 }).toArray()
+                .then(messagesList => { 
+                    res.status(200).json({ updatedMessagesList: messagesList });
+                })
+                .catch(err => res.status(500).json({ error: 'Could not look for the messages from the user'}))
         })
-        .catch(err => res.status(500).json({ error: 'Could not look for the list of messages' }));
+        .catch(err => res.status(500).json({ error: 'Could not find whether the user has liked the message' }));
 }

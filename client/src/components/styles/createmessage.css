@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-#createmessage>textarea {
+#createmessage-content {
     background-color: var(--createmessage-bg-color);
     border: 1px solid var(--message-border-color);
     box-sizing: border-box;

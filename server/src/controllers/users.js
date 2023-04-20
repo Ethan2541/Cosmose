@@ -69,9 +69,14 @@ exports.changeBanner = (req, res, next) => {
                             .then(result => res.status(400).json({ error: 'Could not update the cover' }))
                             .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                     }
-                    cloudinary.uploader.destroy(oldId)
-                        .then(result => res.status(204).json())
-                        .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));    
+                    if (oldId) {
+                        cloudinary.uploader.destroy(oldId)
+                            .then(result => res.status(204).json())
+                            .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));    
+                    }
+                    else {
+                        res.status(204).json();
+                    }
                 })
                 .catch(err => {
                     cloudinary.uploader.destroy(req.query.id)
@@ -114,9 +119,14 @@ exports.changeAvatar = (req, res, next) => {
                                     .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
                                     .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                             }
-                            cloudinary.uploader.destroy(oldId)
-                                .then(result => res.status(204).json())
-                                .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));                            
+                            if (oldId) {
+                                cloudinary.uploader.destroy(oldId)
+                                    .then(result => res.status(204).json())
+                                    .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));         
+                            }
+                            else {
+                                res.status(204).json();
+                            }      
                         })
                         .catch(err => {
                             cloudinary.uploader.destroy(req.query.id)

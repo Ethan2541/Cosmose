@@ -41,7 +41,7 @@ function UserMeters(props) {
                 <FaUserFriends />
             </div>
             <p>&bull;</p>
-            <div title='Publications postées' >
+            <div title='Histoires publiées' >
                 <p>{ userMeters.messages }</p>
                 <FaCommentAlt />
             </div>
