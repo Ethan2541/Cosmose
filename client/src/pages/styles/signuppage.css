@@ -78,3 +78,8 @@
 .input-invalid-password {
     outline: 3px solid rgba(255,69,0,1);
 }
+
+#signuppage-invalid {
+    margin-top: 20px;
+    visibility: hidden;
+}

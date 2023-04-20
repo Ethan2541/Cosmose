@@ -83,17 +83,24 @@ exports.deleteMessage = (req, res, next) => {
                             db.collection('likes').deleteMany({ messageId: messageId })
                                 .then(valid => {
                                     if (!valid) {
-                                        return res.status(400).json({ error: 'Failed to delete the related likes' })
+                                        return res.status(400).json({ error: 'Failed to delete the related likes' });
                                     }
                                     // Delete the image if necessary
-                                    if (messageImageId) {
-                                        cloudinary.uploader.destroy(messageImageId)
-                                            .then(result => res.status(204).json())
-                                            .catch(error => res.status(500).json({ error: 'Could not delete the image' }));
-                                    }
-                                    else {
-                                        res.status(204).json();
-                                    }
+                                    db.collection('messages').updateMany({ retweetId: messageId }, { $set: { retweetId: null } })
+                                        .then(correct => {
+                                            if (!correct) {
+                                                return res.status(400).json({ error: 'Failed to delete the retweets dependencies' });
+                                            }
+                                            if (messageImageId) {
+                                                cloudinary.uploader.destroy(messageImageId)
+                                                    .then(result => res.status(204).json())
+                                                    .catch(error => res.status(500).json({ error: 'Could not delete the image' }));
+                                            }
+                                            else {
+                                                res.status(204).json();
+                                            }
+                                        })
+                                        .catch(error => res.status(500).json({ error: 'Could not delete the dependencies of the retweets' }))
                                 })
                                 .catch('Could not properly remove the related likes')
                         })
