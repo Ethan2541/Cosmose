@@ -24,11 +24,8 @@ app.use((req, res, next) => {
 .use(express.json())
 .use(express.static(path.join(__dirname, '../../client/build')))
 .use(express.urlencoded({ extended: true }));
-dotenv.config();
 
-app.use('/*', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
-})
+dotenv.config();
 
 app.use('/api', api)
 .use('/assets', assets)
@@ -36,6 +33,10 @@ app.use('/api', api)
 .use('/search', search)
 .use('/users', users)
 .use('/messages', messages);
+
+app.use('/*', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+});
 
 const httpServer = http.createServer(app);
 
