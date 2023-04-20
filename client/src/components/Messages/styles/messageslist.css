@@ -35,6 +35,7 @@
 }
 
 .messageslist-empty {
+    -ms-overflow-style: none;
     align-items: center;
     background-color: var(--message-bg-color);
     border: 1px solid var(--message-border-color);
@@ -45,5 +46,10 @@
     height: 100px;
     justify-content: center;
     overflow: scroll;
+    scrollbar-width: none;
     width: 100%;
+}
+
+.messageslist-empty::-webkit-scrollbar {
+    display: none;
 }

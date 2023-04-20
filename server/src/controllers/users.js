@@ -40,16 +40,6 @@ exports.getAssets = (req, res, next) => {
 }
 
 
-// Upload assets
-exports.postAssets = (req, res, next) => {
-    cloudinary.uploader.upload(req.file.path)
-        .then(result => {
-            res.status(200).json({ newUrl: result.secure_url, newId: result.public_id })
-        })
-        .catch(err => res.status(500).json({ error: 'Could not post the assets' }));
-}
-
-
 // Change user's banner ; If invalid -> delete the new assets and keep the old assets ; If valid -> delete the old assets
 exports.changeBanner = (req, res, next) => {
     // The user must exist
@@ -69,9 +59,14 @@ exports.changeBanner = (req, res, next) => {
                             .then(result => res.status(400).json({ error: 'Could not update the cover' }))
                             .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                     }
-                    cloudinary.uploader.destroy(oldId)
-                        .then(result => res.status(204).json())
-                        .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));    
+                    if (oldId) {
+                        cloudinary.uploader.destroy(oldId)
+                            .then(result => res.status(204).json())
+                            .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));    
+                    }
+                    else {
+                        res.status(204).json();
+                    }
                 })
                 .catch(err => {
                     cloudinary.uploader.destroy(req.query.id)
@@ -114,9 +109,14 @@ exports.changeAvatar = (req, res, next) => {
                                     .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
                                     .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                             }
-                            cloudinary.uploader.destroy(oldId)
-                                .then(result => res.status(204).json())
-                                .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));                            
+                            if (oldId) {
+                                cloudinary.uploader.destroy(oldId)
+                                    .then(result => res.status(204).json())
+                                    .catch(error => res.status(500).json({ error: 'Old assets could not be deleted' }));         
+                            }
+                            else {
+                                res.status(204).json();
+                            }      
                         })
                         .catch(err => {
                             cloudinary.uploader.destroy(req.query.id)

@@ -1,4 +1,5 @@
 .message {
+    -ms-overflow-style: none;
     background-color: var(--message-bg-color);
     border: 1px solid var(--message-border-color);
     display: grid;
@@ -7,13 +8,23 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto auto;
     overflow: scroll;
+    scrollbar-width: none;
 }
 
-.message>img {
+.message::-webkit-scrollbar {
+    display: none;
+}
+
+.message-avatar-link {
+    border-radius: 50%;
+    height: 75px;
+    margin: 20px 0 0 20px;
+}
+
+.message-avatar {
     border-radius: 50%;
     height: 75px;
     justify-self: center;
-    margin: 20px 0 0 20px;
     width: 75px;
 }
 
@@ -54,12 +65,29 @@
 }
 
 .message-content {
+    -ms-overflow-style: none;
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
     font-size: 16px;
+    gap: 10px;
     grid-area: 2 / 2 / 3 / 3;
     margin: 10px 10% 0 25px;
+    max-height: 500px;
+    overflow: scroll;
     padding: 10px 0 10px 0;
+    scrollbar-width: none;
     white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.message-content::-webkit-scrollbar {
+    display: none;
+}
+
+.message-content-image {
+    align-self: center;
+    max-width: 100%;
 }
 
 .message-features {

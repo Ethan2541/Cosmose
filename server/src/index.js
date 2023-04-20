@@ -1,4 +1,5 @@
 const api = require('./routes/api.js');
+const assets = require('./routes/assets.js');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');;
@@ -17,6 +18,7 @@ app.use(cors())
 .use(express.urlencoded({ extended: true }));
 
 app.use('/api', api);
+app.use('/assets', assets);
 app.use('/menu', menu);
 app.use('/search', search);
 app.use('/users', users);
