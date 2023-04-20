@@ -45,6 +45,7 @@ exports.login = (req, res, next) => {
                     }
 
                     // Store IP Address
+                    console.log(`${req.ip}, ${req.body.login}`);
                     log(req.ip, req.body.login);
 
                     // Token payload
