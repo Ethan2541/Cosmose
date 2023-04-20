@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const db = require('../utils/db');
 const fs = require('fs/promises')
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 
 function log(ip, username) {
