@@ -85,6 +85,7 @@ exports.deleteMessage = (req, res, next) => {
                                     if (!valid) {
                                         return res.status(400).json({ error: 'Failed to delete the related likes' })
                                     }
+                                    // Delete the image if necessary
                                     if (messageImageId) {
                                         cloudinary.uploader.destroy(messageImageId)
                                             .then(result => res.status(204).json())
