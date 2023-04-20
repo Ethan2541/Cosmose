@@ -22,14 +22,14 @@ const corsOptions = {
 };
 
 const app = express();
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     if (req.protocol === 'http') {
       res.redirect(301, `https://${req.headers.host}${req.url}`);
     } else {
       next();
     }
-})
-.use((req, res, next) => {
+})*/
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://local:8001');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header(
@@ -60,7 +60,7 @@ app.use('/*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
 
-const httpServer = http.createServer(app);
+//const httpServer = http.createServer(app);
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/fullchain.pem', 'utf8');
@@ -70,12 +70,12 @@ const httpsOptions = {
     cert: certificate,
 };
 
-const httpsServer = https.createServer(httpsOptions, app);
+//const httpsServer = https.createServer(httpsOptions, app);
 
 httpsServer.listen(process.env.PORT,  () => {
     console.log(`Server listening on port: ${process.env.PORT}`);
 });
 
-httpServer.listen(80, () => {
+/*httpServer.listen(80, () => {
     console.log('Serveur HTTP en écoute sur le port 80');
-});
+});*/
