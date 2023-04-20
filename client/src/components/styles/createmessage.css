@@ -49,6 +49,7 @@
 }
 
 #createmessage-image {
+    cursor: pointer;
     height: 50px;
     left: 0;
     opacity: 0;
