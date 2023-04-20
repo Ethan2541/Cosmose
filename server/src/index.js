@@ -26,21 +26,11 @@ app.use((req, res, next) => {
 .use(express.urlencoded({ extended: true }));
 dotenv.config();
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/fullchain.pem', 'utf8');
-
-const httpsOptions = {
-    key: privateKey,
-    cert: certificate,
-};
-
-const httpsServer = https.createServer(httpsOptions, app);
-
-httpsServer.use('/*', (req, res, next) => {
+app.use('/*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 })
 
-httpsServer.use('/api', api)
+app.use('/api', api)
 .use('/assets', assets)
 .use('/menu', menu)
 .use('/search', search)
@@ -52,6 +42,16 @@ httpsServer.listen(process.env.PORT,  () => {
 });
 
 const httpServer = http.createServer(app);
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/cosmose.me/fullchain.pem', 'utf8');
+
+const httpsOptions = {
+    key: privateKey,
+    cert: certificate,
+};
+
+const httpsServer = https.createServer(httpsOptions, app);
 
 httpServer.listen(80, () => {
     console.log('Serveur HTTP en écoute sur le port 80');
