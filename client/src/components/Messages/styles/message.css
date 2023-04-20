@@ -64,19 +64,22 @@
     border-bottom: 1px solid var(--message-border-color);
 }
 
-.message-content {
+.message-content-wrapper {
     -ms-overflow-style: none;
+    grid-area: 2 / 2 / 3 / 3;
+    max-height: 500px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.message-content {
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     font-size: 16px;
     gap: 10px;
-    grid-area: 2 / 2 / 3 / 3;
     margin: 10px 10% 0 25px;
-    max-height: 500px;
-    overflow: scroll;
-    padding: 10px 0 10px 0;
-    scrollbar-width: none;
+    padding: 10px 0 12px 0;
     white-space: pre-line;
     word-wrap: break-word;
 }
@@ -87,6 +90,7 @@
 
 .message-content-image {
     align-self: center;
+    max-height: 500px;
     max-width: 100%;
 }
 
