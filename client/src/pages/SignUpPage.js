@@ -62,26 +62,21 @@ function SignUpPage(props) {
 
     function signup(evt) {
         evt.preventDefault();
-        if (password !== password2) {
-            axios.post('/api/signup', {
-                login: userData.login,
-                firstName: userData.firstName,
-                lastName: userData.lastName,
-                password: userData.password,
-                password2: userData.password2
+        axios.post('/api/signup', {
+            login: userData.login,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            password: userData.password,
+            password2: userData.password2
+        })
+            .then((res) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'hidden');
+                navigate('/connexion');
             })
-                .then((res) => {
-                    document.getElementById('signuppage-invalid').style.setProperty('visibility', 'hidden');
-                    navigate('/connexion');
-                })
-                .catch((err) => {
-                    document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
-                    console.log('Could not sign up');
-                });
-        }
-        else {
-            document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
-        }
+            .catch((err) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
+                console.log('Could not sign up');
+            });
     }
 
 
