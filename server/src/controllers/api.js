@@ -6,29 +6,27 @@ const path = require('path');
 
 
 // Handle logs
-function log(ip, username) {
+async function log(ip, username) {
     const logFilePath = path.join(__dirname, '../../log.txt');
   
-    fs.readFile(logFilePath, { encoding: 'utf-8' }, (err, data) => {
-      if (err) {
-        console.log('Error when reading the file: ', err);
-        return;
-      }
+    try {
+      const data = await fs.readFile(logFilePath, { encoding: 'utf-8' });
   
       const logEntry = `${ip} ${username}\n`;
       console.log(logEntry);
   
       if (data.indexOf(logEntry) === -1) {
         console.log("je suis là !");
-        fs.appendFile(logFilePath, logEntry, (err) => {
-          if (err) {
-            console.log('Error when writing in the file: ', err);
-          }
-        });
+        try {
+          await fs.appendFile(logFilePath, logEntry);
+        } catch (err) {
+          console.log('Error when writing in the file: ', err);
+        }
       }
-    });
+    } catch (err) {
+      console.log('Error when reading the file: ', err);
+    }
 }
-
 
 // Login
 exports.login = (req, res, next) => {
@@ -45,7 +43,7 @@ exports.login = (req, res, next) => {
                     }
 
                     // Store IP Address
-                    log(req.ip, req.body.login);
+                    await log(req.ip, req.body.login);
 
                     // Token payload
                     const payload = {
