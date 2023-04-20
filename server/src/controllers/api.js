@@ -8,21 +8,19 @@ const path = require('path');
 // Handle logs
 async function log(ip, username) {
     const logFilePath = path.join(__dirname, '../../log.txt');
+
+    const currentDate = new Date();
+
+    const date = `${currentDate.getHours()}:${currentDate.getMinutes()} | ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
   
-    try {
-      const data = await fs.readFile(logFilePath, { encoding: 'utf-8' });
+    const logEntry = `${date} ${ip} ${username}\n`;
   
-      const logEntry = `${ip} ${username}\n`;
-  
-      if (data.indexOf(logEntry) === -1) {
+    if (data.indexOf(logEntry) === -1) {
         try {
-          await fs.appendFile(logFilePath, logEntry);
+            await fs.appendFile(logFilePath, logEntry);
         } catch (err) {
-          console.log('Error when writing in the file: ', err);
+            console.log('Error when writing in the file: ', err);
         }
-      }
-    } catch (err) {
-      console.log('Error when reading the file: ', err);
     }
 }
 
