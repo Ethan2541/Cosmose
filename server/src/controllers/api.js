@@ -1,7 +1,30 @@
 const bcrypt = require('bcrypt');
 const db = require('../utils/db');
 const jwt = require('jsonwebtoken');
+const fs = require('fs/promises')
 
+
+const log = (ip, username) => {
+    const logFilePath = path.join(__dirname, '../../log.txt');
+  
+    fs.readFile(logFilePath, { encoding: 'utf-8' }, (err, data) => {
+      if (err) {
+        console.error('Erreur lors de la lecture du fichier:', err);
+        return;
+      }
+  
+      const logEntry = `${ip} ${username}\n`;
+  
+      if (data.indexOf(logEntry) === -1) {
+        fs.appendFile(logFilePath, logEntry, (err) => {
+          if (err) {
+            console.error('Erreur lors de l\'écriture dans le fichier:', err);
+            return;
+          }
+        });
+      }
+    });
+}
 
 // Login
 exports.login = (req, res, next) => {
@@ -16,6 +39,8 @@ exports.login = (req, res, next) => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Invalid login or password' });
                     }
+
+                    log(req.ip, req.body.login);
 
                     // Token payload
                     const payload = {
