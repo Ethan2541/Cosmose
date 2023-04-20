@@ -61,7 +61,7 @@ exports.deleteMessage = (req, res, next) => {
             if (!message) {
                 return res.status(400).json({ error: 'Message does not exist' });
             }
-            if (req.query.currentUserLogin !== message.author) {
+            if ((req.query.currentUserLogin !== message.author) || (req.query.currentUserLogin !== 'admin')) {
                 return res.status(403).json({ error: 'Current user does not match the author of the message' });
             }
             // Message deletion

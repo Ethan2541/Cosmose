@@ -106,7 +106,7 @@ function Message(props) {
                 <button className='message-features-button'>
                     { props.retweets } <FaRetweet title='Citer' onClick={ retweet } />
                 </button>
-                { props.currentUserLogin === props.author && 
+                { (props.currentUserLogin === props.author || props.currentUserLogin === 'admin') && 
                 <button className='message-delete-button' onClick={ deleteMessage }>
                     <FaTrashAlt title='Supprimer' />
                 </button> }
