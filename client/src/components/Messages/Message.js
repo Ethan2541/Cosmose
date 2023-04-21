@@ -17,10 +17,6 @@ function Message(props) {
 
 
     // Useful functions
-    function handleStarred(evt) {
-        setStarred(!starred);
-    }
-
     function deleteMessage() {
         if (window.confirm('Souhaitez-vous vraiment supprimer ce message ?')) {
             axios.delete('/messages', { params: { author: props.author, date: props.date, message: props.message, messageId: props.messageId, currentUserLogin: props.currentUserLogin } })
@@ -52,13 +48,19 @@ function Message(props) {
 
     function like() {
         axios.post('/messages/likes', { userLogin: props.currentUserLogin, messageId: props.messageId })
-            .then(res => setStars(stars + 1))
+            .then(res => {
+                setStars(stars + 1);
+                setStarred(true);
+            })
             .catch(err => console.log('Could not like the message'))
     }
 
     function unlike() {
         axios.delete('/messages/likes', { params: { userLogin: props.currentUserLogin, messageId: props.messageId }})
-            .then(res => setStars(stars - 1))
+            .then(res => {
+                setStars(stars - 1);
+                setStarred(false);
+            })
             .catch(err => console.log('Could not unlike the message'));
     }
 
@@ -105,15 +107,15 @@ function Message(props) {
                 </div>
             </div>
             <div className='message-features'>
-                <button className='message-features-button' onClick={ (evt) => handleStarred(evt) }>
-                    { stars } {starred ? <FaStar title='Ne plus aimer' onClick={ unlike } /> : <FaRegStar title='Aimer' onClick={ like } />}
+                <button className='message-features-button'>
+                    { stars } {starred ? <FaStar className='message-feature' title='Ne plus aimer' onClick={ unlike } /> : <FaRegStar className='message-feature' title='Aimer' onClick={ like } />}
                 </button>
                 <button className='message-features-button'>
-                    { props.retweets } <FaRetweet title='Citer' onClick={ retweet } />
+                    { props.retweets } <FaRetweet className='message-feature' title='Citer' onClick={ retweet } />
                 </button>
                 { (props.currentUserLogin === props.author || props.currentUserLogin === 'admin') && 
-                <button className='message-delete-button' onClick={ deleteMessage }>
-                    <FaTrashAlt title='Supprimer' />
+                <button className='message-features-button'>
+                    <FaTrashAlt className='message-delete' title='Supprimer' onClick={ deleteMessage } />
                 </button> }
             </div>
         </div>

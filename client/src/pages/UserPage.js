@@ -106,7 +106,7 @@ function UserPage(props) {
                     <section className='userpage-userstats'>
                         <UserStatsWrapper userLogin={ user.login } />
                     </section>
-                    <div className='userpage-category'>VOTRE NEBULEUSE</div>
+                    <div className='userpage-category'>NEBULEUSE</div>
                     <section id='userpage-followed'>
                         <UsersList users={ followedList } type={ 'followed' } />
                     </section>
