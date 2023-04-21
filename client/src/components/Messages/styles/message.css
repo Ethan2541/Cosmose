@@ -107,32 +107,26 @@
     margin: 20px 0 10px 25px;
 }
 
-.message-features>button {
+.message-features-button {
     align-items: center;
     background-color: rgba(0,0,0,0);
     border: 0;
     color: var(--text-color);
-    cursor: pointer;
+    cursor: default;
     display: flex;
     font-size: 20px;
     gap: 10px;
     transition: 0.3s linear;
 }
 
-.message-features-button:hover {
+.message-feature:hover {
     color: var(--border-color);
+    cursor: pointer;
 }
 
-.message-unfollow-button:hover {
+.message-delete:hover {
     color: rgba(255,69,0,1);
-}
-
-.message-follow-button:hover {
-    color: rgba(70,141,78,1);
-}
-
-.message-delete-button:hover {
-    color: rgba(255,69,0,1);
+    cursor: pointer;
 }
 
 .message-retweet {
