@@ -12,13 +12,23 @@ const path = require('path');
 const search = require('./routes/search.js');
 const users = require('./routes/users.js');
 
+const allowedOrigins = [
+    'http://cosmose.me',
+    'https://cosmose.me',
+    'http://www.cosmose.me',
+    'https://www.cosmose.me',
+    'http://10-gag.fr',
+    'https://10-gag.fr',
+    'http://www.10-gag.fr',
+    'https://www.10-gag.fr',
+];
+
 const corsOptions = {
-    origin: 'https://cosmose.me',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-
+    optionsSuccessStatus: 200,
+    credentials: true
 };
 
 const app = express();
@@ -29,20 +39,7 @@ app.use((req, res, next) => {
       next();
     }
 })
-.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://local:8001');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header(
-    'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, X-Api-Key'
-    );
-    res.header('Access-Control-Allow-Credentials', 'true');
-    if ('OPTIONS' === req.method) {
-    res.sendStatus(200);
-    }
-    else {
-    next();
-    }
-})
+.use(cors(corsOptions))
 .use(express.json())
 .use(express.static(path.join(__dirname, '../../client/build')))
 .use(express.urlencoded({ extended: true }));
