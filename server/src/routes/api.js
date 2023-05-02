@@ -5,6 +5,6 @@ const messages = require('./messages.js');
 const router = express.Router();
 
 router.post('/login', apiCtrl.login)
-.put('/signup', apiCtrl.signup)
+.post('/signup', apiCtrl.signup)
 
 module.exports = router;

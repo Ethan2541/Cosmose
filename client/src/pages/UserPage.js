@@ -1,5 +1,4 @@
-import { FaPalette } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaPalette, FaSignOutAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -15,21 +14,26 @@ import UserStatsWrapper from '../components/UserStats/UserStatsWrapper.js';
 import './styles/userpage.css';
 
 function UserPage(props) {
+    // States
     const location = useLocation();
     const navigate = useNavigate();
     const { login } = useParams();
+
     const [followedList, setFollowedList] = useState();
     const [followersList, setFollowersList] = useState();
+    const [retweet, setRetweet] = useState(null);
     const [userMessagesList, setUserMessagesList] = useState();
     const [user, setUser] = useState(props.currentUser);
+    
 
+    // Useful functions
     function getUserMessagesList() {
         axios.get(`/messages/${user.login}`)
             .then(res => {
                 let messages = res.data.messagesList;
                 setUserMessagesList(messages);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log('Could not get the list of messages from the user'));
     }
 
     function getFollowedList() {
@@ -38,7 +42,7 @@ function UserPage(props) {
                 let followed = res.data.followedList;
                 setFollowedList(followed);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log('Could not get the list of followed users'));
     }
 
     function getFollowersList(limit) {
@@ -47,15 +51,19 @@ function UserPage(props) {
                 let followers = res.data.followersList;
                 setFollowersList(followers);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log('Could not get the list of followers'));
     }
 
+
+    // Handle the routing
     useEffect(() => {
+        // Login null
         if (!login) {
             setUser(props.currentUser);
         }
         axios.get(`/users/${login}`)
             .then(res => {
+                // If the user does not exist, the current user's profile page is rendered
                 if (!res.data.user) {
                     navigate('/profil');
                 }
@@ -64,14 +72,17 @@ function UserPage(props) {
                     navigate(`/profil/${login}`);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log('Could not find the user with the specified login'));
     }, [login]);
 
+
+    // Get all lists
     useEffect(() => {
         getUserMessagesList();
         getFollowedList();
         getFollowersList();
     }, [location]);
+
 
     return (
         <div id='userpage'>
@@ -93,9 +104,9 @@ function UserPage(props) {
                     <UserMeters userLogin={ user.login } />
                     <div className='userpage-category'>STATISTIQUES</div>
                     <section className='userpage-userstats'>
-                        <UserStatsWrapper />
+                        <UserStatsWrapper userLogin={ user.login } />
                     </section>
-                    <div className='userpage-category'>VOTRE NEBULEUSE</div>
+                    <div className='userpage-category'>NEBULEUSE</div>
                     <section id='userpage-followed'>
                         <UsersList users={ followedList } type={ 'followed' } />
                     </section>
@@ -108,9 +119,9 @@ function UserPage(props) {
                     <div id='userpage-searchbar'>
                         <Searchbar placeholder={props.currentUser.login === user.login ? 'Naviguer dans votre constellation...' : `Naviguer dans la constellation de ${user.login}...` } type={ 'usermessages' } setList={ setUserMessagesList } userLogin={ user.login } />
                     </div>
-                    { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } />}
+                    { props.currentUser.login === user.login && <CreateMessage getMessagesList={ getUserMessagesList } retweet={ retweet } setRetweet={ setRetweet } />}
                     <div id='userpage-messageslist'>
-                        <MessagesList messages={ userMessagesList } currentUserLogin={ props.currentUser.login } />
+                        <MessagesList messages={ userMessagesList } currentUserLogin={ props.currentUser.login } getList={ getUserMessagesList } setRetweet={ setRetweet } />
                     </div>
                 </section>
             </main>

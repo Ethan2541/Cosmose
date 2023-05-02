@@ -64,3 +64,10 @@
     top: 0;
     z-index: -1;
 }
+
+.common-loginpage-signuppage-invalid {
+    color: rgba(255,69,0,1);
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+}

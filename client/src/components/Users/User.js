@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './styles/user.css';
 
 function User(props) {
+    // State
     const navigate = useNavigate()
+
+    
     return(
         <div className='user' onClick={ (evt) => navigate(`/profil/${props.userLogin}`)}>
             <img draggable='false' src={ props.avatar } alt={ 'Avatar de ' + props.userLogin } />

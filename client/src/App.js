@@ -11,11 +11,14 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { useEffect, useState } from 'react';
 
 function App(props) {
+    // States
     const [currentTheme, setCurrentTheme] = useState(window.localStorage.getItem('theme') ? window.localStorage.getItem('theme') : 'whitedwarf')
     const [currentUser, setCurrentUser] = useState(window.localStorage.getItem('user') ? JSON.parse(window.localStorage.getItem('user')) : null);
     const location = useLocation();
     const navigate = useNavigate();
 
+
+    // Useful functions
     function getToken() {
         const token = localStorage.getItem('token');
         return token;
@@ -50,6 +53,8 @@ function App(props) {
         }
     }
 
+
+    // Change stored theme
     useEffect(() => {
         let root = document.documentElement;
         root.setAttribute('theme', currentTheme);
@@ -58,10 +63,12 @@ function App(props) {
         const token = window.localStorage.getItem('token');        
         if (token) {
             axios.put('/users/theme', { theme: currentTheme }, { headers: { Authorization: `Bearer ${token}`} })
-                .catch((err) => console.log(err));
+                .catch((err) => console.log('Could not change the stored theme'));
         }
     }, [currentTheme]);
 
+
+    // log out if necessary
     useEffect(() => {
         const token = getToken();
         if (token) {
@@ -76,6 +83,7 @@ function App(props) {
         window.scrollTo(0,0);
     }, [location]);
 
+    
     return(
         <div>
             <Routes>

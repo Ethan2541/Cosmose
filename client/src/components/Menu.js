@@ -1,3 +1,5 @@
+import axios from '../axios.js';
+
 import { FaPalette } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -7,8 +9,37 @@ import { useState } from 'react';
 import './styles/menu.css';
 
 function Menu(props) {
+    // State
     const [toggleParameters, setToggleParameters] = useState(false);
 
+
+    // Useful functions
+    function getMostStarred() {
+        axios.get('/menu/moststarred')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the most starred messages'));
+    }
+
+    function getRisingStars() {
+        axios.get('/menu/mostretweeted')
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the most retweeted messages'));
+    }
+
+    function getGalaxy() {
+        axios.get(`/menu/authorandliked/${props.currentUserLogin}`)
+            .then(res => props.setList(res.data.updatedMessagesList))
+            .catch(err => console.log('Could not get the messages from the user and liked by the user'));
+    }
+
+    function getMessagesList() {
+        axios.get('/messages')
+            .then(res => props.setList(res.data.messagesList))
+            .catch(err => console.log('Could not get the global list of messages'));
+    }
+
+
+    // Handle dropdown
     useEffect(() => {
         let dropdown = document.getElementById('menu-parameters');
         if (toggleParameters) {
@@ -19,9 +50,10 @@ function Menu(props) {
         }
     }, [toggleParameters]);
 
+
     return(
         <div id='menu'>
-            <h1>COSMOSE</h1>
+            <button id='menu-title' onClick={ getMessagesList }><h1>COSMOSE</h1></button>
             <ul>
                 <li><Link to='/profil' className='menu-link'>MA CONSTELLATION</Link></li>
                 <li>
@@ -42,9 +74,9 @@ function Menu(props) {
                     </ul>
                 </li>
                 <hr />
-                <li><button className='menu-button'>LES PLUS ETOILES</button></li>
-                <li><button className='menu-button'>ETOILES MONTANTES</button></li>
-                <li><button className='menu-button'>MA GALAXIE</button></li>
+                <li><button className='menu-button' onClick={ getMostStarred }>LES PLUS ETOILES</button></li>
+                <li><button className='menu-button' onClick={ getRisingStars }>ETOILES MONTANTES</button></li>
+                <li><button className='menu-button' onClick={ getGalaxy }>MA GALAXIE</button></li>
                 <hr />
                 <li><a id='menu-post' onClick={ (evt) => window.scrollTo(0,0) }>PUBLIER</a></li>
             </ul>

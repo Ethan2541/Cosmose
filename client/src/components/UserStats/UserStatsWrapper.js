@@ -10,7 +10,7 @@ function UserStatsWrapper(props) {
                 <Spline scene='https://prod.spline.design/euzPYFXmtZr0LOP1/scene.splinecode' />
             </div>
             <div className='userstatswrapper-stats'>
-                <UserStats friendsNumber={'500M'} timeSpent={'150h'}/>
+                <UserStats userLogin={ props.userLogin } />
             </div>
         </div>
     );

@@ -1,8 +1,7 @@
 import axios from '../axios.js';
 import OfflineHeader from '../components/OfflineHeader.js';
 
-import { FaEye } from 'react-icons/fa';
-import { FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +9,7 @@ import './styles/common-loginpage-signuppage.css';
 import './styles/signuppage.css';
 
 function SignUpPage(props) {
+    // States
     const [userData, setUserData] = useState({ login: '', firstName: '', lastName: '', password: '', password2: ''})
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
@@ -18,15 +18,8 @@ function SignUpPage(props) {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (password === password2) {
-            document.getElementById('password2').classList.remove('input-invalid-password');
-        }
-        else {
-            document.getElementById('password2').classList.add('input-invalid-password');
-        }
-    }, [password, password2]);
 
+    // Useful functions
     function handleFirstNameChange(evt) {
         let updatedUserData = userData;
         updatedUserData.firstName = evt.target.value;
@@ -69,18 +62,35 @@ function SignUpPage(props) {
 
     function signup(evt) {
         evt.preventDefault();
-        axios.put('/api/signup', {
+        axios.post('/api/signup', {
             login: userData.login,
             firstName: userData.firstName,
             lastName: userData.lastName,
-            password: userData.password
+            password: userData.password,
+            password2: userData.password2
         })
-        .then((res) => {
-            navigate('/connexion');
-        })
-        .catch((err) => { console.log(err) });
+            .then((res) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'hidden');
+                navigate('/connexion');
+            })
+            .catch((err) => {
+                document.getElementById('signuppage-invalid').style.setProperty('visibility', 'visible');
+                console.log('Could not sign up');
+            });
     }
 
+
+    // Show if the passwords are different
+    useEffect(() => {
+        if (password === password2) {
+            document.getElementById('password2').classList.remove('input-invalid-password');
+        }
+        else {
+            document.getElementById('password2').classList.add('input-invalid-password');
+        }
+    }, [password, password2]);
+
+    
     return (
         <div id='signuppage'>
             <header id='signuppage-header'>
@@ -100,6 +110,7 @@ function SignUpPage(props) {
                     </div>
                     <button className='large-field' type='submit'>Enregistrer</button>
                 </form>
+                <p id='signuppage-invalid' className='common-loginpage-signuppage-invalid'>Informations invalides</p>
             </main>
         </div>
     );

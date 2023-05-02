@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles/offlineheader.css';
 
 function OfflineHeader(props) {
+    // Useful function
     function displayLoginOrSignUp() {
         if (props.currentPage === 'loginpage') {
             return (
@@ -19,6 +20,8 @@ function OfflineHeader(props) {
             )
         }
     }
+
+    
     return (
         <div id='offlineheader'>
             <h1>COSMOSE</h1>
