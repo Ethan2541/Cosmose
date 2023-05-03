@@ -19,7 +19,8 @@ function Message(props) {
     // Useful functions
     function deleteMessage() {
         if (window.confirm('Souhaitez-vous vraiment supprimer ce message ?')) {
-            axios.delete('/messages', { params: { author: props.author, date: props.date, message: props.message, messageId: props.messageId, currentUserLogin: props.currentUserLogin } })
+            const token = window.localStorage.getItem('token');
+            axios.delete('/messages', { headers: { Authorization: `Bearer ${token}`}, data: { messageId: props.messageId } })
                 .then(res => {
                     props.setRetweet(null);
                     props.getMessagesList(5);
@@ -29,7 +30,7 @@ function Message(props) {
     }
 
     function retweet() {
-        const retweet = {messageId: props.messageId, author: props.author, avatar: props.avatar, date: props.date, likes: props.likes, message: props.message }
+        const retweet = { messageId: props.messageId, author: props.author, avatar: props.avatar, date: props.date, likes: props.likes, message: props.message }
         props.setRetweet(retweet);
         window.scrollTo(0,0);
     }
@@ -47,7 +48,8 @@ function Message(props) {
     }
 
     function like() {
-        axios.post('/messages/likes', { userLogin: props.currentUserLogin, messageId: props.messageId })
+        const token = window.localStorage.getItem('token');
+        axios.post('/messages/likes', { messageId: props.messageId }, { headers: { Authorization: `Bearer ${token}`} })
             .then(res => {
                 setStars(stars + 1);
                 setStarred(true);
@@ -56,7 +58,8 @@ function Message(props) {
     }
 
     function unlike() {
-        axios.delete('/messages/likes', { params: { userLogin: props.currentUserLogin, messageId: props.messageId }})
+        const token = window.localStorage.getItem('token');
+        axios.delete('/messages/likes', { headers: { Authorization: `Bearer ${token}`}, data: { messageId: props.messageId }})
             .then(res => {
                 setStars(stars - 1);
                 setStarred(false);

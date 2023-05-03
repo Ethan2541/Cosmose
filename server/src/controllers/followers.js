@@ -3,8 +3,11 @@ const db = require('../utils/db');
 
 // Follow
 exports.follow = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
     // Check if the user already follows the other user
-    db.collection('followers').findOne({ followerLogin: req.body.followerLogin, followedLogin: req.body.followedLogin })
+    db.collection('followers').findOne({ followerLogin: req.user.login, followedLogin: req.body.followedLogin })
         .then(exists => {
             if (exists) {
                 return res.status(409).json({ error: 'User already followed' })
@@ -12,11 +15,11 @@ exports.follow = (req, res, next) => {
             // Check if the users exist and get their assets
             db.collection('users').findOne({ login: req.body.followedLogin })
                 .then(followedUser => {
-                    db.collection('users').findOne({ login: req.body.followerLogin })
+                    db.collection('users').findOne({ login: req.user.login })
                         .then(followerUser => {
                             db.collection('followers').insertOne({
-                                followerLogin: req.body.followerLogin,
-                                followedLogin: req.body.followedLogin,
+                                followerLogin: followerUser.login,
+                                followedLogin: followedUser.login,
                                 followedAvatar: followedUser.avatar,
                                 followerAvatar: followerUser.avatar,
                                 date: new Date()
@@ -39,14 +42,17 @@ exports.follow = (req, res, next) => {
 
 // Unfollow
 exports.unfollow = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
     // First, the user needs to follow the other user
-    db.collection('followers').findOne({ followerLogin: req.query.followerLogin, followedLogin: req.query.followedLogin })
+    db.collection('followers').findOne({ followerLogin: req.user.login, followedLogin: req.body.followedLogin })
         .then(exists => {
             if (!exists) {
                 return res.status(400).json({ error: 'Not followed' })
             }
             // Deletion
-            db.collection('followers').deleteOne({ followerLogin: req.query.followerLogin, followedLogin: req.query.followedLogin })
+            db.collection('followers').deleteOne({ followerLogin: req.user.login, followedLogin: req.body.followedLogin })
                 .then(valid => {
                     if (!valid) {
                         return res.status(400).json({ error: 'Could not unfollow' });

@@ -27,7 +27,8 @@ function Menu(props) {
     }
 
     function getGalaxy() {
-        axios.get(`/menu/authorandliked/${props.currentUserLogin}`)
+        const token = window.localStorage.getItem('token');
+        axios.get('/menu/authorandliked', { headers: { Authorization: `Bearer ${token}`} })
             .then(res => props.setList(res.data.updatedMessagesList))
             .catch(err => console.log('Could not get the messages from the user and liked by the user'));
     }

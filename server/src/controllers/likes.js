@@ -4,8 +4,11 @@ const mongo = require('mongodb');
 
 // Add like
 exports.addLike = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
     // Check user has already liked the message
-    db.collection('likes').findOne({ userLogin: req.body.userLogin, messageId: new mongo.ObjectId(req.body.messageId) })
+    db.collection('likes').findOne({ userLogin: req.user.login, messageId: new mongo.ObjectId(req.body.messageId) })
         .then(like => {
             if (like) {
                 return res.status(400).json({ error: 'Already liked' })
@@ -13,7 +16,7 @@ exports.addLike = (req, res, next) => {
             // Creation
             db.collection('likes').insertOne(
                 {
-                    userLogin: req.body.userLogin,
+                    userLogin: req.user.login,
                     messageId: new mongo.ObjectId(req.body.messageId),
                     date: new Date()
                 })
@@ -40,20 +43,23 @@ exports.addLike = (req, res, next) => {
 
 // Delete like
 exports.deleteLike = (req, res, next) => {
-    db.collection('likes').findOne({ userLogin: req.query.userLogin, messageId: new mongo.ObjectId(req.query.messageId) })
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
+    db.collection('likes').findOne({ userLogin: req.user.login, messageId: new mongo.ObjectId(req.body.messageId) })
         .then(like => {
             if (!like) {
                 return res.status(400).json({ error: 'Not liked' })
             }
             // Deletion
-            db.collection('likes').deleteOne({ userLogin: req.query.userLogin, messageId: new mongo.ObjectId(req.query.messageId) })
+            db.collection('likes').deleteOne({ userLogin: req.user.login, messageId: new mongo.ObjectId(req.body.messageId) })
             .then(valid => {
                 // Invalid deletion
                 if (!valid) {
                     return res.status(400).json({ error: 'Could not unlike' })
                 }
                 // Decrease the message's likes counter
-                db.collection('messages').updateOne({ _id: new mongo.ObjectId(req.query.messageId) }, { $inc: { likes: -1 } })
+                db.collection('messages').updateOne({ _id: new mongo.ObjectId(req.body.messageId) }, { $inc: { likes: -1 } })
                     .then(result => {
                         if (!result) {
                             return res.status(400).json({ error: 'Could not decrease the number of likes' })

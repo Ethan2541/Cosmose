@@ -9,10 +9,10 @@ router.get('/', messages.getMessagesList)
 .get('/:userLogin', messages.getUserMessagesList)
 
 .post('/', auth, messages.createMessage)
-.delete('/', messages.deleteMessage)
+.delete('/', auth, messages.deleteMessage)
 
 .get('/likes/:userLogin/:messageId', likes.getLike)
-.post('/likes', likes.addLike)
-.delete('/likes', likes.deleteLike);
+.post('/likes', auth, likes.addLike)
+.delete('/likes', auth, likes.deleteLike);
 
 module.exports = router;

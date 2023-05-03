@@ -50,25 +50,31 @@ exports.createMessage = (req, res, next) => {
             })
             .catch(err => res.status(500).json({ error: 'Could not check if the user exists' }));
     }
+    else {
+        return res.status(401).json({ error: 'Not logged in' })
+    }
 }
 
 
 // Message deletion
 exports.deleteMessage = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not logged in' });
+    }
     // The message must exist
-    db.collection('messages').findOne({ _id: new mongo.ObjectId(req.query.messageId) })
+    db.collection('messages').findOne({ _id: new mongo.ObjectId(req.body.messageId) })
         .then(message => {
             if (!message) {
                 return res.status(400).json({ error: 'Message does not exist' });
             }
-            if ((req.query.currentUserLogin !== message.author) && (req.query.currentUserLogin !== 'admin')) {
+            if ((req.user.login !== message.author) && (req.user.login !== 'admin')) {
                 return res.status(403).json({ error: 'Current user does not match the author of the message' });
             }
             // Message deletion
             const messageId = message._id;
             const messageImageId = message.imageId;
             const retweetId = message.retweetId;
-            db.collection('messages').deleteOne({ _id: new mongo.ObjectId(req.query.messageId) })
+            db.collection('messages').deleteOne({ _id: new mongo.ObjectId(req.body.messageId) })
                 .then(valid => {
                     if (!valid) {
                         return res.status(400).json({ error: 'Could not delete the message' });

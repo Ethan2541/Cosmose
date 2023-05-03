@@ -42,20 +42,25 @@ exports.getAssets = (req, res, next) => {
 
 // Change user's banner ; If invalid -> delete the new assets and keep the old assets ; If valid -> delete the old assets
 exports.changeBanner = (req, res, next) => {
+    if (!req.user) {
+        cloudinary.uploader.destroy(req.body.id)
+            .then(result => res.status(401).json({ error: 'Not logged in' }))
+            .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
+    }
     // The user must exist
-    db.collection('users').findOne({ login: req.query.login })
+    db.collection('users').findOne({ login: req.user.login })
         .then(user => {
             if (!user) {
-                cloudinary.uploader.destroy(req.query.id)
+                cloudinary.uploader.destroy(req.body.id)
                     .then(result => res.status(404).json({ error: 'User not found' }))
                     .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
             }
             // Update banner
             const oldId = user.coverId;
-            db.collection('users').updateOne({ login: req.query.login }, { $set: { cover: req.query.url, coverId: req.query.id } })
+            db.collection('users').updateOne({ login: req.user.login }, { $set: { cover: req.body.url, coverId: req.body.id } })
                 .then(valid => {
                     if (!valid) {
-                        cloudinary.uploader.destroy(req.query.id)
+                        cloudinary.uploader.destroy(req.body.id)
                             .then(result => res.status(400).json({ error: 'Could not update the cover' }))
                             .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                     }
@@ -69,13 +74,13 @@ exports.changeBanner = (req, res, next) => {
                     }
                 })
                 .catch(err => {
-                    cloudinary.uploader.destroy(req.query.id)
+                    cloudinary.uploader.destroy(req.body.id)
                         .then(result => res.status(500).json({ error: 'Could not update the cover' }))
                         .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                 });
         })
         .catch(err => {
-            cloudinary.uploader.destroy(req.query.id)
+            cloudinary.uploader.destroy(req.body.id)
                 .then(result => res.status(500).json({ error: 'Could not find the user' }))
                 .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
         });
@@ -84,28 +89,33 @@ exports.changeBanner = (req, res, next) => {
 
 // Change user's avatar ; If invalid -> delete the new assets and keep the old assets ; If valid -> delete the old assets
 exports.changeAvatar = (req, res, next) => {
+    if (!req.user) {
+        cloudinary.uploader.destroy(req.body.id)
+            .then(result => res.status(401).json({ error: 'Not logged in' }))
+            .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
+    }
     // The user must exist
-    db.collection('users').findOne({ login: req.query.login })
+    db.collection('users').findOne({ login: req.user.login })
         .then(user => {
             if (!user) {
-                cloudinary.uploader.destroy(req.query.id)
+                cloudinary.uploader.destroy(req.body.id)
                     .then(result => res.status(404).json({ error: 'User not found' }))
                     .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
             }
             // Update avatar
             const oldId = user.avatarId;
-            db.collection('users').updateOne({ login: req.query.login }, { $set: { avatar: req.query.url, avatarId: req.query.id } })
+            db.collection('users').updateOne({ login: req.user.login }, { $set: { avatar: req.body.url, avatarId: req.body.id } })
                 .then(valid => {
                     if (!valid) {
-                        cloudinary.uploader.destroy(req.query.id)
+                        cloudinary.uploader.destroy(req.body.id)
                             .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
                             .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                     }
                     // Update messages' avatars
-                    db.collection('messages').updateMany({ author: req.query.login }, { $set: { avatar: req.query.url }})
+                    db.collection('messages').updateMany({ author: req.user.login }, { $set: { avatar: req.body.url }})
                         .then(valid => {
                             if (!valid) {
-                                cloudinary.uploader.destroy(req.query.id)
+                                cloudinary.uploader.destroy(req.body.id)
                                     .then(result => res.status(400).json({ error: 'Could not update the avatar' }))
                                     .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                             }
@@ -119,19 +129,19 @@ exports.changeAvatar = (req, res, next) => {
                             }      
                         })
                         .catch(err => {
-                            cloudinary.uploader.destroy(req.query.id)
+                            cloudinary.uploader.destroy(req.body.id)
                                 .then(result => res.status(500).json({ error: err }))
                                 .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                         })
                 })
                 .catch(err => {
-                    cloudinary.uploader.destroy(req.query.id)
+                    cloudinary.uploader.destroy(req.body.id)
                         .then(result => res.status(500).json({ error: 'Could not update the avatar' }))
                         .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
                 });
         })
         .catch(err => {
-            cloudinary.uploader.destroy(req.query.id)
+            cloudinary.uploader.destroy(req.body.id)
                 .then(result => res.status(500).json({ error: 'Could not find the user' }))
                 .catch(error => res.status(500).json({ error: 'Could not delete the new assets' }));
         });

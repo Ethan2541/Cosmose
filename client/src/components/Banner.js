@@ -34,7 +34,8 @@ function Banner(props) {
             .then(res => {
                 const newUrl = res.data.newUrl;
                 const newId = res.data.newId;
-                axios.put('/users/assets/banner', null, { params: { login: props.currentUserLogin, url: newUrl, id: newId } })
+                const token = window.localStorage.getItem('token');
+                axios.put('/users/assets/banner', { url: newUrl, id: newId }, { headers: { Authorization: `Bearer ${token}`} })
                     .then(res => {
                         console.log('Banner updated successfully');
                         window.location.reload();
@@ -66,7 +67,8 @@ function Banner(props) {
             .then(res => {
                 const newUrl = res.data.newUrl;
                 const newId = res.data.newId;
-                axios.put('/users/assets/avatar', null, { params: { login: props.currentUserLogin, url: newUrl, id: newId } })
+                const token = window.localStorage.getItem('token');
+                axios.put('/users/assets/avatar', { url: newUrl, id: newId }, { headers: { Authorization: `Bearer ${token}`} })
                     .then(res => {
                         console.log('Avatar updated successfully');
                         window.location.reload();
@@ -85,13 +87,15 @@ function Banner(props) {
     }
 
     function follow() {
-        axios.post('/users/follow', { followerLogin: props.currentUserLogin, followedLogin: props.userLogin })
+        const token = window.localStorage.getItem('token');
+        axios.post('/users/follow', { followedLogin: props.userLogin }, { headers: { Authorization: `Bearer ${token}`} })
             .then(res => setFollowStatus(true))
             .catch(err => console.log(err));
     }
 
     function unfollow() {
-        axios.delete('/users/follow', { params: { followerLogin: props.currentUserLogin, followedLogin: props.userLogin } })
+        const token = window.localStorage.getItem('token');
+        axios.delete('/users/follow', { headers: { Authorization: `Bearer ${token}`}, data: { followedLogin: props.userLogin } })
             .then(res => setFollowStatus(false))
             .catch(err => console.log(err));
     }
@@ -114,7 +118,7 @@ function Banner(props) {
     
     return(
         <div id='banner'>
-            <div id='banner-cover'>
+            <div id='banner-cover' onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner }>
                 <img draggable='false' src={ userAssets.cover } alt={ 'Couverture de ' + props.userLogin } onMouseEnter={ renderEditBanner } onMouseLeave={ hideEditBanner } />
             </div>
             { props.currentUserLogin === props.userLogin ?

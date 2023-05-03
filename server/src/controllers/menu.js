@@ -24,15 +24,18 @@ exports.getMostRetweeted = (req, res, next) => {
 
 // Messages from the user and messages liked by the user
 exports.getAuthorAndLiked = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'You must be logged in'});
+    }
     // Messages liked by the user
-    db.collection('likes').find({ userLogin: req.params.login }).toArray()
+    db.collection('likes').find({ userLogin: req.user.login }).toArray()
         .then(likedMessages => {
             const likedMessagesIds = [];
             for (let i = 0; i < likedMessages.length; i++) {
                 likedMessagesIds.push(likedMessages[i].messageId);
             }
             // Messages from the user or liked by the user
-            db.collection('messages').find({ $or: [{ author: req.params.login }, { _id: { $in: likedMessagesIds } }] }).sort({ date: -1 }).toArray()
+            db.collection('messages').find({ $or: [{ author: req.user.login }, { _id: { $in: likedMessagesIds } }] }).sort({ date: -1 }).toArray()
                 .then(messagesList => { 
                     res.status(200).json({ updatedMessagesList: messagesList });
                 })

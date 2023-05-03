@@ -1,7 +1,7 @@
 {
   "name": "cosmose",
   "version": "1.0.0",
-  "description": "",
+  "description": "<h1 align='center'>Cosmose - Réseau de Constellations</h1>",
   "main": "index.js",
   "scripts": {
     "client": "npm start --prefix ./client",
