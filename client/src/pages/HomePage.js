@@ -41,7 +41,7 @@ function HomePage(props) {
                 <StarryBackground />
             </div>
             <aside id='homepage-left'> 
-                <Menu switchTheme={ props.switchTheme } logout={ props.logout } currentUserLogin={ props.currentUser.login } setList={ setMessagesList } />
+                <Menu switchTheme={ props.switchTheme } logout={ props.logout } setList={ setMessagesList } />
             </aside>
             <main id='homepage-right'>
                 <div id='homepage-searchbar'>

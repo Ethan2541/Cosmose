@@ -1,7 +1,7 @@
 import axios from '../axios.js';
+import CreateMessage from './CreateMessage.js';
 
-import { FaPalette } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaTimesCircle, FaPalette, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -79,7 +79,7 @@ function Menu(props) {
                 <li><button className='menu-button' onClick={ getRisingStars }>ETOILES MONTANTES</button></li>
                 <li><button className='menu-button' onClick={ getGalaxy }>MA GALAXIE</button></li>
                 <hr />
-                <li><a id='menu-post' onClick={ (evt) => window.scrollTo(0,0) }>PUBLIER</a></li>
+                <li><a id='menu-post' className='menu-button' onClick={ (evt) => { window.scrollTo(0,0) } }>PUBLIER</a></li>
             </ul>
         </div>
     );

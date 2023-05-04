@@ -36,6 +36,7 @@
     color: rgba(255,255,255,1);
     cursor: pointer;
     font-family: inherit;
+    font-size: 14px;
     font-weight: bold;
     height: 50px;
     padding: 0 10px 0 10px;
@@ -48,14 +49,27 @@
     filter: brightness(85%);
 }
 
-#createmessage-image {
+.createmessage-label {
+    align-items: center;
+    background-color: var(--border-color);
+    color: rgba(255,255,255,1);
     cursor: pointer;
+    display: flex;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
     height: 50px;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
+    justify-content: center;
+    transition: 0.3s linear;
     width: 100%;
+}
+
+.createmessage-label:hover {
+    filter: brightness(85%);
+}
+
+#createmessage-image {
+    display: none;
 }
 
 .createmessage-retweet {
