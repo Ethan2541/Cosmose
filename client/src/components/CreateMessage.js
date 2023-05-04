@@ -21,6 +21,7 @@ function CreateMessage(props){
                 .then(res => {
                     const image = res.data.newUrl;
                     const imageId = res.data.newId;
+                    const token = window.localStorage.getItem('token');
                     axios.post('/messages', { message: message, image: image, imageId: imageId, retweetId: props.retweet ? props.retweet.messageId : null }, { headers: { Authorization: `Bearer ${token}`} })
                         .then((res) => {
                             document.getElementById('createmessage-content').value = '';
