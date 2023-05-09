@@ -15,6 +15,7 @@ function CreateMessage(props){
         const token = window.localStorage.getItem('token');
         const data = new FormData();
         const file = document.getElementById('createmessage-image').files[0];
+        document.getElementById('createmessage-image').value = '';
         if (file) {
             data.append('image', file);
             axios.post('/assets', data, { headers: { 'Content-Type': 'multipart/form-data' } })
