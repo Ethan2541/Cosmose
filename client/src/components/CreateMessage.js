@@ -26,6 +26,7 @@ function CreateMessage(props){
                     axios.post('/messages', { message: message, image: image, imageId: imageId, retweetId: props.retweet ? props.retweet.messageId : null }, { headers: { Authorization: `Bearer ${token}`} })
                         .then((res) => {
                             document.getElementById('createmessage-content').value = '';
+                            document.getElementById('createmessage-image').value = null;
                             props.setRetweet(null);
                             props.getMessagesList(5);
                         })
